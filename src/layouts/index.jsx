@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import scrollTop from '../utils/scroll';
 
 import './index.scss';
 import './main.scss';
@@ -11,7 +12,7 @@ const Template = ({ children }) => (
       {children()}
     </main>
     <nav className="to-top">
-      <button>↑</button>
+      <button onClick={() => { scrollTop(400); }}>↑</button>
     </nav>
   </div>
 );
