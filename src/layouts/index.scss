@@ -1,0 +1,66 @@
+@import 'normalize';
+@import 'box-sizing';
+@import '../css/variables';
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://cdn.jsdelivr.net/font-d2coding/1.2.1/d2coding.css');
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: $text-color;
+}
+
+a {
+  color: $point-color;
+
+  &:focus, &:hover {
+    color: $point-color--lighten;
+  }
+
+  /*
+  &:visited {
+    color: $point-color--darken;
+  }
+  */
+}
+
+.header,
+.container {
+  margin: auto;
+  @media (min-width: $xs-size) {
+    max-width: $container-max-width-xs;
+  }
+  @media (min-width: $sm-size) {
+    max-width: $container-max-width-sm;
+  }
+  @media (min-width: $md-size) {
+    max-width: $container-max-width-md;
+  }
+  @media (min-width: $lg-size) {
+    max-width: $container-max-width-lg;
+  }
+  @media (min-width: $xl-size) {
+    max-width: $container-max-width-xl;
+  }
+}
+
+.clearfix {
+  display: block;
+  content: '';
+  clear: both;
+
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}

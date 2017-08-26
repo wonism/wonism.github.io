@@ -1,0 +1,24 @@
+@import '../css/variables';
+
+.container {
+}
+
+.to-top {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+
+  & > button {
+    padding: 0;
+    width: inherit;
+    height: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

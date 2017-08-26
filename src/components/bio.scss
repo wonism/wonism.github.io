@@ -1,0 +1,22 @@
+@import '../css/variables';
+
+.bio {
+  img {
+    display: inline-block;
+    margin: 0 8px 0 0;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
+  span {
+    display: inline-block;
+    color: $text-color;
+    vertical-align: middle;
+  }
+
+  small {
+    color: $text-color--lighten;
+  }
+}

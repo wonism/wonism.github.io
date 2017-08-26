@@ -1,0 +1,159 @@
+@import './variables';
+
+/**
+ * based on zenburn.css
+ *
+ * Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
+ * based on dark.css by Ivan Sagalaev
+ *
+ * change .markdown into .gatsby-highlight
+ * remove .hljs- prefix
+ */
+
+.gatsby-highlight pre {
+  display: block;
+  background: #3f3f3f;
+  color: #dcdcdc;
+  overflow-y: hidden;
+}
+
+.gatsby-highlight pre code {
+  background: none;
+  border: none;
+  border-radius: 3px;
+  display: inline-block;
+  overflow: inherit;
+  padding: 1.58333rem;
+  white-space: inherit;
+  word-wrap: normal;
+}
+
+code {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: pre-line;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -hp-pre-wrap;
+  word-wrap: break-word;
+  background: transparent;
+  color: $point-color;
+  display: inline;
+  font-family: D2Coding, 'D2 coding', monospace, serif;
+  max-width: 100%;
+  overflow: auto;
+  padding: 0 0.1625rem;
+}
+
+.gatsby-highlight {
+  pre code {
+    color: #dcdcdc;
+  }
+
+  .keyword,
+  .tag,
+  .css .class,
+  .css .id,
+  .lisp .title,
+  .nginx .title,
+  .request,
+  .status,
+  .clojure .attribute {
+    color: #e3ceab;
+  }
+
+  .django .template_tag,
+  .django .variable,
+  .django .filter .argument {
+    color: #dcdcdc;
+  }
+
+  .number,
+  .date {
+    color: #8cd0d3;
+  }
+
+  .dos .envvar,
+  .dos .stream,
+  .variable,
+  .apache .sqbracket {
+    color: #efdcbc;
+  }
+
+  .dos .flow,
+  .diff .change,
+  .python .exception,
+  .python .built_in,
+  .literal,
+  .tex .special {
+    color: #efefaf;
+  }
+
+  .diff .chunk,
+  .subst {
+    color: #8f8f8f;
+  }
+
+  .dos .keyword,
+  .python .decorator,
+  .title,
+  .haskell .type,
+  .diff .header,
+  .ruby .class .parent,
+  .apache .tag,
+  .nginx .built_in,
+  .tex .command,
+  .prompt {
+      color: #efef8f;
+  }
+
+  .dos .winutils,
+  .ruby .symbol,
+  .ruby .symbol .string,
+  .ruby .string {
+    color: #dca3a3;
+  }
+
+  .diff .deletion,
+  .string,
+  .tag .value,
+  .preprocessor,
+  .pragma,
+  .built_in,
+  .sql .aggregate,
+  .javadoc,
+  .smalltalk .class,
+  .smalltalk .localvars,
+  .smalltalk .array,
+  .css .rules .value,
+  .attr_selector,
+  .pseudo,
+  .apache .cbracket,
+  .tex .formula,
+  .coffeescript .attribute {
+    color: #cc9393;
+  }
+
+  .shebang,
+  .diff .addition,
+  .comment,
+  .java .annotation,
+  .template_comment,
+  .pi,
+  .doctype {
+    color: #7f9f7f;
+  }
+
+  .coffeescript .javascript,
+  .javascript .xml,
+  .tex .formula,
+  .xml .javascript,
+  .xml .vbscript,
+  .xml .css,
+  .xml .cdata {
+    opacity: 0.5;
+  }
+}

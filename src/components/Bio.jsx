@@ -1,39 +1,21 @@
 import React from 'react';
 
-// Import typefaces
-import 'typeface-montserrat';
-import 'typeface-merriweather';
+import './bio.scss';
 
-import profilePic from './profile-pic.jpg';
-import { rhythm } from '../utils/typography';
-
-class Bio extends React.Component {
-  render() {
-    return (
-      <p
-        style={{
-          marginBottom: rhythm(2.5),
-        }}
-      >
-        <img
-          src={profilePic}
-          alt={'Kyle Mathews'}
-          style={{
-            float: 'left',
-            marginRight: rhythm(1 / 4),
-            marginBottom: 0,
-            width: rhythm(2),
-            height: rhythm(2),
-          }}
-        />
-        Written by <strong>Kyle Mathews</strong> who lives and works in San
-        Francisco building useful things.{' '}
-        <a href="https://twitter.com/kylemathews">
-          You should follow him on Twitter
-        </a>
-      </p>
-    );
-  }
-}
+const Bio = () => (
+  <p className="bio">
+    <a href="https://github.com/wonism">
+      <img
+        src="https://avatars3.githubusercontent.com/u/13835762?v=4&s=460"
+        alt="wonism"
+      />
+      <span>
+        Front-end developer
+        <br />
+        <small>Interested in ReactJS, RxJS and Web assembly.</small>
+      </span>
+    </a>
+  </p>
+);
 
 export default Bio;

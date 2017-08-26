@@ -1,0 +1,26 @@
+@import '../css/variables';
+
+.header {
+  height: $header-height;
+  line-height: $header-height;
+
+  a {
+    text-decoration: blink;
+  }
+
+  nav {
+    display: inline-block;
+    float: right;
+  }
+
+  .list-layout {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & > li {
+      display: inline-block;
+      padding: 0 20px;
+    }
+  }
+}

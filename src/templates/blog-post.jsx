@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import fp from 'lodash/fp';
 
 import Bio from '../components/Bio';
-import { rhythm, scale } from '../utils/typography';
 
 const BlogPostTemplate = ({
   data,
@@ -14,29 +13,18 @@ const BlogPostTemplate = ({
   const siteTitle = fp.get('site.siteMetadata.title')(data);
 
   return (
-    <div>
+    <div className="post">
       <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
       <h1>
         {fp.get('frontmatter.title')(post)}
       </h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: 'block',
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
+      <p>
         {fp.get('frontmatter.date')(post)}
       </p>
       {/* eslint-disable react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
       {/* eslint-enable react/no-danger */}
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+      <hr />
       <Bio />
     </div>
   );

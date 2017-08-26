@@ -1,0 +1,80 @@
+@import '../css/variables';
+
+.main-container {
+  .bio {
+    margin: 1em 0 2em;
+  }
+}
+
+.posts {
+  margin: 0 (-1 * $container-horizon-padding);
+  width: auto;
+  font-size: 0;
+
+  .post-card {
+    display: inline-block;
+    padding: 0 $container-horizon-padding;
+    width: 25%;
+    font-size: 16px;
+    vertical-align: top;
+
+    a {
+      display: block;
+      padding: 1em;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 8px;
+      text-decoration: blink;
+      transition: background-color 0.5s ease 0s;
+
+      &:hover {
+        background-color: $border-color;
+
+        h3,
+        small,
+        p {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    h3 {
+      margin: 0;
+      padding: 0 0 1em 0;
+    }
+
+    p {
+      margin: 0;
+      padding: 1em 0;
+    }
+  }
+}
+
+.post {
+  @import '../css/zenburn';
+
+	blockquote {
+		margin: 1.5em 10px;
+		padding: 0.5em 10px;
+		background: #f9f9f9;
+		border-left: 10px solid $border-color;
+		quotes: "\201C""\201D""\2018""\2019";
+
+    &:before {
+      margin-right: 0.25em;
+      color: #ccc;
+      line-height: 0.1em;
+      font-size: 3em;
+      vertical-align: -0.4em;
+      content: open-quote;
+    }
+
+    p {
+      display: inline;
+    }
+	}
+
+  ul {
+    line-height: 1.6em;
+  }
+}

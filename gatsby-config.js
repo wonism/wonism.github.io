@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'wonism github pages blog',
+    title: 'wonism\'s blog',
     author: 'wonism',
   },
-  pathPrefix: '/blog',
+  pathPrefix: '/',
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
@@ -19,7 +19,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 590,
+              maxWidth: 640,
             },
           },
           {
@@ -28,7 +28,12 @@ module.exports = {
               wrapperStyle: 'margin-bottom: 1.0725rem',
             },
           },
-          'gatsby-remark-prismjs',
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              classPrefix: 'hljs-',
+            },
+          },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
         ],
@@ -37,17 +42,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        // trackingId: 'ADD YOUR TRACKING ID HERE',
+        trackingId: '80620216',
       },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography',
-      },
-    },
   ],
 };
