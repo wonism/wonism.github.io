@@ -53,6 +53,10 @@
 .post {
   @import '../css/zenburn';
 
+  & > div > p:first-child {
+    display: none;
+  }
+
 	blockquote {
 		margin: 1.5em 10px;
 		padding: 0.5em 10px;

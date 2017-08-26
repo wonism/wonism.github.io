@@ -5,10 +5,11 @@ path: "/is-let-hoisted/"
 tags: ["javascript", "hoisting", "var", "let", "const", "TDZ"]
 ---
 
-먼저, `let` 또는 `const`가 호이스팅 되는지 여부를 알아보기 전에 `호이스팅`과 `Temporal Dead Zone(TDZ)`이란 개념에 대해 알아보겠다.
+`let` 또는 `const`가 호이스팅 되는지 여부를 알아보기 전에 `호이스팅`과 `Temporal Dead Zone(TDZ)`이란 개념에 대해 알아보겠다.
 
 ## Hoisting
-호이스팅은 말 그대로 끌어올려진다는 의미를 가진다. 스코프 안의 어디에서든 변수 선언은 최상위에서 선언된 것과 동등하다.
+`let` 또는 `const`가 호이스팅 되는지 여부를 알아보기 전에 `호이스팅`과 `Temporal Dead Zone(TDZ)`이란 개념에 대해 알아보겠다.<br />
+호이스팅은 말 그대로 끌어올려진다는 의미를 가진다. 스코프 안의 어디에서든 변수 선언은 최상위에서 선언된 것과 동등하다.<br />
 아래 예제에서 출력되는 `x`는 `outer scope`가 아닌 `undefined`이다.
 
 ```js
