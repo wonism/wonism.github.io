@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import fp from 'lodash/fp';
 import Helmet from 'react-helmet';
+import GoogleAds from 'react-google-ads';
 import Bio from '../components/Bio';
 
 import './posts.scss';
@@ -43,6 +44,11 @@ const BlogIndex = ({ data }) => {
           return null;
         })}
       </div>
+      <GoogleAds
+        client="ca-pub-1777052704513089"
+        slot="4491507809"
+        style={{ display: 'inline-block', width: '100%', }}
+      />
     </div>
   );
 };

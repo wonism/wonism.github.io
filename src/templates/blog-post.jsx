@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 // import Link from 'gatsby-link';
+import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
 
 import Bio from '../components/Bio';
@@ -24,6 +25,12 @@ const BlogPostTemplate = ({
       {/* eslint-disable react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
       {/* eslint-enable react/no-danger */}
+      <hr />
+      <GoogleAds
+        client="ca-pub-1777052704513089"
+        slot="4491507809"
+        style={{ display: 'inline-block', width: '100%', }}
+      />
       <hr />
       <Bio />
     </div>
