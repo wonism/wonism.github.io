@@ -12,10 +12,16 @@ const BlogPostTemplate = ({
 }) => {
   const post = fp.get('markdownRemark')(data);
   const siteTitle = fp.get('site.siteMetadata.title')(data);
+  const title = `${fp.get('frontmatter.title')(post)} | ${siteTitle}`;
 
   return (
     <div className="post">
-      <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+      <Helmet>
+        <title>{title}</title>
+        <meta name="keyword" content={fp.join(', ')(fp.get('frontmatter.tags')(post))} />
+        <meta name="author" content="wonism" />
+        <meta name="og:title" content={title} />
+      </Helmet>
       <h1>
         {fp.get('frontmatter.title')(post)}
       </h1>
@@ -58,6 +64,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        tags
       }
     }
   }

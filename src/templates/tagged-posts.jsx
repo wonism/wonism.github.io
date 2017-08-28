@@ -11,16 +11,26 @@ import {
 } from '../constants';
 import getQueryString from '../utils/getQueryString';
 
-import './posts.scss';
+import '../pages/posts.scss';
 
-const BlogIndex = ({
+const TagIndex = ({
   data,
   location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
   const posts = fp.get('allMarkdownRemark.edges')(data);
 
-  const postsLength = fp.get('length')(posts);
+  const tag = fp.flow(
+    fp.get('pathname'),
+    fp.replace(/(?:\/?tags\/)(\S+)/, ($0, $1) => $1),
+  )(location);
+  const tagPosts = fp.filter((post) => {
+    const tags = fp.get('node.frontmatter.tags')(post);
+
+    return fp.includes(tag)(tags);
+  })(posts);
+
+  const postsLength = fp.get('length')(tagPosts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
   const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
@@ -36,7 +46,7 @@ const BlogIndex = ({
   const filteredPosts = fp.slice(
     (page - 1) * PAGING_COUNT,
     (page * PAGING_COUNT)
-  )(posts);
+  )(tagPosts);
 
   return (
     <div className="main-container">
@@ -46,6 +56,9 @@ const BlogIndex = ({
       </Helmet>
       <Bio />
       <div className="posts">
+        {fp.isEmpty(filteredPosts) ? (
+          <div className="no-results text-center">검색된 게시물이 없습니다.</div>
+        ) : null}
         {fp.map((post) => {
           if (post.node.path !== '/404/') {
             const hasTags = !fp.isEmpty(fp.get('node.frontmatter.tags')(post));
@@ -74,7 +87,7 @@ const BlogIndex = ({
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
                         {fp.map(tag => (
-                          <Link key={tag} to={`/tags/{tag}`}>
+                          <Link key={tag} to={`/tags/${tag}`}>
                             <small>{tag}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
@@ -94,7 +107,7 @@ const BlogIndex = ({
           <ul className="list-layout">
             {isManyPages && !isNearStart ? ([
               <li key="first">
-                <Link to="/pages/1">
+                <Link to={`/tags/${tag}?p=1`}>
                   <i className="fa fa-angle-double-left" />
                 </Link>
               </li>,
@@ -119,7 +132,7 @@ const BlogIndex = ({
                   key={i}
                   className={fp.isEqual(i)(page) ? 'active' : ''}
                 >
-                  <Link to={`/pages/${i}`}>
+                  <Link to={`/tags/${tag}?p=${i}`}>
                     {i}
                   </Link>
                 </li>
@@ -130,7 +143,7 @@ const BlogIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>,
               <li key="last">
-                <Link to={`/pages/${pagesCount}`}>
+                <Link to={`/tags/${tag}?p=${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
               </li>
@@ -147,16 +160,16 @@ const BlogIndex = ({
   );
 };
 
-BlogIndex.propTypes = {
+TagIndex.propTypes = {
   data: PropTypes.shape({}).isRequired,
   location: PropTypes.shape({}).isRequired,
 };
 
-export default BlogIndex;
+export default TagIndex;
 
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
-  query IndexQuery {
+  query TagQuery {
     site {
       siteMetadata {
         title
@@ -168,7 +181,6 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             path
-            date(formatString: "DD MMMM, YYYY")
           }
           frontmatter {
             title

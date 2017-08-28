@@ -14,12 +14,7 @@
   }
 
   .list-layout {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
     & > li {
-      display: inline-block;
       padding: 0 20px;
     }
   }

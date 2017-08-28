@@ -11,6 +11,11 @@
   width: auto;
   font-size: 0;
 
+  .no-results {
+    margin: 40px 0;
+    font-size: 16px;
+  }
+
   .post-card {
     display: inline-block;
     padding: 0 $container-horizon-padding;
@@ -18,22 +23,36 @@
     font-size: 16px;
     vertical-align: top;
 
-    a {
+    .card-content {
       display: block;
       padding: 1em;
-      color: inherit;
       background-color: transparent;
       border-radius: 8px;
-      text-decoration: blink;
       transition: background-color 0.5s ease 0s;
 
       &:hover {
         background-color: $border-color;
+      }
 
-        h3,
-        small,
-        p {
-          text-decoration: underline;
+      & > a {
+        color: inherit;
+        text-decoration: blink;
+
+        &:hover {
+          h3,
+          p {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .tags a {
+        color: inherit;
+        text-decoration: blink;
+        &:hover {
+          small {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -46,6 +65,28 @@
     p {
       margin: 0;
       padding: 1em 0;
+    }
+
+    .tag-icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+    }
+
+    .tags {
+      padding: 0 0 0 18px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      small {
+        margin-left: 4px;
+        vertical-align: top;
+      }
     }
   }
 }
@@ -80,5 +121,18 @@
 
   ul {
     line-height: 1.6em;
+  }
+}
+
+.pagination {
+  margin: 20px 0;
+  text-align: center;
+
+  a {
+    text-decoration: blink;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

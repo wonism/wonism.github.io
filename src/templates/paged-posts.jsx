@@ -11,7 +11,7 @@ import {
 } from '../constants';
 import getQueryString from '../utils/getQueryString';
 
-import './posts.scss';
+import '../pages/posts.scss';
 
 const BlogIndex = ({
   data,
@@ -23,7 +23,11 @@ const BlogIndex = ({
   const postsLength = fp.get('length')(posts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
-  const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
+  const page = fp.flow(
+    fp.get('pathname'),
+    fp.replace(/(?:\/?pages\/)(\d+)/, ($0, $1) => $1),
+    fp.toNumber
+  )(location) || 1;
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
@@ -74,7 +78,7 @@ const BlogIndex = ({
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
                         {fp.map(tag => (
-                          <Link key={tag} to={`/tags/{tag}`}>
+                          <Link key={tag} to={`/tags/${tag}`}>
                             <small>{tag}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
@@ -156,7 +160,7 @@ export default BlogIndex;
 
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
-  query IndexQuery {
+  query PagesQuery {
     site {
       siteMetadata {
         title
