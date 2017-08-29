@@ -1,8 +1,4 @@
 export default ((name, search) => {
-  if (!search) {
-    search = document.location.search;
-  }
-
   name = name.replace(/[\[\]]/g, "\\$&");
 
   const regex = new RegExp(`[?&]${ name }(=([^&#]*)|&|#|$)`);
