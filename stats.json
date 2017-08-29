@@ -20,6 +20,10 @@
       "path---tags-function-0bcdd86337a490463263.js",
       "path---tags-function-0bcdd86337a490463263.js.map"
     ],
+    "component---src-pages-resume-jsx": [
+      "component---src-pages-resume-jsx-562aa9cfbffe5f5e7697.js",
+      "component---src-pages-resume-jsx-562aa9cfbffe5f5e7697.js.map"
+    ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
@@ -68,13 +72,17 @@
       "path---tags-object-337efa823f70427a5382.js",
       "path---tags-object-337efa823f70427a5382.js.map"
     ],
+    "path---photos": [
+      "path---photos-a0e39f21c11f6a62c5ab.js",
+      "path---photos-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-templates-tagged-posts-jsx": [
       "component---src-templates-tagged-posts-jsx-6c8ef69b9564dd77c5ec.js",
       "component---src-templates-tagged-posts-jsx-6c8ef69b9564dd77c5ec.js.map"
     ],
     "commons": [
-      "commons-9ce3cfbd2ba6def05f4b.js",
-      "commons-9ce3cfbd2ba6def05f4b.js.map"
+      "commons-4668b2106c15fc21642a.js",
+      "commons-4668b2106c15fc21642a.js.map"
     ],
     "component---src-templates-blog-post-jsx": [
       "component---src-templates-blog-post-jsx-e50e29520d3f965eca89.js",
@@ -96,17 +104,25 @@
       "component---src-templates-paged-posts-jsx-38ca224caefd51296349.js",
       "component---src-templates-paged-posts-jsx-38ca224caefd51296349.js.map"
     ],
+    "path---resume": [
+      "path---resume-a0e39f21c11f6a62c5ab.js",
+      "path---resume-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "path---tags-call": [
       "path---tags-call-396d9a64ede5d5cf7dcc.js",
       "path---tags-call-396d9a64ede5d5cf7dcc.js.map"
     ],
     "app": [
-      "app-5c66b84fff546aacc511.js",
-      "app-5c66b84fff546aacc511.js.map"
+      "app-ca52dbab16e8550050d6.js",
+      "app-ca52dbab16e8550050d6.js.map"
     ],
     "path---implement-bind": [
       "path---implement-bind-43179001315f159726ad.js",
       "path---implement-bind-43179001315f159726ad.js.map"
+    ],
+    "component---src-pages-photos-jsx": [
+      "component---src-pages-photos-jsx-05f0373ef4740588b0b6.js",
+      "component---src-pages-photos-jsx-05f0373ef4740588b0b6.js.map"
     ],
     "path---tags-let": [
       "path---tags-let-897dbdbeb5f42c30323c.js",
