@@ -1,0 +1,23 @@
+@import '../css/variables';
+
+.instafeed {
+  font-size: 0;
+
+  .insta-card {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 16px;
+    width: 100%;
+    @media (min-width: $md-size) {
+      padding: 16px;
+      width: 25%;
+    }
+    @media (min-width: $md-size) {
+      width: 20%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}

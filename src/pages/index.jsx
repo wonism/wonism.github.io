@@ -74,7 +74,7 @@ const BlogIndex = ({
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
                         {fp.map(tag => (
-                          <Link key={tag} to={`/tags/{tag}`}>
+                          <Link key={tag} to={`/tags/${tag}`}>
                             <small>{tag}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
