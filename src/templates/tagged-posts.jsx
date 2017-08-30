@@ -18,7 +18,14 @@ const TagIndex = ({
   location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
-  const posts = fp.get('allMarkdownRemark.edges')(data);
+  const posts = fp.flow(
+    fp.get('allMarkdownRemark.edges'),
+    fp.filter(fp.flow(
+      fp.get('node.frontmatter.path'),
+      fp.isEqual('/resume/'),
+      bool => !bool
+    ))
+  )(data);
 
   const tag = fp.flow(
     fp.get('pathname'),
@@ -180,11 +187,10 @@ export const pageQuery = graphql`
         node {
           excerpt
           frontmatter {
-            path
-          }
-          frontmatter {
             title
+            path
             tags
+            date(formatString: "DD MMMM, YYYY")
           }
         }
       }

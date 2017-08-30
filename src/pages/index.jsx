@@ -18,7 +18,14 @@ const BlogIndex = ({
   location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
-  const posts = fp.get('allMarkdownRemark.edges')(data);
+  const posts = fp.flow(
+    fp.get('allMarkdownRemark.edges'),
+    fp.filter(fp.flow(
+      fp.get('node.frontmatter.path'),
+      fp.isEqual('/resume/'),
+      bool => !bool
+    ))
+  )(data);
 
   const postsLength = fp.get('length')(posts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;

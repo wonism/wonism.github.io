@@ -1,6 +1,5 @@
 const path = require('path');
 const fp = require('lodash/fp');
-const _ = require('lodash');
 const { PAGING_COUNT } = require('./src/constants');
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -10,6 +9,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const blogPost = path.resolve('./src/templates/blog-post.jsx');
     const pagedBlogPost = path.resolve('./src/templates/paged-posts.jsx');
     const taggedBlogPost = path.resolve('./src/templates/tagged-posts.jsx');
+    const resume = path.resolve('./src/templates/resume.jsx');
 
     resolve(
       graphql(`
@@ -37,16 +37,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         fp.each((edge) => {
           tagMatrix.push(fp.get('node.frontmatter.tags')(edge));
 
+          const isResume = fp.isEqual(fp.get('node.frontmatter.path')(edge))('/resume/');
+
           createPage({
             path: edge.node.frontmatter.path,
-            component: blogPost,
+            component: isResume ? resume : blogPost,
             context: {
               path: edge.node.frontmatter.path,
             },
           });
         })(edges);
 
-        const postsLength = fp.get('length')(edges);
+        const resumeCount = fp.isNil(fp.find(fp.set('node.frontmatter.path', '/esume/')({}))(edges)) ? 0 : 1;
+        const postsLength = fp.get('length')(edges) - resumeCount;
         const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
         const pages = fp.range(1, pagesCount + 1);
 

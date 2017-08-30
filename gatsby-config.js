@@ -12,6 +12,15 @@ module.exports = {
         name: 'pages',
       },
     },
+    /*
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/resume`,
+        name: 'resume',
+      },
+    },
+    */
     {
       resolve: 'gatsby-transformer-remark',
       options: {
