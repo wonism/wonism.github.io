@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
 import * as profileUrl from '../resources/me.jpg';
+import './resume.scss';
 
 const Resume = ({
   data,
@@ -20,20 +21,45 @@ const Resume = ({
         <meta name="author" content="wonism" />
         <meta name="og:title" content={title} />
       </Helmet>
-      <section className="basic-infos">
+      <section className="basic-infos text-center">
         <img
           className="profile-picture"
           src={profileUrl.default}
           alt="wonism"
+          width="120"
+          height="120"
         />
         <h1>Jaewon Kim</h1>
         <p>yocee57@gmail.com</p>
       </section>
-      <section className="social-networks">
-        <a href="https://github.com/wonism"><i className="fa fa-github" /></a>
-        <a href="https://twitter.com/j1ism"><i className="fa fa-twitter" /></a>
-        <a href="https://www.facebook.com/j1.chic"><i className="fa fa-facebook" /></a>
-        <a href="https://www.linkedin.com/in/jaewon-kim-812815108/"><i className="fa fa-linkedin" /></a>
+      <section className="social-networks text-center">
+        <a
+          href="https://github.com/wonism"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fa fa-github" /></a>
+        <a
+          href="https://twitter.com/j1ism"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fa fa-twitter" />
+        </a>
+        <a
+          href="https://www.facebook.com/j1.chic"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fa fa-facebook" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jaewon-kim-812815108/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fa fa-linkedin" />
+        </a>
       </section>
       {/* eslint-disable react/no-danger */}
       <section dangerouslySetInnerHTML={{ __html: fp.get('html')(resume) }} />

@@ -9,20 +9,20 @@ const Header = () => (
     <Link className="main" to="/">Wonism</Link>
     <nav>
       <ul className="list-layout">
-        {/**
         <li>
-          <Link to="/posts">Posts</Link>
+          <Link to="/pages/1">Posts</Link>
         </li>
+        {/**
         <li>
           <Link to="/portfolio">Portfolio</Link>
         </li>
+        */}
         <li>
           <Link to="/resume">Resume</Link>
         </li>
         <li>
           <Link to="/photo">Photo</Link>
         </li>
-        */}
       </ul>
     </nav>
   </header>

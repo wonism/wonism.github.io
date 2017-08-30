@@ -1,0 +1,29 @@
+.resume {
+  margin: auto;
+  width: 100%;
+  max-width: 720px;
+
+  & > section > ul > li > ul {
+    margin: 0 0 16px;
+  }
+
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  .social-networks a {
+    margin: 0 4px;
+    font-size: 20px;
+  }
+
+  ul {
+    padding: 0 0 0 20px;
+    line-height: 2em;
+
+    p {
+      margin: 0;
+    }
+  }
+}
