@@ -12,7 +12,6 @@ const Portfolio = ({
   const siteTitle = fp.get('site.siteMetadata.title')(data);
   const title = `${fp.get('frontmatter.title')(portfolio)} | ${siteTitle}`;
   const images = fp.get('frontmatter.images')(portfolio);
-  console.log(images);
 
   return (
     <section className="portfolio">

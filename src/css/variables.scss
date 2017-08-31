@@ -31,3 +31,4 @@ $container-max-width-xs: $shrink-ratio * $xs-size;
 $container-horizon-padding: 16px;
 
 $header-height: 80px;
+$except-header-height: calc(100vh - 80px);

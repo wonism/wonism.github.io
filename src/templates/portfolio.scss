@@ -12,10 +12,11 @@
   }
 
   .portfolio-images {
-    height: calc(100vh - $header-height);
+    height: $except-header-height;
     overflow-y: auto;
 
     img {
+      padding: $container-horizon-padding;
       width: 100%;
       height: auto;
     }

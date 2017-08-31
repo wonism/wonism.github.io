@@ -11,6 +11,8 @@ images: [
 ]
 ---
 
+# Goodoc
+
 ## What I did
 - Changing main page UI
 - UI that Finding hospitals based on map
@@ -24,4 +26,4 @@ images: [
 - Bootstrap 3
 - Rails
 
-[Goodoc](http://www.goodoc.co.kr)
+[Go to Web Site →](http://www.goodoc.co.kr)
