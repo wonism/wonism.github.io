@@ -3,6 +3,7 @@ title: "Resume"
 date: "1990-02-05T00:00:00.000Z"
 path: "/resume/"
 tags: []
+isNotPost: true
 ---
 
 ## Experience

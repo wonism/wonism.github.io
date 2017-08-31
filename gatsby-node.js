@@ -6,10 +6,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.jsx');
-    const pagedBlogPost = path.resolve('./src/templates/paged-posts.jsx');
-    const taggedBlogPost = path.resolve('./src/templates/tagged-posts.jsx');
-    const resume = path.resolve('./src/templates/resume.jsx');
+    const blogPost = path.resolve('./src/templates/BlogPost.jsx');
+    const pagedBlogPost = path.resolve('./src/templates/PagedPosts.jsx');
+    const taggedBlogPost = path.resolve('./src/templates/TaggedPosts.jsx');
+    const resume = path.resolve('./src/templates/Resume.jsx');
+    const portfolio = path.resolve('./src/templates/Portfolio.jsx');
 
     resolve(
       graphql(`
@@ -20,6 +21,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 frontmatter {
                   path
                   tags
+                  isNotPost
                 }
               }
             }
@@ -37,19 +39,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         fp.each((edge) => {
           tagMatrix.push(fp.get('node.frontmatter.tags')(edge));
 
-          const isResume = fp.isEqual(fp.get('node.frontmatter.path')(edge))('/resume/');
+          const isNotPost = fp.get('node.frontmatter.isNotPost')(edge);
+          const notPost = fp.isEqual(fp.get('node.frontmatter.path')(edge))('/resume/') ? resume : portfolio;
 
           createPage({
             path: edge.node.frontmatter.path,
-            component: isResume ? resume : blogPost,
+            component: isNotPost ? notPost : blogPost,
             context: {
               path: edge.node.frontmatter.path,
             },
           });
         })(edges);
 
-        const resumeCount = fp.isNil(fp.find(fp.set('node.frontmatter.path', '/esume/')({}))(edges)) ? 0 : 1;
-        const postsLength = fp.get('length')(edges) - resumeCount;
+        const objectsNotPost = fp.find(fp.set('node.frontmatter.isNotPost', true)({}))(edges);
+        const notPostCount = fp.isNil(objectsNotPost) ? 0 : fp.get('length')(objectsNotPost);
+        const postsLength = fp.get('length')(edges) - notPostCount;
         const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
         const pages = fp.range(1, pagesCount + 1);
 

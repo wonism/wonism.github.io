@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'wonism\'s blog',
+    title: 'Wonism ∙ Front-end Developer',
     author: 'wonism',
   },
   pathPrefix: '/',
@@ -12,15 +12,13 @@ module.exports = {
         name: 'pages',
       },
     },
-    /*
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/resume`,
-        name: 'resume',
+        path: `${__dirname}/src/resources`,
+        name: 'resources',
       },
     },
-    */
     {
       resolve: 'gatsby-transformer-remark',
       options: {

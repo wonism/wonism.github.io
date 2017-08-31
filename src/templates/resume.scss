@@ -2,6 +2,9 @@
   margin: auto;
   width: 100%;
   max-width: 720px;
+  @media print {
+    max-width: 100%;
+  }
 
   & > section > ul > li > ul {
     margin: 0 0 16px;
@@ -13,9 +16,15 @@
     border-radius: 50%;
   }
 
-  .social-networks a {
-    margin: 0 4px;
-    font-size: 20px;
+  .social-networks {
+    @media print {
+      display: none;
+    }
+
+    a {
+      margin: 0 4px;
+      font-size: 20px;
+    }
   }
 
   ul {

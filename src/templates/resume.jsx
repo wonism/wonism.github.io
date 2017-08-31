@@ -17,8 +17,7 @@ const Resume = ({
     <section className="resume">
       <Helmet>
         <title>{title}</title>
-        <meta name="keyword" content="front-end developer" />
-        <meta name="author" content="wonism" />
+        <meta name="keyword" content="JavaScript, Front-end, Developer, Front-end developer" />
         <meta name="og:title" content={title} />
       </Helmet>
       <section className="basic-infos text-center">
@@ -62,7 +61,10 @@ const Resume = ({
         </a>
       </section>
       {/* eslint-disable react/no-danger */}
-      <section dangerouslySetInnerHTML={{ __html: fp.get('html')(resume) }} />
+      <section
+        className="resume-contents"
+        dangerouslySetInnerHTML={{ __html: fp.get('html')(resume) }}
+      />
       {/* eslint-enable react/no-danger */}
     </section>
   );
@@ -76,7 +78,7 @@ export default Resume;
 
 /* eslint-disable no-undef */
 export const resume = graphql`
-  query Resume ($path: String!) {
+  query ResumeQuery ($path: String!) {
     site {
       siteMetadata {
         title
@@ -88,8 +90,10 @@ export const resume = graphql`
       html
       frontmatter {
         title
+        path
         tags
         date(formatString: "MMMM DD, YYYY")
+        isNotPost
       }
     }
   }

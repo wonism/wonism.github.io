@@ -16,8 +16,8 @@ $border-color--darken: darken($border-color, $contrast-ratio);
 $border-color--lighten: lighten($border-color, $contrast-ratio);
 
 /* length */
-$xl-size: 1440px;
-$lg-size: 1200px;
+$xl-size: 1200px;
+$lg-size: 992px;
 $md-size: 768px;
 $sm-size: 414px;
 $xs-size: 320px;

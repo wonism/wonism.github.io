@@ -21,8 +21,7 @@ const BlogIndex = ({
   const posts = fp.flow(
     fp.get('allMarkdownRemark.edges'),
     fp.filter(fp.flow(
-      fp.get('node.frontmatter.path'),
-      fp.isEqual('/resume/'),
+      fp.get('node.frontmatter.isNotPost'),
       bool => !bool
     ))
   )(data);
@@ -53,6 +52,7 @@ const BlogIndex = ({
     <div className="main-container">
       <Helmet>
         <title>{siteTitle}</title>
+        <meta name="keyword" content="JavaScript, Front-end, Developer" />
         <meta name="og:title" content={siteTitle} />
       </Helmet>
       <Bio />
@@ -171,6 +171,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -182,6 +183,7 @@ export const pageQuery = graphql`
             path
             tags
             date(formatString: "DD MMMM, YYYY")
+            isNotPost
           }
         }
       }

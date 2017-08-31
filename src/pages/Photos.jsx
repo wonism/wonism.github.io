@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import fp from 'lodash/fp';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import fp from 'lodash/fp';
 import GoogleAds from 'react-google-ads';
 import Instafeed from 'instafeed.js';
 
 import './photos.scss';
 
 export default class Photos extends Component {
+  static propTypes = {
+    data: PropTypes.shape({}).isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -25,11 +30,9 @@ export default class Photos extends Component {
           </a>
         </figure>
       `,
-      /*
       after: function () {
-        if (this.hasNext()) { }
+        console.log('load successfully');
       }
-      */
     });
   }
 
@@ -38,11 +41,15 @@ export default class Photos extends Component {
   }
 
   render() {
+    const { data } = this.props;
+    const siteTitle = fp.get('site.siteMetadata.title')(data);
+
     return (
       <div className="main-container">
         <Helmet>
-          <title>HI</title>
-          <meta name="og:title" content={"HI"} />
+          <title>{siteTitle}</title>
+          <meta name="keyword" content="JavaScript, Front-end, Developer" />
+          <meta name="og:title" content={siteTitle} />
         </Helmet>
         <section className="instafeed" id="instafeed" />
         <GoogleAds
@@ -54,3 +61,16 @@ export default class Photos extends Component {
     );
   }
 };
+
+/* eslint-disable no-undef */
+export const photoQuery = graphql`
+  query PhotoQuery {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+  }
+`;
+/* eslint-enable no-undef */

@@ -63,8 +63,10 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        path
         tags
         date(formatString: "MMMM DD, YYYY")
+        isNotPost
       }
     }
   }

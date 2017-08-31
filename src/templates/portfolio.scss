@@ -1,0 +1,23 @@
+@import '../css/variables';
+
+.portfolio {
+  font-size: 0;
+
+  .portfolio-contents,
+  .portfolio-images {
+    display: inline-block;
+    width: 50%;
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  .portfolio-images {
+    height: calc(100vh - $header-height);
+    overflow-y: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

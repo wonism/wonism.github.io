@@ -3,14 +3,20 @@
 .header {
   height: $header-height;
   line-height: $header-height;
+  @media print {
+    display: none;
+  }
 
   a {
     text-decoration: blink;
   }
 
   nav {
-    display: inline-block;
+    display: none;
     float: right;
+    @media (min-width: $md-size) {
+      display: inline-block;
+    }
   }
 
   .list-layout {
