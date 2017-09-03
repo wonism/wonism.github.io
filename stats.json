@@ -1,44 +1,56 @@
 {
   "assetsByChunkName": {
     "path---tags-var": [
-      "path---tags-var-2919e2fc03d54842f9f6.js",
-      "path---tags-var-2919e2fc03d54842f9f6.js.map"
+      "path---tags-var-0e3a3887d440593d5cd0.js",
+      "path---tags-var-0e3a3887d440593d5cd0.js.map"
     ],
     "path---tags-클로저": [
-      "path---tags-클로저-ae06a392e338c24e768b.js",
-      "path---tags-클로저-ae06a392e338c24e768b.js.map"
+      "path---tags-클로저-4a70d12caa3c78c1224b.js",
+      "path---tags-클로저-4a70d12caa3c78c1224b.js.map"
+    ],
+    "path---tags-es-2017": [
+      "path---tags-es-2017-e73721c93af2d4be652c.js",
+      "path---tags-es-2017-e73721c93af2d4be652c.js.map"
     ],
     "path---tags-const": [
-      "path---tags-const-910d1720d6e00312a3fa.js",
-      "path---tags-const-910d1720d6e00312a3fa.js.map"
+      "path---tags-const-02a1a6d176cf33728250.js",
+      "path---tags-const-02a1a6d176cf33728250.js.map"
     ],
     "path---pages-1": [
-      "path---pages-1-6d7f594f676cb1f69794.js",
-      "path---pages-1-6d7f594f676cb1f69794.js.map"
+      "path---pages-1-a77ad581a3bfc1592518.js",
+      "path---pages-1-a77ad581a3bfc1592518.js.map"
     ],
     "path---tags-function": [
-      "path---tags-function-485f7bdab50906559452.js",
-      "path---tags-function-485f7bdab50906559452.js.map"
+      "path---tags-function-86218f2fdf10b22e0cf1.js",
+      "path---tags-function-86218f2fdf10b22e0cf1.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
+    ],
+    "path---tags-async": [
+      "path---tags-async-c22bb17a2e5684e40c12.js",
+      "path---tags-async-c22bb17a2e5684e40c12.js.map"
     ],
     "path---is-let-hoisted": [
       "path---is-let-hoisted-0b9d2821b8b01008e8c3.js",
       "path---is-let-hoisted-0b9d2821b8b01008e8c3.js.map"
     ],
     "path---tags-javascript": [
-      "path---tags-javascript-7eca0b90e7ad693929dc.js",
-      "path---tags-javascript-7eca0b90e7ad693929dc.js.map"
+      "path---tags-javascript-d1a33faa19195ac99821.js",
+      "path---tags-javascript-d1a33faa19195ac99821.js.map"
     ],
     "path---tags-apply": [
-      "path---tags-apply-a4fdb6dca52198bdf8ed.js",
-      "path---tags-apply-a4fdb6dca52198bdf8ed.js.map"
+      "path---tags-apply-501e0c88fb2580da9468.js",
+      "path---tags-apply-501e0c88fb2580da9468.js.map"
     ],
     "component---src-layouts-index-jsx": [
       "component---src-layouts-index-jsx-060a47250f0e09efa870.js",
       "component---src-layouts-index-jsx-060a47250f0e09efa870.js.map"
+    ],
+    "path---tags-callback": [
+      "path---tags-callback-577fbe926f2c256ced45.js",
+      "path---tags-callback-577fbe926f2c256ced45.js.map"
     ],
     "component---src-templates-portfolio-jsx": [
       "component---src-templates-portfolio-jsx-6568eb400fc3281aa9d5.js",
@@ -53,36 +65,44 @@
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
     ],
     "path---tags-hoisting": [
-      "path---tags-hoisting-b1e32bfc955dc6885edd.js",
-      "path---tags-hoisting-b1e32bfc955dc6885edd.js.map"
+      "path---tags-hoisting-f38f1489be4e398342fe.js",
+      "path---tags-hoisting-f38f1489be4e398342fe.js.map"
+    ],
+    "path---tags-await": [
+      "path---tags-await-5642a0ae581231ff3385.js",
+      "path---tags-await-5642a0ae581231ff3385.js.map"
     ],
     "path---portfolio-ciceron": [
       "path---portfolio-ciceron-f304a9b05c90b02778bd.js",
       "path---portfolio-ciceron-f304a9b05c90b02778bd.js.map"
     ],
+    "path---tags-promise": [
+      "path---tags-promise-36f64eeb830df4e3c694.js",
+      "path---tags-promise-36f64eeb830df4e3c694.js.map"
+    ],
     "path---tags-closure": [
-      "path---tags-closure-5ddabaf1b417f53cdf6c.js",
-      "path---tags-closure-5ddabaf1b417f53cdf6c.js.map"
+      "path---tags-closure-27d681876e6a4e08c0c4.js",
+      "path---tags-closure-27d681876e6a4e08c0c4.js.map"
     ],
     "path---tags-tdz": [
-      "path---tags-tdz-d8d421240cc49596836c.js",
-      "path---tags-tdz-d8d421240cc49596836c.js.map"
+      "path---tags-tdz-d3f77693776804e1d589.js",
+      "path---tags-tdz-d3f77693776804e1d589.js.map"
     ],
     "path---tags-bind": [
-      "path---tags-bind-1936026aece3eaba0cbf.js",
-      "path---tags-bind-1936026aece3eaba0cbf.js.map"
+      "path---tags-bind-73cdc8e5b5b530e46437.js",
+      "path---tags-bind-73cdc8e5b5b530e46437.js.map"
     ],
     "path---index": [
-      "path---index-7b2f3eb68093eb3c54fd.js",
-      "path---index-7b2f3eb68093eb3c54fd.js.map"
+      "path---index-6ee14199a06b98cd32ea.js",
+      "path---index-6ee14199a06b98cd32ea.js.map"
     ],
     "path---portfolios": [
-      "path---portfolios-a5cbea5f63bd1baa7cc1.js",
-      "path---portfolios-a5cbea5f63bd1baa7cc1.js.map"
+      "path---portfolios-86dc83db469cd3e77f5d.js",
+      "path---portfolios-86dc83db469cd3e77f5d.js.map"
     ],
     "path---tags-object": [
-      "path---tags-object-2c72e3db8a2048735740.js",
-      "path---tags-object-2c72e3db8a2048735740.js.map"
+      "path---tags-object-bddc010841f39fa67af9.js",
+      "path---tags-object-bddc010841f39fa67af9.js.map"
     ],
     "path---photos": [
       "path---photos-4063c5658367c174e729.js",
@@ -129,16 +149,16 @@
       "path---resume-4443def16d248d2a5228.js.map"
     ],
     "path---tags-call": [
-      "path---tags-call-3fc0139ee3dc0197e9bf.js",
-      "path---tags-call-3fc0139ee3dc0197e9bf.js.map"
+      "path---tags-call-6d825e2a91c79c38386e.js",
+      "path---tags-call-6d825e2a91c79c38386e.js.map"
     ],
     "component---src-templates-resume-jsx": [
       "component---src-templates-resume-jsx-6d90e52b52382bcf6dd8.js",
       "component---src-templates-resume-jsx-6d90e52b52382bcf6dd8.js.map"
     ],
     "app": [
-      "app-45dffbd15128b1d342cd.js",
-      "app-45dffbd15128b1d342cd.js.map"
+      "app-22aa58b16c56bd44dc32.js",
+      "app-22aa58b16c56bd44dc32.js.map"
     ],
     "path---implement-bind": [
       "path---implement-bind-567617c23e2f9bc22a1a.js",
@@ -149,16 +169,20 @@
       "component---src-pages-photos-jsx-4bf10bf3c271daf99793.js.map"
     ],
     "path---tags-let": [
-      "path---tags-let-103a75b7446fc36373d8.js",
-      "path---tags-let-103a75b7446fc36373d8.js.map"
+      "path---tags-let-da5929b7d3651f7fc8b4.js",
+      "path---tags-let-da5929b7d3651f7fc8b4.js.map"
     ],
     "path---closure": [
       "path---closure-7b6d32e34cecb17a56ae.js",
       "path---closure-7b6d32e34cecb17a56ae.js.map"
     ],
     "path---tags-this": [
-      "path---tags-this-d4054e98a88e949aa9bc.js",
-      "path---tags-this-d4054e98a88e949aa9bc.js.map"
+      "path---tags-this-fa7a720d0a2adb72c91b.js",
+      "path---tags-this-fa7a720d0a2adb72c91b.js.map"
+    ],
+    "path---async-await": [
+      "path---async-await-6073e46ade1cdfd941a6.js",
+      "path---async-await-6073e46ade1cdfd941a6.js.map"
     ]
   }
 }
