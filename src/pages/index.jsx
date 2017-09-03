@@ -44,8 +44,6 @@ const BlogIndex = ({
     (page * PAGING_COUNT)
   )(posts);
 
-  console.log('%c@@@@@@@@@@@@@@@@@@@@@@', 'font-size: 50px; color: ref;');
-
   return (
     <div className="main-container">
       <Helmet>
@@ -101,10 +99,6 @@ const BlogIndex = ({
           return null;
         })(filteredPosts)}
       </div>
-      {console.log(
-        page,
-        typeof page
-      )}
       {!fp.isEmpty(pages) ? (
         <nav className="pagination">
           <ul className="list-layout">

@@ -31,7 +31,7 @@ export default class Photos extends Component {
         </figure>
       `,
       after: function () {
-        console.log('load successfully');
+        // console.log('load successfully');
       }
     });
   }
