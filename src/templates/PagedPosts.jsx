@@ -85,7 +85,10 @@ const BlogIndex = ({
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
                         {fp.map(tag => (
-                          <Link key={tag} to={`/tags/${tag}`}>
+                          <Link
+                            key={tag}
+                            to={`/tags/${tag}`}
+                          >
                             <small>{tag}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
@@ -113,6 +116,13 @@ const BlogIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>
             ]) : null}
+            {!fp.isEqual(1)(page) ? (
+              <li>
+                <Link to={`/pages/${page - 1}`}>
+                  <i className="fa fa-angle-left" />
+                </Link>
+              </li>
+            ) : null}
             {fp.map((i) => {
               if (fp.isEqual(i)(page)) {
                 return (
@@ -136,6 +146,13 @@ const BlogIndex = ({
                 </li>
               );
             })(filteredPages)}
+            {!fp.isEqual(pagesCount)(page) ? (
+              <li>
+                <Link to={`/pages/${page + 1}`}>
+                  <i className="fa fa-angle-right" />
+                </Link>
+              </li>
+            ) : null}
             {isManyPages && !isNearEnd ? ([
               <li key="ellipsis">
                 <i className="fa fa-ellipsis-h" />

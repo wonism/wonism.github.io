@@ -1,6 +1,7 @@
 ---
 title: "Goodoc"
-date: "2017-01-01T00:00:00.000Z"
+date: "2014-12-01T00:00:00.000Z"
+period: "2014. 12. ~ 2015. 12."
 path: "/portfolio/goodoc/"
 tags: []
 isNotPost: true

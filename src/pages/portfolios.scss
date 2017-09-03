@@ -1,0 +1,74 @@
+@import '../css/variables';
+
+.portfolio-card {
+  margin: auto;
+  width: 100%;
+  max-width: 720px;
+
+  & > a {
+    display: block;
+    position: relative;
+    color: $text-color;
+    font-size: 0;
+
+    &:hover,
+    &:focus {
+      color: $text-color--lighten;
+
+      img {
+        opacity: .75;
+      }
+    }
+
+    .image-wrapper {
+      position: relative;
+      padding: 50% 0 0 0;
+    }
+
+    .description-wrapper {
+      padding: 0 0 0 16px;
+      @media (max-width: $sm-size) {
+        padding: 0 0 0 8px;
+      }
+    }
+
+    .description-wrapper,
+    .image-wrapper {
+      display: inline-block;
+      width: 50%;
+      vertical-align: middle;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      width: 100%;
+      height: auto;
+
+      &:hover,
+      &:focus {
+        opacity: .75;
+      }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      @media (max-width: $sm-size) {
+        font-size: 24px;
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 16px;
+      @media (max-width: $sm-size) {
+        font-size: 10px;
+      }
+    }
+  }
+}

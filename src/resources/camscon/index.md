@@ -1,12 +1,14 @@
 ---
 title: "Camscon"
-date: "2017-01-01T00:00:00.000Z"
+date: "2016-09-01T00:00:00.000Z"
+period: "2016. 10. ~ 2017. 03."
 path: "/portfolio/camscon/"
 tags: []
 isNotPost: true
 images: [
   'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon1.png?raw=true',
   'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon2.png?raw=true',
+  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon3.png?raw=true',
 ]
 ---
 

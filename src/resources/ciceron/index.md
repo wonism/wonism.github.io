@@ -1,6 +1,7 @@
 ---
 title: "Ciceron"
-date: "2017-01-01T00:00:00.000Z"
+date: "2016-05-01T00:00:00.000Z"
+period: "2016. 05. ~ 2016. 05."
 path: "/portfolio/ciceron/"
 tags: []
 isNotPost: true

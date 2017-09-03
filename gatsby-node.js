@@ -51,11 +51,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           });
         })(edges);
 
-        const objectsNotPost = fp.find(fp.set('node.frontmatter.isNotPost', true)({}))(edges);
+        const objectsNotPost = fp.filter(
+          fp.get('node.frontmatter.isNotPost')
+        )(edges);
         const notPostCount = fp.isNil(objectsNotPost) ? 0 : fp.get('length')(objectsNotPost);
         const postsLength = fp.get('length')(edges) - notPostCount;
-        const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
-        const pages = fp.range(1, pagesCount + 1);
+        const pagesCount = postsLength ? (Math.ceil(postsLength / PAGING_COUNT) + 1) : 0;
+        const pages = fp.range(1, pagesCount);
 
         fp.each((page) => {
           createPage({

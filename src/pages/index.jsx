@@ -29,7 +29,7 @@ const BlogIndex = ({
   const postsLength = fp.get('length')(posts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
-  const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
+  const page = 1;
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
@@ -43,6 +43,8 @@ const BlogIndex = ({
     (page - 1) * PAGING_COUNT,
     (page * PAGING_COUNT)
   )(posts);
+
+  console.log('%c@@@@@@@@@@@@@@@@@@@@@@', 'font-size: 50px; color: ref;');
 
   return (
     <div className="main-container">
@@ -81,7 +83,10 @@ const BlogIndex = ({
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
                         {fp.map(tag => (
-                          <Link key={tag} to={`/tags/${tag}`}>
+                          <Link
+                            key={tag}
+                            to={`/tags/${tag}`}
+                          >
                             <small>{tag}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
@@ -96,6 +101,10 @@ const BlogIndex = ({
           return null;
         })(filteredPosts)}
       </div>
+      {console.log(
+        page,
+        typeof page
+      )}
       {!fp.isEmpty(pages) ? (
         <nav className="pagination">
           <ul className="list-layout">
@@ -109,6 +118,13 @@ const BlogIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>
             ]) : null}
+            {!fp.isEqual(1)(page) ? (
+              <li>
+                <Link to={`/pages/${page - 1}`}>
+                  <i className="fa fa-angle-left" />
+                </Link>
+              </li>
+            ) : null}
             {fp.map((i) => {
               if (fp.isEqual(i)(page)) {
                 return (
@@ -132,6 +148,13 @@ const BlogIndex = ({
                 </li>
               );
             })(filteredPages)}
+            {!fp.isEqual(pagesCount)(page) ? (
+              <li>
+                <Link to={`/pages/${page + 1}`}>
+                  <i className="fa fa-angle-right" />
+                </Link>
+              </li>
+            ) : null}
             {isManyPages && !isNearEnd ? ([
               <li key="ellipsis">
                 <i className="fa fa-ellipsis-h" />

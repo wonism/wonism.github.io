@@ -95,3 +95,16 @@ a {
   margin: 16px 0 0;
   text-align: center;
 }
+
+.bio {
+  @media (max-width: $sm-size) {
+    text-align: center;
+    img {
+      margin: 0;
+    }
+
+    span {
+      margin: 8px 0;
+    }
+  }
+}

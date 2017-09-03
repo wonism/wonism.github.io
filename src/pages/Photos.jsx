@@ -25,7 +25,7 @@ export default class Photos extends Component {
       clientId: '212f7be0b6d643318eda9413aecb1cf3',
       template: `
         <figure class="insta-card">
-          <a href="{{link}}" target="_blank">
+          <a href="{{link}}" target="_blank" rel="noreferrer noopener">
             <img class="insta-card-image" src="{{image}}" />
           </a>
         </figure>
