@@ -19,9 +19,15 @@
   .post-card {
     display: inline-block;
     padding: 0 $container-horizon-padding;
-    width: 25%;
+    width: 100%;
     font-size: 16px;
     vertical-align: top;
+    @media (min-width: $md-size) {
+      width: 33.3333%;
+    }
+    @media (min-width: $lg-size) {
+      width: 25%;
+    }
 
     .card-content {
       display: block;
