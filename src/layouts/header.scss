@@ -11,7 +11,13 @@
     text-decoration: blink;
   }
 
-  nav {
+  .list-layout {
+    & > li {
+      padding: 0 20px;
+    }
+  }
+
+  .gnb {
     display: none;
     float: right;
     @media (min-width: $md-size) {
@@ -19,9 +25,112 @@
     }
   }
 
-  .list-layout {
-    & > li {
-      padding: 0 20px;
+  .mobile-gnb {
+    position: fixed;
+    top: 0;
+    left: -61.8%;
+    width: 61.8%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 3;
+    transition: left .4s ease;
+
+    ul li {
+      display: block;
+    }
+  }
+
+  .mobile-gnb-background {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .4s ease 0s, left .4s ease .4s;
+  }
+
+  .hamburger {
+    display: inline-block;
+    position: relative;
+    float: right;
+    margin: 20px 0;
+    padding: 0;
+    width: 40px;
+    height: 24px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    @media (min-width: $md-size) {
+      display: none;
+    }
+
+    .hamburger-inner {
+      top: 50%;
+      margin-top: -2px;
+
+      &,
+      &:before,
+      &:after {
+        display: block;
+        position: absolute;
+        width: 40px;
+        height: 4px;
+        background-color: $point-color;
+        border-radius: 4px;
+        content: "";
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(.55,.055,.675,.19);
+        transition-duration: 75ms;
+      }
+
+      &:before {
+        top: -10px;
+        transition: top 75ms ease .12s, opacity 75ms ease;
+      }
+
+      &:after {
+        transition: bottom 75ms ease .12s, transform 75ms cubic-bezier(.55,.055,.675,.19);
+        bottom: -10px;
+      }
+    }
+  }
+
+  .hamburger-trigger {
+    display: none;
+
+    &:checked + .hamburger > .hamburger-inner {
+      & {
+        transition-delay: .12s;
+        transition-timing-function: cubic-bezier(.215,.61,.355,1);
+        transform: rotate(45deg);
+      }
+
+      &:before {
+        top: 0;
+        transition: top 75ms ease,opacity 75ms ease .12s;
+        opacity: 0;
+      }
+
+      &:after {
+        bottom: 0;
+        transition: bottom 75ms ease, transform 75ms cubic-bezier(.215,.61,.355,1) .12s;
+        transform: rotate(-90deg);
+      }
+    }
+
+    &:checked ~ .mobile-gnb {
+      left: 0;
+      box-shadow: 2px 0px 5px 1px #000;
+    }
+
+    &:checked ~ .mobile-gnb-background {
+      left: 0;
+      opacity: .7;
+      transition: opacity .4s ease 0s, left 0s ease 0s;
     }
   }
 }

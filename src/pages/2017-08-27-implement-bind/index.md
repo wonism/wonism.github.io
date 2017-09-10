@@ -3,9 +3,8 @@ title: "bind 메소드 간단하게 구현하기"
 date: "2017-08-27T02:28:39.000Z"
 path: "/implement-bind/"
 tags: ["javascript", "bind", "this", "object", "function"]
+summary: ".bind()는 호출될 때 인자로 전달된 객체를 this로 하는 함수를 반환하며, 다음과 같이 사용한다."
 ---
-
-.bind()는 호출될 때 인자로 전달된 객체를 this로 하는 함수를 반환하며, 다음과 같이 사용한다.
 
 ## bind란?
 `.bind()`는 호출될 때 인자로 전달된 객체를 `this`로 하는 함수를 반환하며, 다음과 같이 사용한다.

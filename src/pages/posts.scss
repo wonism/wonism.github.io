@@ -71,6 +71,13 @@
     p {
       margin: 0;
       padding: 1em 0;
+
+      & > div {
+        line-height: 1.5em;
+        max-height: 4.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     .tag-icon {
@@ -98,10 +105,18 @@
 }
 
 .post {
+  & > div {
+    padding: 1em 0 0;
+  }
+
   @import '../css/zenburn';
 
-  & > div > p:first-child {
-    display: none;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2em 0 1em;
   }
 
 	blockquote {

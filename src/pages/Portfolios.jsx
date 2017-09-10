@@ -97,7 +97,6 @@ export const portfolioQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
           frontmatter {
             title
             path

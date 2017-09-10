@@ -3,9 +3,8 @@ title: "Function 객체의 apply, bind, call"
 date: "2017-08-28T20:49:39.000Z"
 path: "/apply-bind-call/"
 tags: ["javascript", "apply", "bind", "call", "this"]
+summary: ".apply(), .bind(), .call() 는 일급 객체인 Function 의 메소드로 함수에 this 를 바꿔준다. (즉, 이 메소드들을 통해 호출된 함수의 스코프를 변경하는 것과 같다.)"
 ---
-
-.apply(), .bind(), .call() 는 일급 객체인 Function 의 메소드로 함수에 this 를 바꿔준다. (즉, 이 메소드들을 통해 호출된 함수의 스코프를 변경하는 것과 같다.)
 
 `.apply()`, `.bind()`, `.call()`는 일급 객체인 `Function`의 메소드로 함수의 `this`를 바꿔준다. (즉, 이 메소드들을 통해 호출된 함수의 스코프를 변경하는 것과 같다.)
 

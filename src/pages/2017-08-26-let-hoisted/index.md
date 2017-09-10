@@ -3,6 +3,7 @@ title: "let과 const는 호이스팅 될까?"
 date: "2017-08-26T23:24:08.000Z"
 path: "/is-let-hoisted/"
 tags: ["javascript", "hoisting", "var", "let", "const", "TDZ"]
+summary: "let 또는 const가 호이스팅 되는지 여부를 알아보기 전에 호이스팅과 Temporal Dead Zone(TDZ)이란 개념에 대해 알아보겠다."
 ---
 
 `let` 또는 `const`가 호이스팅 되는지 여부를 알아보기 전에 `호이스팅`과 `Temporal Dead Zone(TDZ)`이란 개념에 대해 알아보겠다.

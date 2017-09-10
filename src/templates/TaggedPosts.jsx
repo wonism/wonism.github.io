@@ -4,6 +4,7 @@ import Link from 'gatsby-link';
 import fp from 'lodash/fp';
 import Helmet from 'react-helmet';
 import GoogleAds from 'react-google-ads';
+import Truncate from 'react-truncate';
 import Bio from '../components/Bio';
 import {
   PAGING_COUNT,
@@ -85,9 +86,11 @@ const TagIndex = ({
                     <small>
                       {fp.get('node.frontmatter.date')(post)}
                     </small>
-                    {/* eslint-disable react/no-danger */}
-                    <p dangerouslySetInnerHTML={{ __html: fp.get('node.excerpt')(post) }} />
-                    {/* eslint-enable react/no-danger */}
+                    <p>
+                      <Truncate lines={3} ellipsis={<span>...</span>}>
+                        {fp.get('node.frontmatter.summary')(post)}
+                      </Truncate>
+                    </p>
                   </Link>
                   {hasTags ? (
                     <div className="clearfix">
@@ -203,12 +206,12 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
           frontmatter {
             title
             path
             tags
             date(formatString: "DD MMMM, YYYY")
+            summary
             isNotPost
           }
         }
