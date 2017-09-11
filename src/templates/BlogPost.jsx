@@ -58,6 +58,7 @@ export default class BlogPostTemplate extends Component {
           {fp.get('frontmatter.date')(post)}
         </p>
         {/* eslint-disable react/no-danger */}
+        <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
         {/* eslint-enable react/no-danger */}
         <div id="disqus_thread" />
         <noscript>
@@ -87,6 +88,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       id
+      html
       frontmatter {
         title
         path

@@ -6,7 +6,7 @@ tags: ["javascript", "npm", "node-sass", "trouble shooting"]
 summary: "원인은 패키지 설치 이후 `node-sass`의 `scripts/install.js`를 실행하지 않아서였다."
 ---
 
-`node_modules` 디렉토리를 삭제하고 다시 패키지들을 설치한 뒤 `js` 파일들을 번들링한 일이 있었다.<br />
+`node_modules` 디렉토리를 삭제하고 다시 패키지들을 설치한 뒤 `js` 파일들을 번들링할 일이 있었다.<br />
 하지만 잘 번들링 되던 파일들이 번들링되지 않는 문제가 발생했다.<br />
 무슨 에러인지 봤더니, `node-sass/vendor`가 없다는 에러였다.
 
@@ -19,6 +19,7 @@ ENOENT: no such file or directory, scandir '/PROJECT_PATH/node_modules/node-sass
 원인은 패키지 설치 이후 `node-sass`의 `scripts/install.js`를 실행하지 않아서였다.
 
 해결 방법은 수동으로 `node-sass`의 스크립트를 실행하거나, `node-sass` 패키지를 리빌드하는 것이다.
+
 ```
 $ node node_modules/node-sass/scripts/install.js
 # or
