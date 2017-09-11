@@ -1,0 +1,2 @@
+webpackJsonp([20628440515933],{"./node_modules/json-loader/index.js!./.cache/json/tags-arrow-function.json":function(o,n){o.exports={pathContext:{path:"/tags/arrow function"}}}});
+//# sourceMappingURL=path---tags-arrow-function-f2aa0bb32532c8b6e941.js.map

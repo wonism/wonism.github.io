@@ -1,0 +1,2 @@
+webpackJsonp([0xc69833dc971c],{"./node_modules/json-loader/index.js!./.cache/json/resume.json":function(e,o){e.exports={pathContext:{path:"/resume/"}}}});
+//# sourceMappingURL=path---resume-2cdbb0fa949a03bb8935.js.map

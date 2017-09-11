@@ -1,0 +1,2 @@
+webpackJsonp([0xa868adf4250c],{"./node_modules/json-loader/index.js!./.cache/json/arrow-function.json":function(o,n){o.exports={pathContext:{path:"/arrow-function/"}}}});
+//# sourceMappingURL=path---arrow-function-7a95292ed12532d96957.js.map

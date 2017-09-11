@@ -1,0 +1,2 @@
+webpackJsonp([33800439926217],{"./node_modules/json-loader/index.js!./.cache/json/tags-es-2015.json":function(s,e){s.exports={pathContext:{path:"/tags/es2015"}}}});
+//# sourceMappingURL=path---tags-es-2015-9eec28efc16c76da898d.js.map

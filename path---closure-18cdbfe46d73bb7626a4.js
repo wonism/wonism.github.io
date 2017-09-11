@@ -1,0 +1,2 @@
+webpackJsonp([0xec3e8c9630fd],{"./node_modules/json-loader/index.js!./.cache/json/closure.json":function(e,o){e.exports={pathContext:{path:"/closure/"}}}});
+//# sourceMappingURL=path---closure-18cdbfe46d73bb7626a4.js.map
