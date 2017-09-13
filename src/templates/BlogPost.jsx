@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 import Helmet from 'react-helmet';
+import { Tweet } from 'react-twitter-widgets';
 import PropTypes from 'prop-types';
 import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
@@ -16,6 +18,7 @@ export default class BlogPostTemplate extends Component {
     const { data, location } = this.props;
     const slug = fp.get('pathname')(location);
     const disqusConfig = 'discus_config';
+    const content$ = this.refs.content;
 
     window[disqusConfig] = function () {
       this.page.url = `${SITE_URL}${slug}`;
@@ -28,6 +31,32 @@ export default class BlogPostTemplate extends Component {
     s.src = 'https://jaewonism.disqus.com/embed.js';
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
+
+    const tweets = fp.get('markdownRemark.frontmatter.tweets')(data);
+    const components = fp.get('markdownRemark.frontmatter.components')(data);
+
+    fp.each((tweet) => {
+      const tweetRootId = fp.get('rootId')(tweet);
+      const tweetContainer$ = document.getElementById(tweetRootId);
+      const tweetId = fp.get('tweetId')(tweet);
+      const username = fp.get('userId')(tweet);
+
+      render(<Tweet
+        tweetId={tweetId}
+        options={{
+          username,
+        }}
+      />, tweetContainer$);
+    })(tweets);
+
+    fp.each((component) => {
+      const componentRootId = fp.get('rootId')(component);
+      const componentContainer$ = document.getElementById(componentRootId);
+      const componentFileName = fp.get('fileName')(component);
+      const App = require(`../postComponents/${componentFileName}`);
+
+      render(<div className={`react-component-in-post ${componentRootId}`}><App /></div>, componentContainer$);
+    })(components);
   }
 
   render() {
@@ -58,7 +87,7 @@ export default class BlogPostTemplate extends Component {
           {fp.get('frontmatter.date')(post)}
         </p>
         {/* eslint-disable react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
+        <div ref="content" dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
         {/* eslint-enable react/no-danger */}
         <div id="disqus_thread" />
         <noscript>
@@ -95,6 +124,15 @@ export const pageQuery = graphql`
         tags
         date(formatString: "MMMM DD, YYYY")
         summary
+        components {
+          rootId
+          fileName
+        }
+        tweets {
+          rootId
+          userId
+          tweetId
+        }
         isNotPost
       }
     }
