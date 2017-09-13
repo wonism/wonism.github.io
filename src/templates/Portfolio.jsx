@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
 import './portfolio.scss';
 
@@ -27,13 +26,13 @@ const Portfolio = ({
       />
       {/* eslint-enable react/no-danger */}
       <section className="portfolio-images">
-      {fp.map((image) => (
-        <img
-          key={image}
-          src={image}
-          alt={fp.get('title')(portfolio)}
-        />
-      ))(images)}
+        {fp.map(image => (
+          <img
+            key={image}
+            src={image}
+            alt={fp.get('title')(portfolio)}
+          />
+        ))(images)}
       </section>
     </section>
   );

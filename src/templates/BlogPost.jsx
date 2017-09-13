@@ -9,21 +9,15 @@ import Bio from '../components/Bio';
 import { SITE_URL } from '../constants';
 
 export default class BlogPostTemplate extends Component {
-  static propTypes = {
-    data: PropTypes.shape({ date: PropTypes.object }).isRequired,
-    location: PropTypes.shape({}).isRequired,
-  };
-
   componentDidMount() {
     const { data, location } = this.props;
     const slug = fp.get('pathname')(location);
     const disqusConfig = 'discus_config';
-    const content$ = this.refs.content;
 
-    window[disqusConfig] = function () {
+    window[disqusConfig] = function disqusCallback() {
       this.page.url = `${SITE_URL}${slug}`;
       this.page.identifier = slug;
-      this.page.title = fp.get('markdownRemark.frontmatter.title')(post);
+      this.page.title = fp.get('markdownRemark.frontmatter.title')(data);
     };
 
     const d = document;
@@ -53,23 +47,17 @@ export default class BlogPostTemplate extends Component {
       const componentRootId = fp.get('rootId')(component);
       const componentContainer$ = document.getElementById(componentRootId);
       const componentFileName = fp.get('fileName')(component);
-      const App = require(`../postComponents/${componentFileName}`);
+      const App = require(`../postComponents/${componentFileName}`); // eslint-disable-line
 
       render(<div className={`react-component-in-post ${componentRootId}`}><App /></div>, componentContainer$);
     })(components);
   }
 
   render() {
-    const { data, location } = this.props;
+    const { data } = this.props;
     const post = fp.get('markdownRemark')(data);
     const siteTitle = fp.get('site.siteMetadata.title')(data);
     const title = `${fp.get('frontmatter.title')(post)} | ${siteTitle}`;
-    const slug = fp.get('pathname')(location);
-    const disqusConfig = {
-      url: `${SITE_URL}${slug}`,
-      identifier: slug,
-      title: fp.get('frontmatter.title')(post),
-    };
 
     return (
       <div className="post">
@@ -87,7 +75,7 @@ export default class BlogPostTemplate extends Component {
           {fp.get('frontmatter.date')(post)}
         </p>
         {/* eslint-disable react/no-danger */}
-        <div ref="content" dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
+        <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
         {/* eslint-enable react/no-danger */}
         <div id="disqus_thread" />
         <noscript>
@@ -97,13 +85,18 @@ export default class BlogPostTemplate extends Component {
         <GoogleAds
           client="ca-pub-1777052704513089"
           slot="4491507809"
-          style={{ display: 'inline-block', width: '100%', }}
+          style={{ display: 'inline-block', width: '100%' }}
         />
         <hr />
         <Bio />
       </div>
     );
   }
+}
+
+BlogPostTemplate.propTypes = {
+  data: PropTypes.shape({ date: PropTypes.object }).isRequired,
+  location: PropTypes.shape({}).isRequired,
 };
 
 /* eslint-disable no-undef */

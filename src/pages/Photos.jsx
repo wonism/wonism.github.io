@@ -8,10 +8,6 @@ import Instafeed from 'instafeed.js';
 import './photos.scss';
 
 export default class Photos extends Component {
-  static propTypes = {
-    data: PropTypes.shape({}).isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -30,9 +26,9 @@ export default class Photos extends Component {
           </a>
         </figure>
       `,
-      after: function () {
+      after: () => {
         // console.log('load successfully');
-      }
+      },
     });
   }
 
@@ -55,11 +51,15 @@ export default class Photos extends Component {
         <GoogleAds
           client="ca-pub-1777052704513089"
           slot="4491507809"
-          style={{ display: 'inline-block', width: '100%', }}
+          style={{ display: 'inline-block', width: '100%' }}
         />
       </div>
     );
   }
+}
+
+Photos.propTypes = {
+  data: PropTypes.shape({}).isRequired,
 };
 
 /* eslint-disable no-undef */

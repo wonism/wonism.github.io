@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
 import * as profileUrl from '../resources/me.jpg';
 import './resume.scss';

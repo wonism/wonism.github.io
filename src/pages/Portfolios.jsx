@@ -10,7 +10,6 @@ import './portfolios.scss';
 
 const Portfolio = ({
   data,
-  location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
   const portfolios = fp.flow(
@@ -21,7 +20,7 @@ const Portfolio = ({
       )),
       fp.filter(fp.flow(
         fp.get('node.frontmatter.path'),
-        (path) => !fp.isEqual('/resume/')(path)
+        path => !fp.isEqual('/resume/')(path)
       ))
     )
   )(data);
@@ -72,7 +71,7 @@ const Portfolio = ({
       <GoogleAds
         client="ca-pub-1777052704513089"
         slot="4491507809"
-        style={{ display: 'inline-block', width: '100%', }}
+        style={{ display: 'inline-block', width: '100%' }}
       />
     </div>
   );
@@ -80,7 +79,6 @@ const Portfolio = ({
 
 Portfolio.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  location: PropTypes.shape({}).isRequired,
 };
 
 export default Portfolio;

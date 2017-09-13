@@ -96,12 +96,12 @@ const TagIndex = ({
                     <div className="clearfix">
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
-                        {fp.map(tag => (
+                        {fp.map(t => (
                           <Link
-                            key={tag}
-                            to={`/tags/${tag}`}
+                            key={t}
+                            to={`/tags/${t}`}
                           >
-                            <small>{tag}</small>
+                            <small>{t}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
                       </div>
@@ -126,7 +126,7 @@ const TagIndex = ({
               </li>,
               <li key="ellipsis">
                 <i className="fa fa-ellipsis-h" />
-              </li>
+              </li>,
             ]) : null}
             {!fp.isEqual(1)(page) ? (
               <li>
@@ -173,7 +173,7 @@ const TagIndex = ({
                 <Link to={`/tags/${tag}?p=${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
-              </li>
+              </li>,
             ]) : null}
           </ul>
         </nav>
@@ -181,7 +181,7 @@ const TagIndex = ({
       <GoogleAds
         client="ca-pub-1777052704513089"
         slot="4491507809"
-        style={{ display: 'inline-block', width: '100%', }}
+        style={{ display: 'inline-block', width: '100%' }}
       />
     </div>
   );

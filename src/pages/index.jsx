@@ -10,13 +10,11 @@ import {
   PAGING_COUNT,
   MAX_PAGES,
 } from '../constants';
-import getQueryString from '../utils/getQueryString';
 
 import './posts.scss';
 
 const BlogIndex = ({
   data,
-  location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
   const posts = fp.flow(
@@ -113,7 +111,7 @@ const BlogIndex = ({
               </li>,
               <li key="ellipsis">
                 <i className="fa fa-ellipsis-h" />
-              </li>
+              </li>,
             ]) : null}
             {!fp.isEqual(1)(page) ? (
               <li>
@@ -160,7 +158,7 @@ const BlogIndex = ({
                 <Link to={`/pages/${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
-              </li>
+              </li>,
             ]) : null}
           </ul>
         </nav>
@@ -168,7 +166,7 @@ const BlogIndex = ({
       <GoogleAds
         client="ca-pub-1777052704513089"
         slot="4491507809"
-        style={{ display: 'inline-block', width: '100%', }}
+        style={{ display: 'inline-block', width: '100%' }}
       />
     </div>
   );
@@ -176,7 +174,6 @@ const BlogIndex = ({
 
 BlogIndex.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  location: PropTypes.shape({}).isRequired,
 };
 
 export default BlogIndex;

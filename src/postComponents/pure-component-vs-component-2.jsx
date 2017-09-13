@@ -4,7 +4,7 @@ const logClosure = () => {
   let clickedCount = 0;
   let reRenderedCount = -1;
 
-  return function (isReRendered) {
+  return function log(isReRendered) {
     if (isReRendered) {
       reRenderedCount += 1;
     } else {

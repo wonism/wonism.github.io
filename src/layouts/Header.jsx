@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
 import './header.scss';
@@ -40,6 +39,7 @@ const Header = () => {
         htmlFor="hamburger-trigger"
         role="button"
         tabIndex="0"
+        onClick={() => {}}
       >
         <span className="hamburger-inner" />
       </label>
@@ -48,6 +48,8 @@ const Header = () => {
           <li>
             <Link
               to="/pages/1"
+              tabIndex="0"
+              role="button"
               onClick={closeGnb}
             >
               Posts
@@ -56,6 +58,8 @@ const Header = () => {
           <li>
             <Link
               to="/portfolios"
+              tabIndex="0"
+              role="button"
               onClick={closeGnb}
             >
               Portfolio
@@ -64,6 +68,8 @@ const Header = () => {
           <li>
             <Link
               to="/resume"
+              tabIndex="0"
+              role="button"
               onClick={closeGnb}
             >
               Resume
@@ -72,6 +78,8 @@ const Header = () => {
           <li>
             <Link
               to="/photos"
+              tabIndex="0"
+              role="button"
               onClick={closeGnb}
             >
               Photos
@@ -84,6 +92,7 @@ const Header = () => {
         htmlFor="hamburger-trigger"
         role="button"
         tabIndex="0"
+        onClick={() => {}}
       />
     </header>
   );
