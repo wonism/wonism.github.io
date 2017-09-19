@@ -3,7 +3,7 @@ title: "리액트 성능 향상 시키기 - React.PureComponent"
 date: "2017-09-13T21:39:50.000Z"
 path: "/react-pure-component/"
 tags: ["javascript", "optimization", "reactjs", "component", "pure component"]
-summary: "React.PureComponent는"
+summary: "React.PureComponent는 React.Component와 매우 유사하다. 하지만 한 가지 다른 점이 있다면, React의 생명주기 메소드 중 하나인 shouldComponentUpdate를 다루는 방식이 다르다는 것이다."
 components: [{
 	rootId: 'pure-component-example',
 	fileName: 'pure-component-vs-component-1',
@@ -18,7 +18,7 @@ tweets: [{
 }]
 ---
 
-`React.PureComponent`는 `React.Component`와 매우 유사하다. 하지만 한 가지 다른 점이 있다면, `React`의 생명주기 메소드 중 하나인 `shouldComponentUpdate`를 다루는 방식이 다르다.<br />
+`React.PureComponent`는 `React.Component`와 매우 유사하다. 하지만 한 가지 다른 점이 있다면, `React`의 생명주기 메소드 중 하나인 `shouldComponentUpdate`를 다루는 방식이 다르다는 것이다.<br />
 `React.PureComponent`는 `shouldComponentUpdate`가 이미 구현되어 있는데, `props`와 `state`를 `얕은 비교`를 통해 비교한 뒤 변경된 것이 있을 때만 리렌더링한다.<br />
 즉, `React.PureComponent`를 사용하면 `React`애플리케이션 성능을 향상시키는 데 가장 중요한 것 중 하나인 `shouldComponentUpdate`를 신경쓰지 않아도 된다.<br />
 하지만 `props`나 `state`가 복잡한 데이터 구조를 포함하고 있다면, `props`와 `state`를 비교하는 과정에서 의도하지 않은 결과가 발생할 수 있다.<br />
