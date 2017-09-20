@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import * as logo from '../resources/logo.png';
 
 import './header.scss';
 
@@ -11,7 +12,14 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link className="main" to="/">Wonism</Link>
+      <Link className="main" to="/">
+        <img
+          src={logo.default}
+          alt="logo"
+          width="100"
+          height="18"
+        />
+      </Link>
       <nav className="gnb">
         <ul className="list-layout">
           <li>
