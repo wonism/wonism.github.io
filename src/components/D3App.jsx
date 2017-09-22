@@ -45,7 +45,7 @@ class D3App extends PureComponent {
     select($chart)
       .append('g')
       .attr('class', 'x axis')
-      .attr('transform', `translate(0, ${height})`)
+      .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
       .call(xAxis);
 
     select($chart)
@@ -63,7 +63,7 @@ class D3App extends PureComponent {
       .attr('y', d => y(d.value))
       .attr('width', barWidth)
       .attr('height', d => height - y(d.value))
-      .attr('transform', (d, i) => `translate(${(i * barWidth) + margin.left}, 0)`);
+      .attr('transform', (d, i) => `translate(${(i * barWidth) + margin.left}, ${margin.top})`);
   }
 
   render() {
