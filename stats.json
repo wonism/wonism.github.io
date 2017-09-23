@@ -8,10 +8,6 @@
       "path---what-is-fp-69f6f4104822faea4d07.js",
       "path---what-is-fp-69f6f4104822faea4d07.js.map"
     ],
-    "component---src-pages-react-d-3-example-js": [
-      "component---src-pages-react-d-3-example-js-788de63788763e7dccaf.js",
-      "component---src-pages-react-d-3-example-js-788de63788763e7dccaf.js.map"
-    ],
     "path---tags-var": [
       "path---tags-var-9119bfc7019538e028be.js",
       "path---tags-var-9119bfc7019538e028be.js.map"
@@ -85,8 +81,8 @@
       "path---tags-apply-db066e0fcbcecd71b07c.js.map"
     ],
     "component---src-layouts-index-jsx": [
-      "component---src-layouts-index-jsx-0a9cf87f5114812440d6.js",
-      "component---src-layouts-index-jsx-0a9cf87f5114812440d6.js.map"
+      "component---src-layouts-index-jsx-d365aeb5c5073a43a128.js",
+      "component---src-layouts-index-jsx-d365aeb5c5073a43a128.js.map"
     ],
     "path---tags-pure-component": [
       "path---tags-pure-component-dc6aab336f1e3e62295d.js",
@@ -188,6 +184,10 @@
       "path---tags-object-e61cfbddf8c09eef362c.js",
       "path---tags-object-e61cfbddf8c09eef362c.js.map"
     ],
+    "component---src-pages-react-d-3-example-jsx": [
+      "component---src-pages-react-d-3-example-jsx-7020bb81a64cc341279b.js",
+      "component---src-pages-react-d-3-example-jsx-7020bb81a64cc341279b.js.map"
+    ],
     "path---tags-functional-programmin": [
       "path---tags-functional-programmin-4f9325464734660518f0.js",
       "path---tags-functional-programmin-4f9325464734660518f0.js.map"
@@ -273,8 +273,8 @@
       "component---src-templates-resume-jsx-bf59cacba8095189fe34.js.map"
     ],
     "app": [
-      "app-c3f6ed6fdbc0e49d3a03.js",
-      "app-c3f6ed6fdbc0e49d3a03.js.map"
+      "app-c1cf234ed3a7af372c07.js",
+      "app-c1cf234ed3a7af372c07.js.map"
     ],
     "path---implement-bind": [
       "path---implement-bind-9f3b5412f14d64f86097.js",
@@ -289,8 +289,8 @@
       "path---tags-npm-96cc42af7fa52e5b6e68.js.map"
     ],
     "component---src-pages-photos-jsx": [
-      "component---src-pages-photos-jsx-4685a600b7ceb2011dd9.js",
-      "component---src-pages-photos-jsx-4685a600b7ceb2011dd9.js.map"
+      "component---src-pages-photos-jsx-44a92329c409649c2f0b.js",
+      "component---src-pages-photos-jsx-44a92329c409649c2f0b.js.map"
     ],
     "path---tags-functional-programming": [
       "path---tags-functional-programming-3967d3661ff461f5175f.js",
