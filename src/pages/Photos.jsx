@@ -8,6 +8,10 @@ import Instafeed from 'instafeed.js';
 import './photos.scss';
 
 export default class Photos extends Component {
+  static propTypes = {
+    data: PropTypes.shape({}).isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -57,10 +61,6 @@ export default class Photos extends Component {
     );
   }
 }
-
-Photos.propTypes = {
-  data: PropTypes.shape({}).isRequired,
-};
 
 /* eslint-disable no-undef */
 export const photoQuery = graphql`

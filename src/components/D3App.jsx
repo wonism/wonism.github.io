@@ -6,7 +6,33 @@ import { scaleBand, scaleLinear } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';
 
 class D3App extends PureComponent {
-  constructor(props){
+  static propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.object,
+      PropTypes.number
+    ).isRequired,
+    margin: PropTypes.shape({
+      top: PropTypes.number,
+      bottom: PropTypes.number,
+      right: PropTypes.number,
+      left: PropTypes.number,
+    }),
+    width: PropTypes.number,
+    height: PropTypes.number,
+  };
+
+  static defaultProps = {
+    margin: {
+      top: 20,
+      bottom: 30,
+      right: 30,
+      left: 40,
+    },
+    width: 500,
+    height: 500,
+  };
+
+  constructor(props) {
     super(props);
     this.createBarChart = this.createBarChart.bind(this);
   }
@@ -71,37 +97,12 @@ class D3App extends PureComponent {
 
     return (
       <svg
-        ref={chart => this.$chart = chart}
+        ref={(chart) => { this.$chart = chart; }}
         width={width}
         height={height}
       />
     );
   }
 }
-
-D3App.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.object,
-    PropTypes.number,
-  ).isRequired,
-  margin: PropTypes.shape({
-    top: PropTypes.number,
-    bottom: PropTypes.number,
-    right: PropTypes.number,
-    left: PropTypes.number,
-  }),
-  width: PropTypes.number,
-};
-
-D3App.defaultProps = {
-  margin: {
-    top: 20,
-    bottom: 30,
-    right: 30,
-    left: 40,
-  },
-  width: 500,
-  height: 500,
-};
 
 export default D3App;

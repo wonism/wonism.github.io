@@ -14,15 +14,16 @@ const margin = {
   right: 30,
   left: 40,
 };
-const width = 480- margin.left - margin.right;
+const width = 480 - margin.left - margin.right;
 const height = 320 - margin.top - margin.bottom;
 
-const D3AppContainer = () =>
+const D3AppContainer = () => (
   <D3App
     margin={margin}
     data={data}
     width={width}
     height={height}
-  />;
+  />
+);
 
 export default D3AppContainer;
