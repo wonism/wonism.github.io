@@ -5,3 +5,7 @@ public
 .intermediate-representation/
 .cache/
 yarn.lock
+*.log
+
+config/*
+!config/.gitkeep

@@ -6,9 +6,9 @@ path: "/portfolio/camscon/"
 tags: []
 isNotPost: true
 images: [
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon1.png?raw=true',
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon2.png?raw=true',
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/camscon/camscon3.png?raw=true',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon1.png?alt=media',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon2.png?alt=media',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon3.png?alt=media',
 ]
 ---
 

@@ -6,8 +6,8 @@ path: "/portfolio/ciceron/"
 tags: []
 isNotPost: true
 images: [
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/ciceron/ciceron1.png?raw=true',
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/ciceron/ciceron2.png?raw=true',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fciceron1.png?alt=media',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fciceron2.png?alt=media',
 ]
 ---
 

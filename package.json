@@ -14,6 +14,7 @@
     "d3-scale": "^1.0.6",
     "d3-selection": "^1.1.0",
     "firebase": "^4.4.0",
+    "firebase-admin": "^5.2.1",
     "fs": "0.0.1-security",
     "gatsby": "^1.8.12",
     "gatsby-link": "^1.6.8",

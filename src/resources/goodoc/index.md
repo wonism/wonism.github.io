@@ -6,9 +6,9 @@ path: "/portfolio/goodoc/"
 tags: []
 isNotPost: true
 images: [
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/goodoc/goodoc1.png?raw=true',
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/goodoc/goodoc2.png?raw=true',
-  'https://github.com/wonism/wonism.github.io/blob/source/src/resources/goodoc/goodoc3.png?raw=true',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fgoodoc1.png?alt=media',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fgoodoc2.png?alt=media',
+  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fgoodoc3.png?alt=media',
 ]
 ---
 
