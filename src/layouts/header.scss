@@ -15,6 +15,33 @@
     & > li {
       padding: 0 20px;
     }
+
+    &:not(.sub-menus) > li {
+      &:hover a + .sub-menus {
+        max-height: 500px;
+      }
+    }
+
+    &.sub-menus {
+      position: absolute;
+      margin: 0 0 0 -20px;
+      max-height: 0;
+      line-height: 2em;
+      background-color: #fff;
+      overflow: hidden;
+      transition: max-height .4s ease;
+      z-index: 9;
+
+      &.mobile {
+        position: relative;
+        margin: 0;
+        line-height: 3em;
+      }
+
+      br:last-child {
+        display: none;
+      }
+    }
   }
 
   .gnb {
@@ -28,15 +55,67 @@
   .mobile-gnb {
     position: fixed;
     top: 0;
-    left: -61.8%;
-    width: 61.8%;
+    left: -80%;
+    width: 80%;
     height: 100%;
+    line-height: 4em;
     background-color: #fff;
     z-index: 3;
     transition: left .4s ease;
 
+    .hamburger-posts-opener {
+      & + label {
+        .fa-caret-down {
+          display: inline;
+        }
+
+        .fa-caret-up {
+          display: none;
+        }
+
+        & + .sub-menus.mobile {
+          max-height: 0;
+        }
+      }
+
+      &:checked + label {
+        .fa-caret-down {
+          display: none;
+        }
+
+        .fa-caret-up {
+          display: inline;
+        }
+
+        & + .sub-menus.mobile {
+          max-height: 500px;
+        }
+      }
+    }
+
+    .mobile {
+      li {
+        padding: 0 0 0 20px;
+        white-space: nowrap;
+      }
+
+      br {
+        display: none;
+      }
+    }
+
     ul li {
       display: block;
+
+      label {
+        color: $point-color;
+        cursor: pointer;
+
+        &:active,
+        &:hover {
+          color: $point-color--lighten;
+        }
+      }
     }
   }
 

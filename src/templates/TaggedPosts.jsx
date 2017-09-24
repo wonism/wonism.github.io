@@ -210,6 +210,7 @@ export const pageQuery = graphql`
             title
             path
             tags
+            category
             date(formatString: "DD MMMM, YYYY")
             summary
             isNotPost

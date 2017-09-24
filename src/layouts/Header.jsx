@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import fp from 'lodash/fp';
 import * as logo from '../resources/logo.png';
 
 import './header.scss';
 
-const Header = () => {
+const Header = ({ categories }) => {
   let hamburgerTrigger$;
   const closeGnb = () => {
     hamburgerTrigger$.checked = false;
@@ -23,7 +25,21 @@ const Header = () => {
       <nav className="gnb">
         <ul className="list-layout">
           <li>
-            <Link to="/pages/1">Posts</Link>
+            <Link to="/pages/1">Posts <i className="fa fa-caret-down" /></Link>
+            {categories.length ? (
+              <ul className="list-layout sub-menus">
+                {fp.map((category) => (
+                  [
+                    <li key={category}>
+                      <Link to={fp.isEqual('All')(category.key) ? '/pages/1' : `/categories/${category.key}`}>
+                        {category.key} ({category.length})
+                      </Link>
+                    </li>,
+                    <br key={`${category.key}-br`} />
+                  ]
+                ))(categories)}
+              </ul>
+            ) : null}
           </li>
           <li>
             <Link to="/portfolios">Portfolio</Link>
@@ -54,14 +70,37 @@ const Header = () => {
       <nav className="mobile-gnb">
         <ul className="list-layout">
           <li>
-            <Link
-              to="/pages/1"
+            <input
+              className="none hamburger-posts-opener"
+              type="checkbox"
+              id="hamburger-posts-opener"
+            />
+            <label
               tabIndex="0"
               role="button"
-              onClick={closeGnb}
+              htmlFor="hamburger-posts-opener"
             >
-              Posts
-            </Link>
+              Posts <i className="fa fa-caret-down" /><i className="fa fa-caret-up" />
+            </label>
+            {categories.length ? (
+              <ul className="list-layout sub-menus mobile">
+                {fp.map((category) => (
+                  [
+                    <li key={category}>
+                      <Link
+                        to={fp.isEqual('All')(category.key) ? '/pages/1' : `/categories/${category.key}`}
+                        tabIndex="0"
+                        role="button"
+                        onClick={closeGnb}
+                      >
+                        {category.key} ({category.length})
+                      </Link>
+                    </li>,
+                    <br key={`${category.key}-br`} />
+                  ]
+                ))(categories)}
+              </ul>
+            ) : null}
           </li>
           <li>
             <Link
@@ -104,6 +143,14 @@ const Header = () => {
       />
     </header>
   );
+};
+
+Header.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string, length: PropTypes.number }).isRequired),
+};
+
+Header.defaultProps = {
+  categories: [],
 };
 
 export default Header;

@@ -1,37 +1,44 @@
-import React, { PureComponent as PC } from 'react';
-import firebase from 'firebase';
+import React, { PureComponent } from 'react';
+import fp from 'lodash/fp';
 import Header from './Header';
 import scrollTop from '../utils/scroll';
 
 import './index.scss';
 import './main.scss';
 
-export default class Template extends PC {
+export default class Template extends PureComponent {
   static propTypes = {
     children: React.PropTypes.func.isRequired,
     // location: React.PropTypes.shape({}).isRequired,
     // route: React.PropTypes.shape({}).isRequired,
   };
 
-  componentDidMount() {
-    const config = {
-      apiKey: 'AIzaSyDHSFqUK_pEBCm1XO6NNXYAzV0fXtPlemk',
-      authDomain: 'wonism-github-io.firebaseapp.com',
-      databaseURL: 'https://wonism-github-io.firebaseio.com',
-      projectId: 'wonism-github-io',
-      storageBucket: '',
-      messagingSenderId: '158979946808',
-    };
-
-    firebase.initializeApp(config);
-  }
-
   render() {
-    const { children } = this.props;
+    const { data, children } = this.props;
+    const edges = fp.get('allMarkdownRemark.edges')(data);
+    const categories = fp.flow(
+      fp.map(fp.get('node.frontmatter.category')),
+      fp.filter(category => category)
+    )(edges);
+    const purifiedCategories = fp.flow(
+      fp.reduce((prev, curr) => ({
+        ...prev,
+        [curr]: prev[curr] ? prev[curr] + 1 : 1,
+      }), {
+        All: categories.length,
+      }),
+      (obj) => fp.flow(
+        fp.keys,
+        fp.map(key => ({
+          key,
+          length: obj[key],
+        }))
+      )(obj)
+    )(categories);
 
     return (
       <div>
-        <Header />
+        <Header categories={purifiedCategories} />
         <main className="container">
           {children()}
         </main>
@@ -42,3 +49,31 @@ export default class Template extends PC {
     );
   }
 }
+
+/* eslint-disable no-undef */
+export const layoutQuery = graphql`
+  query LayoutQuery {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            tags
+            category
+            date(formatString: "DD MMMM, YYYY")
+            summary
+            isNotPost
+          }
+        }
+      }
+    }
+  }
+`;
+/* eslint-enable no-undef */

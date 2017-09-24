@@ -9,6 +9,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const blogPost = path.resolve('./src/templates/BlogPost.jsx');
     const pagedBlogPost = path.resolve('./src/templates/PagedPosts.jsx');
     const taggedBlogPost = path.resolve('./src/templates/TaggedPosts.jsx');
+    const categorizedBlogPost = path.resolve('./src/templates/CategorizedPosts.jsx');
     const resume = path.resolve('./src/templates/Resume.jsx');
     const portfolio = path.resolve('./src/templates/Portfolio.jsx');
 
@@ -21,6 +22,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 frontmatter {
                   path
                   tags
+                  category
                   isNotPost
                 }
               }
@@ -34,10 +36,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         const edges = result.data.allMarkdownRemark.edges;
         const tagMatrix = [];
+        const categoryMatrix = [];
 
         // Create blog posts pages.
         fp.each((edge) => {
           tagMatrix.push(fp.get('node.frontmatter.tags')(edge));
+          if (fp.get('node.frontmatter.category')(edge)) {
+            categoryMatrix.push(fp.get('node.frontmatter.category')(edge));
+          }
 
           const isNotPost = fp.get('node.frontmatter.isNotPost')(edge);
           const notPost = fp.isEqual(fp.get('node.frontmatter.path')(edge))('/resume/') ? resume : portfolio;
@@ -80,6 +86,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             },
           });
         })(tags);
+
+        const categories = fp.uniq(fp.flatten(categoryMatrix));
+
+        fp.each((category) => {
+          createPage({
+            path: `/categories/${category}`,
+            component: categorizedBlogPost,
+            context: {
+              path: `/categories/${category}`,
+            },
+          });
+        })(categories);
       })
     );
   });

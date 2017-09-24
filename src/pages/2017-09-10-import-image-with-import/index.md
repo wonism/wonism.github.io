@@ -4,6 +4,7 @@ date: "2017-09-10T13:28:09.000Z"
 path: "/import-image-with-import/"
 tags: ["javascript", "import", "image"]
 summary: "import * as url from '/PATH/TO/IMAGE/filename.extension';"
+category: "JavaScript"
 ---
 
 ```js

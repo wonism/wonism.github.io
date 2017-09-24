@@ -4,6 +4,7 @@ date: "2017-09-10T11:03:12.000Z"
 path: "/arrow-function/"
 tags: ["javascript", "arrow function", "es2015", "this", "lambda"]
 summary: "화살표함수는 ES2015에서 사용할 수 있는 함수 표현식으로 익명함수를 축약하여 표현할 수 있다."
+category: "JavaScript"
 ---
 
 `화살표함수`는 `ES2015`에서 사용할 수 있는 함수 표현식으로 익명함수를 축약하여 표현할 수 있다. 이 화살표함수는 편리하면서도 특이한 성질이 있는데, 이에 대해 알아보겠다.

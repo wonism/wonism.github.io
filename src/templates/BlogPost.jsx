@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { render } from 'react-dom';
 import Helmet from 'react-helmet';
 import { Tweet } from 'react-twitter-widgets';
@@ -8,7 +8,7 @@ import fp from 'lodash/fp';
 import Bio from '../components/Bio';
 import { SITE_URL } from '../constants';
 
-export default class BlogPostTemplate extends Component {
+export default class BlogPostTemplate extends PureComponent {
   componentDidMount() {
     const { data, location } = this.props;
     const slug = fp.get('pathname')(location);
@@ -115,6 +115,7 @@ export const pageQuery = graphql`
         title
         path
         tags
+        category
         date(formatString: "MMMM DD, YYYY")
         summary
         components {

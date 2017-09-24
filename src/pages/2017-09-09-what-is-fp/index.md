@@ -4,6 +4,7 @@ date: "2017-09-09T23:52:32.000Z"
 path: "/what-is-fp/"
 tags: ["javascript", "functional programming", "함수형 프로그래밍", "fp", "lodash", "ramda"]
 summary: "함수형 프로그래밍은 순수한 함수를 작성하고, 공유된 상태와 변경 가능한 데이터 및 부작용을 피하여 소프트웨어를 작성하는 프로세스이다."
+category: "Functional Programming"
 ---
 
 함수형 프로그래밍은 순수한 함수를 작성하고, 공유된 상태와 변경 가능한 데이터 및 부작용을 피하여 소프트웨어를 작성하는 프로세스이다.<br />

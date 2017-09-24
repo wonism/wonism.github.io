@@ -16,6 +16,7 @@ tweets: [{
 	userId: 'dan_abramov',
 	tweetId: '755343749983657986',
 }]
+category: "JavaScript"
 ---
 
 `React.PureComponent`는 `React.Component`와 매우 유사하다. 하지만 한 가지 다른 점이 있다면, `React`의 생명주기 메소드 중 하나인 `shouldComponentUpdate`를 다루는 방식이 다르다는 것이다.<br />

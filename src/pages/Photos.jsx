@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import fp from 'lodash/fp';
@@ -7,7 +7,7 @@ import Instafeed from 'instafeed.js';
 
 import './photos.scss';
 
-export default class Photos extends Component {
+export default class Photos extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({}).isRequired,
   };

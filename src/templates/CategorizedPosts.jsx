@@ -10,11 +10,13 @@ import {
   PAGING_COUNT,
   MAX_PAGES,
 } from '../constants';
+import getQueryString from '../utils/getQueryString';
 
-import './posts.scss';
+import '../pages/posts.scss';
 
-const BlogIndex = ({
+const CategoryIndex = ({
   data,
+  location,
 }) => {
   const siteTitle = fp.get('site.siteMetadata.title')(data);
   const posts = fp.flow(
@@ -25,10 +27,20 @@ const BlogIndex = ({
     ))
   )(data);
 
-  const postsLength = fp.get('length')(posts);
+  const category = fp.flow(
+    fp.get('pathname'),
+    fp.replace(/(?:\/?categories\/)(\S+)/, ($0, $1) => $1),
+  )(location);
+  const categoryPosts = fp.filter((post) => {
+    const categories= fp.get('node.frontmatter.category')(post);
+
+    return fp.includes(category)(categories);
+  })(posts);
+
+  const postsLength = fp.get('length')(categoryPosts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
-  const page = 1;
+  const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
@@ -41,17 +53,20 @@ const BlogIndex = ({
   const filteredPosts = fp.slice(
     (page - 1) * PAGING_COUNT,
     (page * PAGING_COUNT)
-  )(posts);
+  )(categoryPosts);
 
   return (
     <div className="main-container">
       <Helmet>
         <title>{siteTitle}</title>
-        <meta name="keyword" content="JavaScript, Front-end, Developer" />
+        <meta name="keyword" content={`JavaScript, Front-end, Developer, ${category}`} />
         <meta name="og:title" content={siteTitle} />
       </Helmet>
       <Bio />
       <div className="posts">
+        {fp.isEmpty(filteredPosts) ? (
+          <div className="no-results text-center">검색된 게시물이 없습니다.</div>
+        ) : null}
         {fp.map((post) => {
           if (post.node.path !== '/404/') {
             const hasTags = !fp.isEmpty(fp.get('node.frontmatter.tags')(post));
@@ -81,12 +96,12 @@ const BlogIndex = ({
                     <div className="clearfix">
                       <i className="fa fa-tags tag-icon" />
                       <div className="tags">
-                        {fp.map(tag => (
+                        {fp.map(t => (
                           <Link
-                            key={tag}
-                            to={`/tags/${tag}`}
+                            key={t}
+                            to={`/tags/${t}`}
                           >
-                            <small>{tag}</small>
+                            <small>{t}</small>
                           </Link>
                         ))(fp.get('node.frontmatter.tags')(post))}
                       </div>
@@ -105,7 +120,7 @@ const BlogIndex = ({
           <ul className="list-layout">
             {isManyPages && !isNearStart ? ([
               <li key="first">
-                <Link to="/pages/1">
+                <Link to={`/categories/${category}?p=1`}>
                   <i className="fa fa-angle-double-left" />
                 </Link>
               </li>,
@@ -137,7 +152,7 @@ const BlogIndex = ({
                   key={i}
                   className={fp.isEqual(i)(page) ? 'active' : ''}
                 >
-                  <Link to={`/pages/${i}`}>
+                  <Link to={`/categories/${category}?p=${i}`}>
                     {i}
                   </Link>
                 </li>
@@ -155,7 +170,7 @@ const BlogIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>,
               <li key="last">
-                <Link to={`/pages/${pagesCount}`}>
+                <Link to={`/categories/${category}?p=${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
               </li>,
@@ -172,15 +187,16 @@ const BlogIndex = ({
   );
 };
 
-BlogIndex.propTypes = {
+CategoryIndex.propTypes = {
   data: PropTypes.shape({}).isRequired,
+  location: PropTypes.shape({}).isRequired,
 };
 
-export default BlogIndex;
+export default CategoryIndex;
 
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
-  query IndexQuery {
+  query CatagoryQuery {
     site {
       siteMetadata {
         title

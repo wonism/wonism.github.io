@@ -4,6 +4,7 @@ date: "2017-09-10T13:22:48.000Z"
 path: "/block-scope-in-switch/"
 tags: ["javascript", "tdz", "let", "const", "block scope", "switch"]
 summary: "let과 const는 TDZ를 해결해주지만, switch문 안에서 이들를 사용할 때는 유의할 점이 있다."
+category: "JavaScript"
 ---
 
 ES2015 의 `let`, `const` 키워드는 변수를 블록 스코프를 가지는 지역변수로 만들어 준다.<br />

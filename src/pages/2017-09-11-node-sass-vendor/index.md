@@ -4,6 +4,7 @@ date: "2017-09-11T22:57:26.000Z"
 path: "/node-sass-vendor/"
 tags: ["javascript", "npm", "node-sass", "trouble shooting"]
 summary: "원인은 패키지 설치 이후 `node-sass`의 `scripts/install.js`를 실행하지 않아서였다."
+category: "JavaScript"
 ---
 
 `node_modules` 디렉토리를 삭제하고 다시 패키지들을 설치한 뒤 `js` 파일들을 번들링할 일이 있었다.<br />
