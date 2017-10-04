@@ -2,7 +2,7 @@
 title: "Memoization에 대해"
 date: "2017-09-16T00:04:07.000Z"
 path: "/memoization/"
-tags: ["javascript", "memoization", "functional programmin"]
+tags: ["javascript", "memoization", "functional programming"]
 summary: "Memoization은 매번 함수를 다시 계산하는 대신 함수의 값을 저장하는 기술로 연산 결과를 저장하는 객체를 사용함으로써 불필요한 작업을 피할 수 있다."
 category: "JavaScript"
 ---

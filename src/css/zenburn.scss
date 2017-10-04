@@ -12,9 +12,48 @@
 
 .gatsby-highlight pre {
   display: block;
-  background: #3f3f3f;
+  position: relative;
+  padding: 20px 0 0;
+  background: #263238;
   color: #dcdcdc;
+  border-radius: 5px;
   overflow-y: hidden;
+
+  &:before {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    content: '';
+  }
+
+  &:after {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffbd2e;
+    border-radius: 50%;
+    content: '';
+  }
+
+  code:before {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 60px;
+    width: 10px;
+    height: 10px;
+    background-color: #27c93f;
+    border-radius: 50%;
+    content: '';
+  }
 }
 
 .gatsby-highlight pre code {
