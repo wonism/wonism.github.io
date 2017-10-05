@@ -10,7 +10,6 @@ import {
   PAGING_COUNT,
   MAX_PAGES,
 } from '../constants';
-import getQueryString from '../utils/getQueryString';
 
 import '../pages/posts.scss';
 
@@ -29,10 +28,10 @@ const CategoryIndex = ({
 
   const category = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/?categories\/)(\S+)/, ($0, $1) => $1),
+    fp.replace(/(?:\/categories\/)(.+)(?:\/\d+)/, ($0, $1) => $1)
   )(location);
   const categoryPosts = fp.filter((post) => {
-    const categories= fp.get('node.frontmatter.category')(post);
+    const categories = fp.get('node.frontmatter.category')(post);
 
     return fp.includes(category)(categories);
   })(posts);
@@ -40,7 +39,11 @@ const CategoryIndex = ({
   const postsLength = fp.get('length')(categoryPosts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
-  const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
+  const page = fp.flow(
+    fp.get('pathname'),
+    fp.replace(/(?:\/categories\/.+\/)(\d+)/, ($0, $1) => $1),
+    fp.toNumber
+  )(location) || 1;
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
@@ -120,7 +123,7 @@ const CategoryIndex = ({
           <ul className="list-layout">
             {isManyPages && !isNearStart ? ([
               <li key="first">
-                <Link to={`/categories/${category}?p=1`}>
+                <Link to={`/categories/${category}/1`}>
                   <i className="fa fa-angle-double-left" />
                 </Link>
               </li>,
@@ -130,7 +133,7 @@ const CategoryIndex = ({
             ]) : null}
             {!fp.isEqual(1)(page) ? (
               <li>
-                <Link to={`/pages/${page - 1}`}>
+                <Link to={`/categories/${category}/${page - 1}`}>
                   <i className="fa fa-angle-left" />
                 </Link>
               </li>
@@ -152,7 +155,7 @@ const CategoryIndex = ({
                   key={i}
                   className={fp.isEqual(i)(page) ? 'active' : ''}
                 >
-                  <Link to={`/categories/${category}?p=${i}`}>
+                  <Link to={`/categories/${category}/${i}`}>
                     {i}
                   </Link>
                 </li>
@@ -160,7 +163,7 @@ const CategoryIndex = ({
             })(filteredPages)}
             {!fp.isEqual(pagesCount)(page) ? (
               <li>
-                <Link to={`/pages/${page + 1}`}>
+                <Link to={`/categories/${category}/${page + 1}`}>
                   <i className="fa fa-angle-right" />
                 </Link>
               </li>
@@ -170,7 +173,7 @@ const CategoryIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>,
               <li key="last">
-                <Link to={`/categories/${category}?p=${pagesCount}`}>
+                <Link to={`/categories/${category}/${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
               </li>,

@@ -10,7 +10,6 @@ import {
   PAGING_COUNT,
   MAX_PAGES,
 } from '../constants';
-import getQueryString from '../utils/getQueryString';
 
 import '../pages/posts.scss';
 
@@ -29,7 +28,7 @@ const TagIndex = ({
 
   const tag = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/?tags\/)(\S+)/, ($0, $1) => $1),
+    fp.replace(/(?:\/tags\/)(.+)(?:\/\d+)/, ($0, $1) => $1)
   )(location);
   const tagPosts = fp.filter((post) => {
     const tags = fp.get('node.frontmatter.tags')(post);
@@ -40,7 +39,11 @@ const TagIndex = ({
   const postsLength = fp.get('length')(tagPosts);
   const pagesCount = postsLength ? Math.ceil(postsLength / PAGING_COUNT) : 0;
   const pages = fp.range(1, pagesCount + 1);
-  const page = fp.toNumber(getQueryString('p', fp.get('search')(location))) || 1;
+  const page = fp.flow(
+    fp.get('pathname'),
+    fp.replace(/(?:\/tags\/.+\/)(\d+)/, ($0, $1) => $1),
+    fp.toNumber
+  )(location) || 1;
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
@@ -120,7 +123,7 @@ const TagIndex = ({
           <ul className="list-layout">
             {isManyPages && !isNearStart ? ([
               <li key="first">
-                <Link to={`/tags/${tag}?p=1`}>
+                <Link to={`/tags/${tag}/1`}>
                   <i className="fa fa-angle-double-left" />
                 </Link>
               </li>,
@@ -130,7 +133,7 @@ const TagIndex = ({
             ]) : null}
             {!fp.isEqual(1)(page) ? (
               <li>
-                <Link to={`/pages/${page - 1}`}>
+                <Link to={`/tags/${tag}/${page - 1}`}>
                   <i className="fa fa-angle-left" />
                 </Link>
               </li>
@@ -152,7 +155,7 @@ const TagIndex = ({
                   key={i}
                   className={fp.isEqual(i)(page) ? 'active' : ''}
                 >
-                  <Link to={`/tags/${tag}?p=${i}`}>
+                  <Link to={`/tags/${tag}/${i}`}>
                     {i}
                   </Link>
                 </li>
@@ -160,7 +163,7 @@ const TagIndex = ({
             })(filteredPages)}
             {!fp.isEqual(pagesCount)(page) ? (
               <li>
-                <Link to={`/pages/${page + 1}`}>
+                <Link to={`/tags/${tag}/${page + 1}`}>
                   <i className="fa fa-angle-right" />
                 </Link>
               </li>
@@ -170,7 +173,7 @@ const TagIndex = ({
                 <i className="fa fa-ellipsis-h" />
               </li>,
               <li key="last">
-                <Link to={`/tags/${tag}?p=${pagesCount}`}>
+                <Link to={`/tags/${tag}/${pagesCount}`}>
                   <i className="fa fa-angle-double-right" />
                 </Link>
               </li>,

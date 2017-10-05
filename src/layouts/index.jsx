@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import fp from 'lodash/fp';
 import Header from './Header';
 import scrollTop from '../utils/scroll';
@@ -8,7 +9,8 @@ import './main.scss';
 
 export default class Template extends PureComponent {
   static propTypes = {
-    children: React.PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
+    data: PropTypes.shape({}).isRequired,
     // location: React.PropTypes.shape({}).isRequired,
     // route: React.PropTypes.shape({}).isRequired,
   };
@@ -27,7 +29,7 @@ export default class Template extends PureComponent {
       }), {
         All: categories.length,
       }),
-      (obj) => fp.flow(
+      obj => fp.flow(
         fp.keys,
         fp.map(key => ({
           key,

@@ -28,14 +28,14 @@ const Header = ({ categories }) => {
             <Link to="/pages/1">Posts <i className="fa fa-caret-down" /></Link>
             {categories.length ? (
               <ul className="list-layout sub-menus">
-                {fp.map((category) => (
+                {fp.map(category => (
                   [
                     <li key={category}>
                       <Link to={fp.isEqual('All')(category.key) ? '/pages/1' : `/categories/${category.key}`}>
                         {category.key} ({category.length})
                       </Link>
                     </li>,
-                    <br key={`${category.key}-br`} />
+                    <br key={`${category.key}-br`} />,
                   ]
                 ))(categories)}
               </ul>
@@ -84,7 +84,7 @@ const Header = ({ categories }) => {
             </label>
             {categories.length ? (
               <ul className="list-layout sub-menus mobile">
-                {fp.map((category) => (
+                {fp.map(category => (
                   [
                     <li key={category}>
                       <Link
@@ -96,7 +96,7 @@ const Header = ({ categories }) => {
                         {category.key} ({category.length})
                       </Link>
                     </li>,
-                    <br key={`${category.key}-br`} />
+                    <br key={`${category.key}-br`} />,
                   ]
                 ))(categories)}
               </ul>
@@ -146,7 +146,10 @@ const Header = ({ categories }) => {
 };
 
 Header.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string, length: PropTypes.number }).isRequired),
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    length: PropTypes.number,
+  }).isRequired),
 };
 
 Header.defaultProps = {

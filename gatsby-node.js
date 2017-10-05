@@ -85,6 +85,28 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               path: `/tags/${tag}`,
             },
           });
+
+          const taggedPostsInformation = { length: 0 };
+
+          fp.each((edge) => {
+            const postTags = fp.get('node.frontmatter.tags')(edge);
+            taggedPostsInformation.length += fp.includes(tag)(postTags) ? 1 : 0;
+          })(edges);
+
+          const taggedPagesCount = taggedPostsInformation.length ?
+            (Math.ceil(taggedPostsInformation.length / PAGING_COUNT) + 1) :
+            0;
+          const taggedPages = fp.range(1, taggedPagesCount);
+
+          fp.each((taggedPage) => {
+            createPage({
+              path: `/tags/${tag}/${taggedPage}`,
+              component: taggedBlogPost,
+              context: {
+                path: `/tags/${tag}/${taggedPage}`,
+              },
+            });
+          })(taggedPages);
         })(tags);
 
         const categories = fp.uniq(fp.flatten(categoryMatrix));
@@ -97,6 +119,28 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               path: `/categories/${category}`,
             },
           });
+
+          const categorizedPostsInformation = { length: 0 };
+
+          fp.each((edge) => {
+            const postCategories = fp.get('node.frontmatter.category')(edge);
+            categorizedPostsInformation.length += fp.includes(category)(postCategories) ? 1 : 0;
+          })(edges);
+
+          const categorizedPagesCount = categorizedPostsInformation.length ?
+            (Math.ceil(categorizedPostsInformation.length / PAGING_COUNT) + 1) :
+            0;
+          const categorizedPages = fp.range(1, categorizedPagesCount);
+
+          fp.each((categorizedPage) => {
+            createPage({
+              path: `/categories/${category}/${categorizedPage}`,
+              component: categorizedBlogPost,
+              context: {
+                path: `/categories/${category}/${categorizedPage}`,
+              },
+            });
+          })(categorizedPages);
         })(categories);
       })
     );
