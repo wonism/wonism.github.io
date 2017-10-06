@@ -28,7 +28,7 @@ const TagIndex = ({
 
   const tag = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/tags\/)(.+)(?:\/\d+)/, ($0, $1) => $1)
+    fp.replace(/(?:\/tags\/)(.+)(\/\d+)?/, ($0, $1) => $1)
   )(location);
   const tagPosts = fp.filter((post) => {
     const tags = fp.get('node.frontmatter.tags')(post);

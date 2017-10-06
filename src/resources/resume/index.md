@@ -27,6 +27,8 @@ isNotPost: true
 - Korbit (https://korbit.co.kr) ∙ 2017. 05 ~ Present
   - Remove jQuery and use ReactJS
   - Use Redux and Reselect for managing states
+  - Develop new landing page
+  - Use Jest for test codes
 - Camscon (https://camscon.kr) ∙ 2016. 09 ~ 2017. 02
   - Develop Camscon web page with ReactJS
   - Develop feature that upload images and its pin tags, color informations

@@ -28,7 +28,7 @@ const CategoryIndex = ({
 
   const category = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/categories\/)(.+)(?:\/\d+)/, ($0, $1) => $1)
+    fp.replace(/(?:\/categories\/)(.+)(\/\d+)?/, ($0, $1) => $1)
   )(location);
   const categoryPosts = fp.filter((post) => {
     const categories = fp.get('node.frontmatter.category')(post);
