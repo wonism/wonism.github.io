@@ -11,8 +11,6 @@ export default class Template extends PureComponent {
   static propTypes = {
     children: PropTypes.func.isRequired,
     data: PropTypes.shape({}).isRequired,
-    // location: React.PropTypes.shape({}).isRequired,
-    // route: React.PropTypes.shape({}).isRequired,
   };
 
   render() {
