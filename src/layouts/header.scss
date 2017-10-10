@@ -38,6 +38,10 @@
         line-height: 3em;
       }
 
+      li:last-of-type {
+        padding: 0 20px 10px;
+      }
+
       br:last-child {
         display: none;
       }

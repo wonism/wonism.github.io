@@ -31,9 +31,10 @@ const BlogIndex = ({
   const pages = fp.range(1, pagesCount + 1);
   const page = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/?pages\/)(\d+)/, ($0, $1) => $1),
-    fp.toNumber
-  )(location) || 1;
+    fp.split('/'),
+    fp.get('2'),
+    (parsedPage = 1) => fp.toNumber(parsedPage)
+  )(location);
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;

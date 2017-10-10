@@ -28,7 +28,8 @@ const TagIndex = ({
 
   const tag = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/tags\/)(.+)(\/\d+)?/, ($0, $1) => $1)
+    fp.split('/'),
+    fp.get('2')
   )(location);
   const tagPosts = fp.filter((post) => {
     const tags = fp.get('node.frontmatter.tags')(post);
@@ -41,9 +42,10 @@ const TagIndex = ({
   const pages = fp.range(1, pagesCount + 1);
   const page = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/tags\/.+\/)(\d+)/, ($0, $1) => $1),
-    fp.toNumber
-  )(location) || 1;
+    fp.split('/'),
+    fp.get('3'),
+    (parsedPage = 1) => fp.toNumber(parsedPage)
+  )(location);
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;

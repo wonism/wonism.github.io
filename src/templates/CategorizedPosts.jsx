@@ -28,7 +28,8 @@ const CategoryIndex = ({
 
   const category = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/categories\/)(.+)(\/\d+)?/, ($0, $1) => $1)
+    fp.split('/'),
+    fp.get('2')
   )(location);
   const categoryPosts = fp.filter((post) => {
     const categories = fp.get('node.frontmatter.category')(post);
@@ -41,9 +42,10 @@ const CategoryIndex = ({
   const pages = fp.range(1, pagesCount + 1);
   const page = fp.flow(
     fp.get('pathname'),
-    fp.replace(/(?:\/categories\/.+\/)(\d+)/, ($0, $1) => $1),
-    fp.toNumber
-  )(location) || 1;
+    fp.split('/'),
+    fp.get('3'),
+    (parsedPage = 1) => fp.toNumber(parsedPage)
+  )(location);
   const isManyPages = pagesCount >= MAX_PAGES;
   const filteredPages = isManyPages ? fp.filter((el) => {
     const range = page - el;
