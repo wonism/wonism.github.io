@@ -9,11 +9,18 @@
     width: 50%;
     font-size: 14px;
     vertical-align: top;
+    @media (max-width: $sm-size) {
+      display: block;
+      width: 100%;
+    }
   }
 
   .portfolio-images {
     height: $except-header-height;
     overflow-y: auto;
+    @media (max-width: $sm-size) {
+      height: auto;
+    }
 
     img {
       padding: $container-horizon-padding;

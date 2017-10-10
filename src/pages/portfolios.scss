@@ -23,12 +23,18 @@
     .image-wrapper {
       position: relative;
       padding: 50% 0 0 0;
+      @media (max-width: $sm-size) {
+        margin: 48px 0 36px;
+        padding: 0;
+      }
     }
 
     .description-wrapper {
       padding: 0 0 0 16px;
       @media (max-width: $sm-size) {
-        padding: 0 0 0 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
 
@@ -37,6 +43,9 @@
       display: inline-block;
       width: 50%;
       vertical-align: middle;
+      @media (max-width: $sm-size) {
+        width: 100%;
+      }
     }
 
     img {
@@ -48,6 +57,13 @@
       margin: auto;
       width: 100%;
       height: auto;
+      @media (max-width: $sm-size) {
+        position: static;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+      }
 
       &:hover,
       &:focus {
