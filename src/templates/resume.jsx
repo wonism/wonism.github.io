@@ -52,7 +52,7 @@ const Resume = ({
           <i className="fa fa-facebook" />
         </a>
         <a
-          href="https://www.linkedin.com/in/jaewon-kim-812815108/"
+          href="https://www.linkedin.com/in/wonism/"
           target="_blank"
           rel="noreferrer noopener"
         >

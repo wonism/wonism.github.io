@@ -1,0 +1,4 @@
+export const OPEN_HAMBURGER = 'OPEN_HAMBURGER';
+export const CLOSE_HAMBURGER = 'CLOSE_HAMBURGER';
+export const INPUT_SEARCH = 'INPUT_SEARCH';
+export const CLOSE_SEARCH = 'CLOSE_SEARCH';

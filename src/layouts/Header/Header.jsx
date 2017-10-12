@@ -2,16 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import fp from 'lodash/fp';
-import * as logo from '../resources/logo.png';
+import HeaderGnb from './HeaderGnb';
+import HeaderSearchBar from './HeaderSearchBar';
+import * as logo from '../../resources/logo.png';
 
-import './header.scss';
+import '../header.scss';
 
-const Header = ({ categories }) => {
-  let hamburgerTrigger$;
-  const closeGnb = () => {
-    hamburgerTrigger$.checked = false;
-  };
-
+const Header = ({
+  isHamburgerOpened,
+  categories,
+  urlInformations,
+  resultsOfSearch,
+  hasResultsOfSearch,
+  searchKeywords,
+  toggleHamburger,
+  inputSearch,
+}) => {
   return (
     <header className="header">
       <Link className="main" to="/">
@@ -22,48 +28,28 @@ const Header = ({ categories }) => {
           height="18"
         />
       </Link>
-      <nav className="gnb">
-        <ul className="list-layout">
-          <li>
-            <Link to="/pages/1">Posts <i className="fa fa-caret-down" /></Link>
-            {categories.length ? (
-              <ul className="list-layout sub-menus">
-                {fp.map(category => (
-                  [
-                    <li key={category}>
-                      <Link to={fp.isEqual('All')(category.key) ? '/pages/1' : `/categories/${category.key}`}>
-                        {category.key} ({category.length})
-                      </Link>
-                    </li>,
-                    <br key={`${category.key}-br`} />,
-                  ]
-                ))(categories)}
-              </ul>
-            ) : null}
-          </li>
-          <li>
-            <Link to="/portfolios">Portfolio</Link>
-          </li>
-          <li>
-            <Link to="/resume">Resume</Link>
-          </li>
-          <li>
-            <Link to="/photos">Photos</Link>
-          </li>
-        </ul>
-      </nav>
+      <HeaderGnb categories={categories} />
+      <div className="none">
+        <HeaderSearchBar
+          urlInformations={urlInformations}
+          resultsOfSearch={resultsOfSearch}
+          hasResultsOfSearch={hasResultsOfSearch}
+          searchKeywords={searchKeywords}
+          inputSearch={inputSearch}
+        />
+      </div>
       <input
         className="hamburger-trigger"
         id="hamburger-trigger"
         type="checkbox"
-        ref={(hamburgerTrigger) => { hamburgerTrigger$ = hamburgerTrigger; }}
+        checked={isHamburgerOpened}
       />
       <label
         className="hamburger"
         htmlFor="hamburger-trigger"
         role="button"
         tabIndex="0"
-        onClick={() => {}}
+        onClick={toggleHamburger}
       >
         <span className="hamburger-inner" />
       </label>
@@ -91,7 +77,7 @@ const Header = ({ categories }) => {
                         to={fp.isEqual('All')(category.key) ? '/pages/1' : `/categories/${category.key}`}
                         tabIndex="0"
                         role="button"
-                        onClick={closeGnb}
+                        onClick={toggleHamburger}
                       >
                         {category.key} ({category.length})
                       </Link>
@@ -107,7 +93,7 @@ const Header = ({ categories }) => {
               to="/portfolios"
               tabIndex="0"
               role="button"
-              onClick={closeGnb}
+              onClick={toggleHamburger}
             >
               Portfolio
             </Link>
@@ -117,7 +103,7 @@ const Header = ({ categories }) => {
               to="/resume"
               tabIndex="0"
               role="button"
-              onClick={closeGnb}
+              onClick={toggleHamburger}
             >
               Resume
             </Link>
@@ -127,7 +113,7 @@ const Header = ({ categories }) => {
               to="/photos"
               tabIndex="0"
               role="button"
-              onClick={closeGnb}
+              onClick={toggleHamburger}
             >
               Photos
             </Link>
@@ -139,17 +125,20 @@ const Header = ({ categories }) => {
         htmlFor="hamburger-trigger"
         role="button"
         tabIndex="0"
-        onClick={() => {}}
+        onClick={toggleHamburger}
       />
     </header>
   );
 };
 
 Header.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
-    length: PropTypes.number,
-  }).isRequired),
+  isHamburgerOpened: PropTypes.bool.isRequired,
+  urlInformations: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  resultsOfSearch: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  hasResultsOfSearch: PropTypes.bool.isRequired,
+  toggleHamburger: PropTypes.func.isRequired,
+  inputSearch: PropTypes.func.isRequired,
+  ...HeaderGnb.propTypes,
 };
 
 Header.defaultProps = {

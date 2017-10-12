@@ -122,7 +122,7 @@ document.onload = (function (str) {
 
 `<button> ▶ <div> ▶ <section> ▶ <main>`
 
-(이벤트 캡쳐링 방식의 흐름을 원할 경우 `addEventListener`의 3번째 인자를 `false`로 넘기거나, 넘기지 않는다. (기본값은 `false`))
+(이벤트 버블링 방식의 흐름을 원할 경우 `addEventListener`의 3번째 인자를 `false`로 넘기거나, 넘기지 않는다. (기본값은 `false`))
 
 ## 이벤트 버블링과 캡쳐링 예제
 ### 이벤트 버블링 예제

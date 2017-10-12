@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
 import fp from 'lodash/fp';
-import Header from './Header';
+import HeaderInitialState from './Header/HeaderInitialState';
+import HeaderReducers from './Header/HeaderReducers';
+import HeaderContainer from './Header/HeaderContainer';
+import createReducer from '../utils/createReducer';
 import scrollTop from '../utils/scroll';
-
 import './index.scss';
 import './main.scss';
 
@@ -35,10 +40,29 @@ export default class Template extends PureComponent {
         }))
       )(obj)
     )(categories);
+    const urlInformations = fp.flow(
+      fp.filter(edge => !fp.get('node.frontmatter.isNotPost')(edge)),
+      fp.map((edge) => ({
+        path: fp.get('node.frontmatter.path')(edge),
+        title: fp.get('node.frontmatter.title')(edge),
+        tags: fp.get('node.frontmatter.tags')(edge),
+        category: fp.get('node.frontmatter.category')(edge),
+      }))
+    )(edges);
+    const reducers = combineReducers({
+      header: createReducer(HeaderReducers, fp.flow(
+        fp.set('categories', purifiedCategories),
+        fp.set('urlInformations', urlInformations),
+      )(HeaderInitialState)),
+    });
+    const middleware = applyMiddleware(thunk);
+    const store = createStore(reducers, middleware);
 
     return (
       <div>
-        <Header categories={purifiedCategories} />
+        <Provider store={store}>
+          <HeaderContainer />
+        </Provider>
         <main className="container">
           {children()}
         </main>
