@@ -19,6 +19,8 @@
     &:not(.sub-menus) > li {
       &:hover a + .sub-menus {
         max-height: 500px;
+        box-shadow: 2px 2px 6px 1px;
+        transition: box-shadow .4s ease .01s;
       }
     }
 
@@ -28,8 +30,9 @@
       max-height: 0;
       line-height: 2em;
       background-color: #fff;
+      box-shadow: 0 0 0 0;
       overflow: hidden;
-      transition: max-height .4s ease;
+      transition: max-height .4s ease, box-shadow .4s ease;
       z-index: 9;
 
       &.mobile {
@@ -103,6 +106,10 @@
         white-space: nowrap;
       }
 
+      a {
+        display: block;
+      }
+
       br {
         display: none;
       }
@@ -112,12 +119,17 @@
       display: block;
 
       label {
+        display: block;
         color: $point-color;
         cursor: pointer;
 
         &:active,
         &:hover {
           color: $point-color--lighten;
+        }
+
+        &:focus {
+          outline: 0;
         }
       }
     }
@@ -219,5 +231,114 @@
 }
 
 .search-bar-wrapper {
+  display: none;
+  position: relative;
   float: right;
+  @media (min-width: $md-size) {
+    display: block;
+  }
+
+  #searchbar-trigger {
+    & ~ .search-bar-contents {
+      position: relative;
+      margin: 0 24px 0 0;
+      width: 0;
+      overflow: hidden;
+      transition: width .4s ease 0s;
+
+      input {
+        width: 100%;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+
+        &:focus {
+          border-color: $point-color;
+          outline: 0;
+        }
+      }
+    }
+
+    &:checked ~ .search-bar-contents {
+      width: 180px;
+    }
+  }
+
+  .magnifier {
+    float: right;
+    color: $text-color;
+    cursor: pointer;
+    z-index: 5;
+
+    &:hover {
+      color: $point-color;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .search-results {
+    position: absolute;
+    top: $header-height;
+    width: 320px;
+    max-height: 240px;
+    line-height: 32px;
+    background-color: #fff;
+    box-shadow: 2px 2px 6px 1px;
+    overflow-y: auto;
+    z-index: 3;
+
+    li {
+      padding: 0;
+      width: 100%;
+      line-height: 20px;
+      border-bottom: 1px solid $border-color;
+    }
+
+    a {
+      display: block;
+      padding: 0 8px;
+      width: 100%;
+    }
+
+    i {
+      display: inline-block;
+    }
+
+    strong,
+    span {
+      display: inline-block;
+      color: $text-color;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    strong {
+      width: 100%;
+      height: 24px;
+      line-height: 24px;
+      font-size: 14px;
+    }
+
+    span {
+      height: 20px;
+      line-height: 20px;
+      font-size: 10px;
+    }
+
+    i {
+      margin: 0 4px 0 0;
+    }
+
+    a:hover {
+      strong,
+      span {
+        color: $point-color;
+        text-decoration: underline;
+      }
+    }
+  }
 }

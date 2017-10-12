@@ -32,21 +32,33 @@ const HeaderSearchBar = ({
         autoComplete="false"
         value={searchKeywords}
         onChange={(e) => { inputSearch(e.target.value); }}
+        onBlur={(e) => { inputSearch(''); }}
       />
-      {hasResultsOfSearch ? (
-        <ul className="list-layout search-results">
-          {fp.map(({ path, title, category, tags }) => {
-            return (
-              <li key={path}>
-                <Link className="main" to={path}>
-                  {title}{category}{tags}
-                </Link>
-              </li>
-            );
-          })(resultsOfSearch)}
-        </ul>
-      ) : null}
     </div>
+    {hasResultsOfSearch ? (
+      <ul className="list-layout search-results">
+        {fp.map(({ path, title, category, tags }) => {
+          return (
+            <li key={path}>
+              <Link
+                className="main"
+                to={path}
+                onClick={() => { inputSearch(''); }}
+              >
+                <strong>
+                  {title}
+                </strong>
+                <br />
+                <span>
+                  <i className="fa fa-list" />
+                  {category}
+                </span>
+              </Link>
+            </li>
+          );
+        })(resultsOfSearch)}
+      </ul>
+    ) : null}
   </nav>
 );
 

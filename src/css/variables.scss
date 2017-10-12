@@ -7,6 +7,11 @@ $point-color: #00b4ff;
 $point-color--darken: darken($point-color, $contrast-ratio);
 $point-color--lighten: lighten($point-color, $contrast-ratio);
 
+$sub-color: #e74124;
+$sub-color--darken: darken($sub-color, $contrast-ratio);
+$sub-color--lighten: lighten($sub-color, $contrast-ratio);
+
+
 $text-color: #515151;
 $text-color--darken: darken($text-color, $contrast-ratio);
 $text-color--lighten: lighten($text-color, $contrast-ratio);

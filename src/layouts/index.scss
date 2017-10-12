@@ -6,6 +6,16 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://cdn.jsdelivr.net/font-d2coding/1.2.1/d2coding.css');
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $point-color;
+  border-radius: 6px;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   color: $text-color;

@@ -29,15 +29,13 @@ const Header = ({
         />
       </Link>
       <HeaderGnb categories={categories} />
-      <div className="none">
-        <HeaderSearchBar
-          urlInformations={urlInformations}
-          resultsOfSearch={resultsOfSearch}
-          hasResultsOfSearch={hasResultsOfSearch}
-          searchKeywords={searchKeywords}
-          inputSearch={inputSearch}
-        />
-      </div>
+      <HeaderSearchBar
+        urlInformations={urlInformations}
+        resultsOfSearch={resultsOfSearch}
+        hasResultsOfSearch={hasResultsOfSearch}
+        searchKeywords={searchKeywords}
+        inputSearch={inputSearch}
+      />
       <input
         className="hamburger-trigger"
         id="hamburger-trigger"

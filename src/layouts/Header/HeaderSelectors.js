@@ -39,7 +39,7 @@ export const getResultsOfSearch = createSelector(
       const searchedWithCategory = c.search(keywords) !== -1;
       const searchedWithTitle = t.search(keywords) !== -1;
       const searchedWithTags = fp.flow(
-        fp.filter((tag) => tag.search(keywords)),
+        fp.filter(tag => (tag.search(keywords) !== -1)),
         (filtered) => !fp.isEmpty(filtered)
       )(g);
 
