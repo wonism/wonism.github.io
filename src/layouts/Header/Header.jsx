@@ -32,6 +32,7 @@ const Header = ({
       hasResultsOfSearch={hasResultsOfSearch}
       searchKeywords={searchKeywords}
       inputSearch={inputSearch}
+      toggleHamburger={toggleHamburger}
     />
     <input
       className="hamburger-trigger"

@@ -4,6 +4,10 @@ date: "2017-10-15T19:46:11.000Z"
 path: "/css-calc/"
 tags: ["css", "calc"]
 summary: "CSS 함수 calc()는 CSS3에 추가된 기능 중 하나로, 계산을 해주는 속성이다.  calc()는 <length> <frequency>, <angle>, <time>, <number>, 또는 <integer> 가 필요한 곳 어디서든 사용 가능하며,"
+components: [{
+	rootId: 'css-calc-example',
+	fileName: 'render-codepens/css-calc/index',
+}]
 category: "CSS"
 ---
 
@@ -33,5 +37,4 @@ p {
 
 다음 코드펜은 `calc()`와 `vh`(View Height, 높이값의 100분의 1 값) 등 `CSS`만을 사용하여 구현한 Scroll Indicator 이다.
 
-<p data-height="265" data-theme-id="dark" data-slug-hash="ZOrEmr" data-default-tab="html,result" data-user="MadeByMike" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/MadeByMike/pen/ZOrEmr/">CSS only scroll indicator</a> by Mike (<a href="http://codepen.io/MadeByMike">@MadeByMike</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="render-codepen" id="css-calc-example"></div>
