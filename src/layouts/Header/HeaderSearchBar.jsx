@@ -4,27 +4,32 @@ import Link from 'gatsby-link';
 import fp from 'lodash/fp';
 
 const HeaderSearchBar = ({
+  inHamburger,
   searchKeywords,
-  urlInformations,
   resultsOfSearch,
   hasResultsOfSearch,
   inputSearch,
+  toggleHamburger,
 }) => (
   <nav className="search-bar-wrapper">
-    <input
-      className="searchbar-trigger none"
-      id="searchbar-trigger"
-      type="checkbox"
-      defaultChecked={false}
-    />
-    <label
-      className="magnifier"
-      htmlFor="searchbar-trigger"
-      role="button"
-      tabIndex="0"
-    >
-      <i className="fa fa-search" />
-    </label>
+    {inHamburger ? null : [
+      <input
+        key="trigger"
+        className="searchbar-trigger none"
+        id="searchbar-trigger"
+        type="checkbox"
+        defaultChecked={false}
+      />,
+      <label
+        key="button"
+        className="magnifier"
+        htmlFor="searchbar-trigger"
+        role="button"
+        tabIndex="0"
+      >
+        <i className="fa fa-search" />
+      </label>,
+    ]}
     <div className="search-bar-contents">
       <input
         className="search-bar"
@@ -32,42 +37,47 @@ const HeaderSearchBar = ({
         autoComplete="false"
         value={searchKeywords}
         onChange={(e) => { inputSearch(e.target.value); }}
-        onBlur={(e) => { inputSearch(''); }}
       />
     </div>
     {hasResultsOfSearch ? (
       <ul className="list-layout search-results">
-        {fp.map(({ path, title, category, tags }) => {
-          return (
-            <li key={path}>
-              <Link
-                className="main"
-                to={path}
-                onClick={() => { inputSearch(''); }}
-              >
-                <strong>
-                  {title}
-                </strong>
-                <br />
-                <span>
-                  <i className="fa fa-list" />
-                  {category}
-                </span>
-              </Link>
-            </li>
-          );
-        })(resultsOfSearch)}
+        {fp.map(({ path, title, category }) => (
+          <li key={path}>
+            <Link
+              className="main"
+              to={path}
+              onClick={() => {
+                inputSearch('');
+                toggleHamburger();
+              }}
+            >
+              <strong>
+                {title}
+              </strong>
+              <br />
+              <i className="fa fa-list" />
+              <span>
+                {category}
+              </span>
+            </Link>
+          </li>
+        ))(resultsOfSearch)}
       </ul>
     ) : null}
   </nav>
 );
 
 HeaderSearchBar.propTypes = {
+  inHamburger: PropTypes.bool,
   searchKeywords: PropTypes.string.isRequired,
-  urlInformations: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   resultsOfSearch: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   hasResultsOfSearch: PropTypes.bool.isRequired,
   inputSearch: PropTypes.func.isRequired,
+  toggleHamburger: PropTypes.func.isRequired,
+};
+
+HeaderSearchBar.defaultProps = {
+  inHamburger: false,
 };
 
 export default HeaderSearchBar;

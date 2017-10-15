@@ -261,7 +261,7 @@ import {
 } from './TodoActions';
 import Todo from './Todo';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   todos: state.todos,
 });
 

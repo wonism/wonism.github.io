@@ -1,5 +1,5 @@
-import { createSelector } from 'reselect';
 import fp from 'lodash/fp';
+import { createSelector } from 'reselect';
 
 const getHeader = fp.get('header');
 
@@ -40,7 +40,7 @@ export const getResultsOfSearch = createSelector(
       const searchedWithTitle = t.search(keywords) !== -1;
       const searchedWithTags = fp.flow(
         fp.filter(tag => (tag.search(keywords) !== -1)),
-        (filtered) => !fp.isEmpty(filtered)
+        filtered => !fp.isEmpty(filtered)
       )(g);
 
       return searchedWithCategory || searchedWithTitle || searchedWithTags;

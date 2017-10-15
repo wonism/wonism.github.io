@@ -213,6 +213,33 @@
     }
   }
 
+  .render-image .react-component-in-post {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    color: #263238;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    overflow: visible;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+
+    & > *:first-child {
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
   .twitter-tweet {
     margin-right: auto;
     margin-left: auto;

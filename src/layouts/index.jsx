@@ -42,7 +42,7 @@ export default class Template extends PureComponent {
     )(categories);
     const urlInformations = fp.flow(
       fp.filter(edge => !fp.get('node.frontmatter.isNotPost')(edge)),
-      fp.map((edge) => ({
+      fp.map(edge => ({
         path: fp.get('node.frontmatter.path')(edge),
         title: fp.get('node.frontmatter.title')(edge),
         tags: fp.get('node.frontmatter.tags')(edge),

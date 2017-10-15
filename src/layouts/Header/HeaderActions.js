@@ -1,4 +1,3 @@
-import fp from 'lodash/fp';
 import {
   OPEN_HAMBURGER,
   CLOSE_HAMBURGER,

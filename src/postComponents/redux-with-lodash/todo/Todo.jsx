@@ -1,12 +1,15 @@
-import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import fp from 'lodash/fp';
 import TodoItem from './TodoItem';
 import TodoAdder from './TodoAdder';
 
 export default class Todo extends PureComponent {
   static propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.shape({ todo: PropTypes.string, done: PropTypes.bool })).isRequired,
+    todos: PropTypes.arrayOf(PropTypes.shape({
+      todo: PropTypes.string,
+      done: PropTypes.bool,
+    })).isRequired,
     addTodo: PropTypes.func.isRequired,
     removeTodo: PropTypes.func.isRequired,
     toggleTodo: PropTypes.func.isRequired,

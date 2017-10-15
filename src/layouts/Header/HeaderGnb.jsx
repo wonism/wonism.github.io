@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Link from 'gatsby-link';
 import fp from 'lodash/fp';
 
@@ -40,7 +40,7 @@ HeaderGnb.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
     length: PropTypes.number,
-  }).isRequired),
+  }).isRequired).isRequired,
 };
 
 export default HeaderGnb;

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   addTodo,
   removeTodo,
@@ -7,7 +7,7 @@ import {
 } from './TodoActions';
 import Todo from './Todo';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   todos: state.todos,
 });
 

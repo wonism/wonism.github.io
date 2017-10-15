@@ -69,6 +69,54 @@
     background-color: #fff;
     z-index: 3;
     transition: left .4s ease;
+    overflow-y: auto;
+
+    .search-bar-wrapper {
+      display: block;
+      float: none;
+    }
+
+    .search-bar-contents {
+      &:after {
+        position: absolute;
+        display: inline-block;
+        top: 26px;
+        right: 8px;
+        margin: auto;
+        width: 14px;
+        height: 14px;
+        font: normal normal normal 14px/1 FontAwesome;
+        z-index: 3;
+        content: "\f002";
+      }
+    }
+
+    .search-bar {
+      padding: 0 20px 0 4px;
+      width: 100%;
+      height: 2em;
+      line-height: 2em;
+      color: $text-color;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      outline: 0;
+
+      &:focus {
+        border-color: $point-color;
+      }
+    }
+
+    .search-bar-wrapper .search-results {
+      position: static;
+      margin: 12px 0 0;
+      padding: 16px 0 0;
+      width: 100%;
+      max-height: none;
+      background-color: transparent;
+      border-top: 1px solid $text-color;
+      box-shadow: 0 0 0 0;
+      overflow: visible;
+    }
 
     .hamburger-posts-opener {
       & + label {
@@ -120,6 +168,8 @@
 
       label {
         display: block;
+        margin: 0 -20px;
+        padding: 0 20px;
         color: $point-color;
         cursor: pointer;
 
@@ -247,7 +297,10 @@
       transition: width .4s ease 0s;
 
       input {
+        padding: 0 4px;
         width: 100%;
+        height: 2em;
+        line-height: 2em;
         border: 1px solid $border-color;
         border-radius: 4px;
 

@@ -36,4 +36,4 @@ export default {
     alert('중복된 아이템입니다.'); // eslint-disable-line
     return state;
   },
-}
+};
