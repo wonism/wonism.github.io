@@ -28,17 +28,29 @@ export default class App extends PureComponent {
       >
         See the Pen
         &nbsp;
-        <a href="http://codepen.io/MadeByMike/pen/ZOrEmr/" target="_blank">
+        <a
+          href="http://codepen.io/MadeByMike/pen/ZOrEmr/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           CSS only scroll indicator
         </a>
         &nbsp;
         by Mike (
-        <a href="http://codepen.io/MadeByMike" target="_blank">
+        <a
+          href="http://codepen.io/MadeByMike"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           @MadeByMike
         </a>
         ) on
         &nbsp;
-        <a href="http://codepen.io" target="_blank">
+        <a
+          href="http://codepen.io"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           CodePen
         </a>.
       </p>

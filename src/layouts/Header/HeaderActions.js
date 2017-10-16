@@ -12,6 +12,12 @@ export const toggleHamburger = () =>
     const isHamburgerOpened = HeaderSelectors.isHamburgerOpened(state);
     const type = isHamburgerOpened ? CLOSE_HAMBURGER : OPEN_HAMBURGER;
 
+    if (type === CLOSE_HAMBURGER) {
+      document.body.classList.remove('no-scroll');
+    } else {
+      document.body.classList.add('no-scroll');
+    }
+
     return dispatch({
       type,
     });
