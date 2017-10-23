@@ -21,7 +21,7 @@ export default class Photos extends PureComponent {
       target: 'instafeed',
       limit: 20,
       resolution: 'standard_resolution',
-      accessToken: '1591191525.212f7be.ef028729cb9c4722bb04fc76b6515088',
+      accessToken: '1591191525.212f7be.140265653b0a48bc8c09ec043402d9e3',
       clientId: '212f7be0b6d643318eda9413aecb1cf3',
       template: `
         <figure class="insta-card">

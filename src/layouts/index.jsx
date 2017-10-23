@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import React, { PureComponent } from 'react';
+import Helmet from 'react-helmet';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -61,6 +62,11 @@ export default class Template extends PureComponent {
 
     return (
       <div>
+        <Helmet>
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        </Helmet>
         <Provider store={store}>
           <HeaderContainer />
         </Provider>

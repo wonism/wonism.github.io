@@ -49,12 +49,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: '80620216',
+        trackingId: 'UA-80620216-1',
       },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-favicon',
     'gatsby-plugin-sass',
   ],
 };

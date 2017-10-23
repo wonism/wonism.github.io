@@ -14,7 +14,7 @@ components: [{
 	rootId: 'crp-render-tree',
 	fileName: 'render-images/critical-rendering-path/render-tree',
 }]
-category: "JavaScript"
+category: "Browser"
 ---
 
 이 글은 [Ire Aderinokun](https://ireaderinokun.com/)의 허락을 받고
