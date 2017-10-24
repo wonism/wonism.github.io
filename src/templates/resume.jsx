@@ -20,7 +20,14 @@ const Resume = ({
         <meta name="og:title" content={title} />
       </Helmet>
       <div className="clearfix">
-        <button className="btn btn-print pull-right" onClick={window.print}>
+        <button
+          className="btn btn-print pull-right"
+          onClick={() => {
+            if (typeof window !== 'undefined') {
+              window.print();
+            }
+          }}
+        >
           <i className="fa fa-print" />&nbsp;Print
         </button>
       </div>
