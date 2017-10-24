@@ -1,3 +1,5 @@
+@import '../css/variables';
+
 .resume {
   margin: auto;
   width: 100%;
@@ -14,6 +16,21 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
+  }
+
+  .btn-print {
+    color: $text-color;
+    // background-color: transparent;
+    // border: 0;
+    cursor: pointer;
+    @media print {
+      display: none;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: .7;
+    }
   }
 
   .social-networks {

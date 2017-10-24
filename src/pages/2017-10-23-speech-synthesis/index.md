@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트 음성 합성"
 date: "2017-10-23T20:15:15.000Z"
-path: "/speech-synthesis"
+path: "/speech-synthesis/"
 tags: ["javascript", "speech synthesis", "음성 합성"]
 summary: "Web Speech API의 SpeechSynthesis는 음성 서비스의 컨트롤러 인터페이스로 이를 사용하여 장치에서 사용할 수 있는 합성 음성에 대한 정보를 가져오고, 음성 재생 등의 역할을 수행할 수 있게 해준다."
 components: [{

@@ -19,6 +19,11 @@ const Resume = ({
         <meta name="keyword" content="JavaScript, Front-end, Developer, Front-end developer" />
         <meta name="og:title" content={title} />
       </Helmet>
+      <div className="clearfix">
+        <button className="btn btn-print pull-right" onClick={window.print}>
+          <i className="fa fa-print" />&nbsp;Print
+        </button>
+      </div>
       <section className="basic-infos text-center">
         <img
           className="profile-picture"

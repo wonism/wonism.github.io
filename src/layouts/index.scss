@@ -57,6 +57,9 @@ a {
   @media (min-width: $xl-size) {
     max-width: $container-max-width-xl;
   }
+  @media print {
+    max-width: 80%;
+  }
 }
 
 .clearfix {
