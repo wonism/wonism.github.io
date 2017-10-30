@@ -1,6 +1,6 @@
 ---
 title: "Reselect로 Redux 성능 개선하기"
-date: "2017-10-30T00:26:02.000Z"
+date: "2017-10-30T00:03:19.000Z"
 path: "/redux-with-reselect/"
 tags: ["javascript", "reactjs", "redux", "reselect", "memoization"]
 summary: "selector는 store로부터 온 데이터를 가져오거나 계산하는 역할을 하며, Redux가 상태를 최소한으로 유지할 수 있도록 한다. 이 셀렉터는 인자가 변경될 때까지 다시 계산하는 일이 없기에 효율적이다."
@@ -22,7 +22,7 @@ __+__<br />
 
 <div id="redux-tweet"></div>
 
-## 왜 리셀렉터인가?
+## 왜 리셀렉트인가?
 `Redux`를 사용하면서 데이터를 가져올 때, `mapStateToProps`와 같은 함수를 통해 상태 데이터를 가져온다.
 
 ```js
@@ -56,10 +56,10 @@ const mapStateToProps = (state) => ({
 `BMI`와는 상관 없는 `bloodPress`가 업데이트되어도 함수가 실행된다.
 
 하지만, `Reselect`를 사용하면 인자가 변경되지 않으면 재계산을 수행하지 않는다.<br />
-`리셀렉터`를 사용하면 함수 인자가 메모된 함수에 캐시되기 때문이다.<br />
+`리셀렉트`를 사용하면 함수 인자가 메모된 함수에 캐시되기 때문이다.<br />
 오직 함수의 인자가 이전 호출 때의 값과 다를 경우에만 `셀렉터`가 다시 계산을 수행한다.
 
-## 리셀렉터 사용하기
+## 리셀렉트 사용하기
 ```js
 // selectors.js
 import { createSelector } from 'reselect';
