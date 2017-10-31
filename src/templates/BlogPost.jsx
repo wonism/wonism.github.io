@@ -58,12 +58,13 @@ export default class BlogPostTemplate extends PureComponent {
     const post = fp.get('markdownRemark')(data);
     const siteTitle = fp.get('site.siteMetadata.title')(data);
     const title = `${fp.get('frontmatter.title')(post)} | ${siteTitle}`;
+    const tags = fp.get('frontmatter.tags')(post);
 
     return (
       <div className="post">
         <Helmet>
           <title>{title}</title>
-          <meta name="keyword" content={fp.join(', ')(fp.get('frontmatter.tags')(post))} />
+          <meta name="keyword" content={fp.join(', ')(tags)} />
           <meta name="description" content={fp.get('frontmatter.summary')(post)} />
           <meta name="author" content="wonism" />
           <meta name="og:title" content={title} />
@@ -74,9 +75,24 @@ export default class BlogPostTemplate extends PureComponent {
         <p>
           {fp.get('frontmatter.date')(post)}
         </p>
+        {tags.length ? (
+          <p className="post-tags clearfix">
+            <i className="fa fa-tags tag-icon" />
+            {fp.map(tag => (
+              <a key={tag} href={`/tags/${tag}`}>
+                {tag}
+              </a>
+            ))(tags)}
+          </p>
+        ) : null}
         {/* eslint-disable react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
         {/* eslint-enable react/no-danger */}
+        {/*
+        <div className="text-right none">
+          <h4>Share</h4>
+        </div>
+        */}
         <div id="disqus_thread" />
         <noscript>
           Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>

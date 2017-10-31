@@ -2,6 +2,8 @@
 
 .instafeed {
   font-size: 0;
+  user-select: none;
+  pointer-events: none;
 
   .insta-card {
     display: inline-block;

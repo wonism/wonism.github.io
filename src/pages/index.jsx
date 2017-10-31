@@ -80,7 +80,7 @@ const BlogIndex = ({
                   {hasTags ? (
                     <div className="clearfix">
                       <i className="fa fa-tags tag-icon" />
-                      <div className="tags">
+                      <div className="tags clearfix">
                         {fp.map(tag => (
                           <Link
                             key={tag}
