@@ -20,12 +20,16 @@
     display: inline-block;
     position: relative;
     top: 0;
-    padding: 0 $container-horizon-padding;
+    margin: 0 0 $container-horizon-padding;
+    padding: 0 $container-horizon-padding $container-horizon-padding;
     width: 100%;
     font-size: 16px;
+    border-bottom: 1px solid $border-color;
     vertical-align: top;
     transition: top 0.5s ease 0s;
     @media (min-width: $md-size) {
+      margin: 0;
+      padding: 0 $container-horizon-padding;
       width: 33.3333%;
     }
     @media (min-width: $lg-size) {
