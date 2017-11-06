@@ -1,0 +1,2 @@
+webpackJsonp([0xb2dc63079320],{"./node_modules/json-loader/index.js!./.cache/json/react-kakao-login.json":function(e,o){e.exports={data:{site:{siteMetadata:{title:"Wonism ∙ Front-end Developer",author:"wonism"}}},pathContext:{}}}});
+//# sourceMappingURL=path---react-kakao-login-4063c5658367c174e729.js.map

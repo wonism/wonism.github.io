@@ -1,0 +1,2 @@
+webpackJsonp([0xb0c765c3b35c],{"./node_modules/json-loader/index.js!./.cache/json/react-github-info.json":function(e,o){e.exports={data:{site:{siteMetadata:{title:"Wonism ∙ Front-end Developer",author:"wonism"}}},pathContext:{}}}});
+//# sourceMappingURL=path---react-github-info-4063c5658367c174e729.js.map

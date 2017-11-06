@@ -1,0 +1,2 @@
+webpackJsonp([52957437357582],{"./node_modules/json-loader/index.js!./.cache/json/open-source.json":function(e,o){e.exports={data:{site:{siteMetadata:{title:"Wonism ∙ Front-end Developer",author:"wonism"}}},pathContext:{}}}});
+//# sourceMappingURL=path---open-source-4063c5658367c174e729.js.map
