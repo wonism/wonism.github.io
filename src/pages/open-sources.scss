@@ -1,3 +1,28 @@
+.open-sources {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 320px;
+  list-style: none;
+
+  li {
+    padding: 8px 0;
+  }
+
+  a {
+    cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
+  }
+}
+
+ul .react-github-info--component {
+  display: block;
+  margin: auto;
+  pointer-events: none;
+}
+
 article.react-github-info--component {
   display: block;
   margin: auto;

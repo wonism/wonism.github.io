@@ -27,6 +27,9 @@ const HeaderGnb = ({ categories }) => (
         <Link to="/portfolios">Portfolio</Link>
       </li>
       <li>
+        <Link to="/open-source">Open Source</Link>
+      </li>
+      <li>
         <Link to="/resume">Resume</Link>
       </li>
       <li>

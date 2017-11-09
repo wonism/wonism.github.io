@@ -96,6 +96,16 @@ const Header = ({
         </li>
         <li>
           <Link
+            to="/open-source"
+            tabIndex="0"
+            role="button"
+            onClick={toggleHamburger}
+          >
+            Open Source
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/resume"
             tabIndex="0"
             role="button"
