@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import fp from 'lodash/fp';
 import * as profileUrl from '../resources/me.jpg';
@@ -15,7 +15,7 @@ class Resume extends PureComponent {
 
     fp.forEach((anchor) => {
       const href = anchor.getAttribute('href');
-      if (fp.startsWith('http')) {
+      if (fp.startsWith('http')(href)) {
         anchor.setAttribute('target', '_blank');
         anchor.setAttribute('rel', 'noreferrer noopener');
       }

@@ -58,7 +58,7 @@ const naverMap = element =>
     }],
     closeInfoWindowAuto: true,
     clickedNestedMarker: (cb, ids, strs) => {
-      const userInput = prompt(`You clicked nested markers! Select on.\n${ strs }`, '');
+      const userInput = prompt(`You clicked nested markers! Select on.\n${strs}`, '');
 
       cb(+userInput);
     },

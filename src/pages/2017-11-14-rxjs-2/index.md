@@ -3,7 +3,7 @@ title: "RxJS 살펴보기- 2"
 date: "2017-11-14T23:52:58.000Z"
 path: "/rxjs-2/"
 tags: ["javascript", "rxjs", "functional reactive programming", "frp", "reactivex"]
-summary: ""
+summary: "Combination Operators 조합 연산자는 여러 옵저버블을 결합할 수 있게 해준다. combineAll 외부 옵저버블이 완료되면, 내부 옵저버블(옵저버블의 옵저버블)의 최근 값들을 출력한다."
 components: [{
   rootId: 'register-rx',
   fileName: 'register-rx',
@@ -236,3 +236,5 @@ var subscription = combined2$.subscribe(console.log);
 ## 참고
 - http://reactivex.io/rxjs
 - https://www.learnrxjs.io
+
+※ 모든 예제 코드는 직접 작성한 코드입니다. 다른 곳에서 사용하실 경우 출처를 남겨주시면 감사하겠습니다.

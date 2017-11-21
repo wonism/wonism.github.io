@@ -88,8 +88,28 @@ code {
 }
 
 .gatsby-highlight {
+  position: relative;
+
   pre code {
     color: #dcdcdc;
+  }
+
+  .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    line-height: 12px;
+    color: #263238;
+    background-color: #dcdcdc;
+    background-image: linear-gradient(#ededed, #dcdcdc);
+    outline: 0;
+    border: 1px solid #cbcbcb;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 3;
   }
 
   .keyword,

@@ -23,6 +23,8 @@
     }
   },
   "rules": {
+    "no-console": "off",
+    "no-alert": "off",
     "import/extensions": 0,
     "react/prefer-stateless-function": 0,
     "jsx-a11y/href-no-hash": "off",

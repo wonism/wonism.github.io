@@ -5,14 +5,34 @@ import { Tweet } from 'react-twitter-widgets';
 import PropTypes from 'prop-types';
 import GoogleAds from 'react-google-ads';
 import fp from 'lodash/fp';
+import Rx from 'rxjs';
+import Clipboard from 'clipboard';
 import Bio from '../components/Bio';
 import { SITE_URL } from '../constants';
 
 export default class BlogPostTemplate extends PureComponent {
   componentDidMount() {
+    const clipboard = new Clipboard('.copy-button', {
+      target: fp.get('previousElementSibling'),
+    });
+
+    clipboard.on('success', (e) => {
+      e.clearSelection();
+    });
+
     const { data, location } = this.props;
     const slug = fp.get('pathname')(location);
     const disqusConfig = 'discus_config';
+
+    const sources = document.querySelectorAll('.gatsby-highlight');
+    const sources$ = Rx.Observable.from(sources);
+
+    sources$.subscribe((source) => {
+      const button = document.createElement('button');
+      button.setAttribute('class', 'copy-button');
+      button.innerHTML = 'COPY';
+      source.appendChild(button);
+    });
 
     window[disqusConfig] = function disqusCallback() {
       this.page.url = `${SITE_URL}${slug}`;
