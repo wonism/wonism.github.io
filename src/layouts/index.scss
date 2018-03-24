@@ -22,6 +22,9 @@ body {
 
   &.no-scroll {
     overflow-y: hidden;
+    @media (min-width: $md-size) {
+      overflow-y: auto;
+    }
   }
 }
 

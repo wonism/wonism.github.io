@@ -277,6 +277,13 @@
       opacity: .7;
       transition: opacity .4s ease 0s, left 0s ease 0s;
     }
+
+    @media (min-width: $md-size) {
+      &:checked ~ .mobile-gnb,
+      &:checked ~ .mobile-gnb-background {
+        display: none;
+      }
+    }
   }
 }
 

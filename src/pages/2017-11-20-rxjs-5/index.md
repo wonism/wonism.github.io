@@ -3,13 +3,12 @@ title: "RxJS 살펴보기- 5"
 date: "2017-11-20T23:48:32.000Z"
 path: "/rxjs-5/"
 tags: ["javascript", "rxjs", "functional reactive programming", "frp", "reactivex"]
-summary: "Filtering Operators 필터 연산자는 옵저버블의 원하는 값만을 선택해 여과하게 해준다. 바로 아래 있는 컴퍼넌트는 몇 가지 옵저버블 예제를 직접 확인할 수 있는 컴퍼넌트이다."
+summary: "Transform Operators 변형 연산자는 옵저버블의 값의 형태를 변형하는 작업을 한다 buffer 제공된 값이 방출될 때까지 값들을 모은 뒤, 배열로 한꺼번에 방출한다."
 components: [{
   rootId: 'register-rx',
   fileName: 'register-rx',
 }]
 category: "RxJS"
-isNotPost: true
 ---
 
 `Ctrl+Shift+J` (Windows / Linux) 또는 `Cmd+Opt+J` (Mac)를 눌러 콘솔창을 연 뒤, 전역 객체에 등록되어 있는 `Rx`를 사용하여 예제 코드를 실행할 수 있다.<br />
@@ -77,6 +76,30 @@ var subscription = mapTo$.subscribe(console.log);
 // ...
 ```
 
+### mergeMap
+내부 옵저버블이 방출되면, 해당 값을 바깥 옵저버블과 함께 병합한다.
+
+```js
+var outer$ = Rx.Observable.of('a', 'b');
+var inner$ = Rx.Observable.interval(1000);
+var mergeMap$ = outer$.mergeMap(
+  outer => inner$.map(
+    inner =>
+      `Outer : ${outer} / Inner: ${inner}`
+  )
+);
+var subscription = mergeMap$.subscribe(console.log);
+// after 1s
+// Outer : a / Inner : 0
+// Outer : b / Inner : 0
+// after 2s
+// Outer : a / Inner : 1
+// Outer : b / Inner : 1
+// after 3s
+// Outer : a / Inner : 2
+// Outer : b / Inner : 2
+```
+
 ### pluck
 프로퍼티를 선택한다. (중첩된 프로퍼티를 가져오기 위해서는 `n`개의 프로퍼티를 전달한다.)
 
@@ -120,9 +143,31 @@ var subscription = scan$.subscribe(console.log);
 // 0 1 3 6 10
 ```
 
+### switchMap
+mergeMap과 비슷하지만, 외부 옵저버블이 내부 옵저버블의 이전 구독을 취소할 때 발생한다.<br />
+즉, 외부 옵저버블이 발생될 때마다 내부 옵저버블의 새로운 구독이 시작된다.
+
+예를 들어 아래와 같은 코드는 클릭을 할 때마다 이전의 구독이 취소되고 새 구독이 시작된다.
+
+```js
+var click$ = Rx.Observable.fromEvent(document, 'click');
+var inner$ = Rx.Observable.interval(1000);
+var switchMap$ = click$.switchMap(() => inner$);
+var subscription = switchMap$.subscribe(console.log);
+// click
+// 0
+// 1
+// 2
+// click
+// 0
+// click
+// 0
+// ...
+```
+
 ## 정리
 자주 사용되거나 알아두면 좋을 `변형 연산자`에 대한 간단한 설명과 사용 예제를 정리하였다.<br />
-더 많은 연산자를 공부하려면 아래 사이트를 참고하는 것이 좋다.<br />
+더 많은 연산자를 공부하려면 아래 사이트를 참고하는 것이 좋다.
 
 ## 참고
 - http://reactivex.io/rxjs

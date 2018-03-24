@@ -110,6 +110,18 @@ code {
     font-weight: 700;
     cursor: pointer;
     z-index: 3;
+
+    &:hover {
+      background-color: #dcdcdc;
+      background-image: linear-gradient(#dcdcdc, #cbcbcb);
+      border-color: #cbcbcb;
+    }
+
+    &:active {
+      background-color: #cbcbcb;
+      background-image: linear-gradient(#cbcbcb, #bababa);
+      border-color: #bababa;
+    }
   }
 
   .keyword,
