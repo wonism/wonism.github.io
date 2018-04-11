@@ -1,2 +1,0 @@
-webpackJsonp([0x6d424c8bbdee],{"./node_modules/json-loader/index.js!./.cache/json/tags-promise.json":function(e,o){e.exports={pathContext:{path:"/tags/promise"}}}});
-//# sourceMappingURL=path---tags-promise-e99634fe1bb0c9bcafcb.js.map

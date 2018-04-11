@@ -1,2 +1,0 @@
-webpackJsonp([0xbcc54c144b6e],{"./node_modules/json-loader/index.js!./.cache/json/tags-switch.json":function(s,o){s.exports={pathContext:{path:"/tags/switch"}}}});
-//# sourceMappingURL=path---tags-switch-bf86e160fe5ef17d5ec8.js.map

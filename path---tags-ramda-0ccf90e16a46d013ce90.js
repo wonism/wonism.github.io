@@ -1,2 +1,0 @@
-webpackJsonp([78769046021110],{"./node_modules/json-loader/index.js!./.cache/json/tags-ramda.json":function(a,o){a.exports={pathContext:{path:"/tags/ramda"}}}});
-//# sourceMappingURL=path---tags-ramda-0ccf90e16a46d013ce90.js.map

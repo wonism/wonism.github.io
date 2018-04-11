@@ -1,2 +1,0 @@
-webpackJsonp([88145336971341],{"./node_modules/json-loader/index.js!./.cache/json/tags-optimization.json":function(o,t){o.exports={pathContext:{path:"/tags/optimization"}}}});
-//# sourceMappingURL=path---tags-optimization-88ce592d73462cbd514b.js.map

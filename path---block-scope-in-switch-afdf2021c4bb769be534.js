@@ -1,2 +1,0 @@
-webpackJsonp([0xcd0fd9f1acdd],{"./node_modules/json-loader/index.js!./.cache/json/block-scope-in-switch.json":function(o,c){o.exports={pathContext:{path:"/block-scope-in-switch/"}}}});
-//# sourceMappingURL=path---block-scope-in-switch-afdf2021c4bb769be534.js.map

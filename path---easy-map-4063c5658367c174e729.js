@@ -1,2 +1,0 @@
-webpackJsonp([0x8fe6dfb244a7],{"./node_modules/json-loader/index.js!./.cache/json/easy-map.json":function(e,o){e.exports={data:{site:{siteMetadata:{title:"Wonism ∙ Front-end Developer",author:"wonism"}}},pathContext:{}}}});
-//# sourceMappingURL=path---easy-map-4063c5658367c174e729.js.map

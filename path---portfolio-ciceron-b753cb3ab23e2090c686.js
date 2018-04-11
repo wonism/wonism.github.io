@@ -1,2 +1,0 @@
-webpackJsonp([0x6b1006e37347],{"./node_modules/json-loader/index.js!./.cache/json/portfolio-ciceron.json":function(o,e){o.exports={pathContext:{path:"/portfolio/ciceron/"}}}});
-//# sourceMappingURL=path---portfolio-ciceron-b753cb3ab23e2090c686.js.map

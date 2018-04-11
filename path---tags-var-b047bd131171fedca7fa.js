@@ -1,2 +1,0 @@
-webpackJsonp([0x9f12e725cef],{"./node_modules/json-loader/index.js!./.cache/json/tags-var.json":function(e,o){e.exports={pathContext:{path:"/tags/var"}}}});
-//# sourceMappingURL=path---tags-var-b047bd131171fedca7fa.js.map

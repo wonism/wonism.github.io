@@ -1,2 +1,0 @@
-webpackJsonp([0x93c9caf4fd18],{"./node_modules/json-loader/index.js!./.cache/json/photos.json":function(o,e){o.exports={data:{site:{siteMetadata:{title:"Wonism ∙ Front-end Developer",author:"wonism"}}},pathContext:{}}}});
-//# sourceMappingURL=path---photos-4063c5658367c174e729.js.map

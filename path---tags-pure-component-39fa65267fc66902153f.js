@@ -1,2 +1,0 @@
-webpackJsonp([82778619048522],{"./node_modules/json-loader/index.js!./.cache/json/tags-pure-component.json":function(o,n){o.exports={pathContext:{path:"/tags/pure component"}}}});
-//# sourceMappingURL=path---tags-pure-component-39fa65267fc66902153f.js.map

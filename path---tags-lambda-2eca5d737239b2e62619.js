@@ -1,2 +1,0 @@
-webpackJsonp([0x70a45f2e9c7a],{"./node_modules/json-loader/index.js!./.cache/json/tags-lambda.json":function(a,o){a.exports={pathContext:{path:"/tags/lambda"}}}});
-//# sourceMappingURL=path---tags-lambda-2eca5d737239b2e62619.js.map

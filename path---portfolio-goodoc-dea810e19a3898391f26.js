@@ -1,2 +1,0 @@
-webpackJsonp([0x9f77d71b64d1],{"./node_modules/json-loader/index.js!./.cache/json/portfolio-goodoc.json":function(o,n){o.exports={pathContext:{path:"/portfolio/goodoc/"}}}});
-//# sourceMappingURL=path---portfolio-goodoc-dea810e19a3898391f26.js.map

@@ -1,2 +1,0 @@
-webpackJsonp([0x73583015fb92],{"./node_modules/json-loader/index.js!./.cache/json/tags-closure.json":function(o,s){o.exports={pathContext:{path:"/tags/closure"}}}});
-//# sourceMappingURL=path---tags-closure-c829773d273fa85ac1a7.js.map

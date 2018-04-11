@@ -1,2 +1,0 @@
-webpackJsonp([0xc79a16bbd13f],{"./node_modules/json-loader/index.js!./.cache/json/tags-call.json":function(a,o){a.exports={pathContext:{path:"/tags/call"}}}});
-//# sourceMappingURL=path---tags-call-bd2482d97661e857582f.js.map
