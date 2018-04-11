@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Wonism ∙ Front-end Developer',
+    title: 'Gatsby Advanced Blog',
     author: 'wonism',
   },
   pathPrefix: '/',
@@ -54,6 +54,33 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-less',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Gatsby Advanced Blog',
+        short_name: 'Gatsby Blog',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#3B9CFF',
+        display: 'minimal-ui',
+        /*
+        icons: [{
+          // Everything in /static will be copied to an equivalent
+          // directory in /public during development and build, so
+          // assuming your favicons are in /static/favicons,
+          // you can reference them here
+          src: `/favicons/android-chrome-192x192.png`,
+          sizes: `192x192`,
+          type: `image/png`,
+        }, {
+          src: `/favicons/android-chrome-512x512.png`,
+          sizes: `512x512`,
+          type: `image/png`,
+        }],
+        */
+      },
+    },
   ],
 };

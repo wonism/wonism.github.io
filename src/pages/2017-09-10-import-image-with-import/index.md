@@ -5,6 +5,7 @@ path: "/import-image-with-import/"
 tags: ["javascript", "import", "image"]
 summary: "import * as url from '/PATH/TO/IMAGE/filename.extension';"
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ```js

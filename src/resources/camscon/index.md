@@ -1,18 +1,19 @@
 ---
+type: "portfolio"
 title: "Camscon"
 date: "2016-09-01T00:00:00.000Z"
-period: "2016. 10. ~ 2017. 03."
-path: "/portfolio/camscon/"
-tags: []
-isNotPost: true
+path: "/portfolios/camscon/"
 images: [
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon1.png?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon2.png?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fcamscon3.png?alt=media',
+  "camscon/1.png",
+  "camscon/2.png",
+  "camscon/3.png",
 ]
 ---
 
 # Camscon
+
+## Period
+- `2016. 09. ~ 2017. 03.`
 
 ## What I did
 - Develop Camscon web page with ReactJS

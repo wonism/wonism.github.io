@@ -1,17 +1,18 @@
 ---
+type: "portfolio"
 title: "Korbit"
-date: "2017-05-22T00:00:00.000Z"
-period: "2017. 05. ~ Current"
-path: "/portfolio/korbit/"
-tags: []
-isNotPost: true
+date: "2017-05-01T00:00:00.000Z"
+path: "/portfolios/korbit/"
 images: [
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fkorbit1.png?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fkorbit2.png?alt=media',
+  "korbit/1.png",
+  "korbit/2.png",
 ]
 ---
 
 # Korbit
+
+## Period
+- `2017. 05. ~ Current`
 
 ## What I did
 - Develop new landing page

@@ -5,6 +5,7 @@ path: "/async-await/"
 tags: ["javascript", "async", "await", "callback", "promise", "es2017"]
 summary: "ES2017(ECMA-262)에서 새롭게 추가된 async/await는 비동기 함수를 처리하기 위한 키워드이다. 처음 제안된 것은 TypeScript 1.7였다.  또한, async/await는 Promise위에 구축되었고, 기존의 모든 프로미스 기반 API와 호환되기 때문에 프로미스와 같이 사용하거나, 프로미스를 대체할 수 있다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 `ES2017(ECMA-262)`에서 새롭게 추가된 `async/await`는 비동기 함수를 처리하기 위한 키워드이다.<br />

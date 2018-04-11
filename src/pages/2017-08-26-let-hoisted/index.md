@@ -5,6 +5,7 @@ path: "/is-let-hoisted/"
 tags: ["javascript", "hoisting", "var", "let", "const", "TDZ"]
 summary: "let 또는 const가 호이스팅 되는지 여부를 알아보기 전에 호이스팅과 Temporal Dead Zone(TDZ)이란 개념에 대해 알아보겠다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 `let` 또는 `const`가 호이스팅 되는지 여부를 알아보기 전에 `호이스팅`과 `Temporal Dead Zone(TDZ)`이란 개념에 대해 알아보겠다.

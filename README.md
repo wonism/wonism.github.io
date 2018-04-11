@@ -1,8 +1,39 @@
-# gatsby-starter-blog
-Gatsby starter for creating a blog
+# gatsby-advanced-blog
+> Gatsby starter for advanced blog
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-`gatsby new gatsby-blog https://github.com/gatsbyjs/gatsby-starter-blog`
+## Install
+```
+$ npm i -S gatsby-advanced-blog
+```
 
-## Running in development
-`gatsby develop`
+## Start with gatsby-cli
+```
+$ gatsby new PROJECT_NAME https://github.com/wonism/gatsby-advanced-blog
+```
+
+## Features
+- Post
+  - Pagination
+  - Categories
+  - Tags
+  - Search
+  - Put React Application into post
+  - Put Tweet into post
+  - Draft (set `hide` to `true`)
+  - Copy codes with clicking button
+- Portfolio
+- Resume
+
+## Managing statement by Redux
+- Reselect for selectors
+- Redux saga for asynchronous action
+
+## Development
+```
+$ npm run dev
+```
+
+## Build
+```
+$ npm run build
+```

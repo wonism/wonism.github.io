@@ -12,6 +12,7 @@ components: [{
   fileName: 'rx-example/rx-with-input',
 }]
 category: "RxJS"
+images: ["images/rxjs.jpg"]
 ---
 
 `Ctrl+Shift+J` (Windows / Linux) 또는 `Cmd+Opt+J` (Mac)를 눌러 콘솔창을 연 뒤, 전역 객체에 등록되어 있는 `Rx`를 사용하여 예제 코드를 실행할 수 있다.<br />

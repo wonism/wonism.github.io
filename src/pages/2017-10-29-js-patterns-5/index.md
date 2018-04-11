@@ -5,6 +5,7 @@ path: "/js-pattern-5/"
 tags: ["javascript", "pattern", "design pattern", "디자인패턴", "decorator", "장식자"]
 summary: "반복자 패턴은 클라이언트가 객체 컬렉션을 효과적으로 반복할 수 있게 해준다. 반복자 패턴을 사용하면 개발자는 훨씬 유연하고 정교한 반복 구문을 설계할 수 있다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## Decorator

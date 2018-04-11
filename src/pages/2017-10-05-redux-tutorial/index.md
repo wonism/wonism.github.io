@@ -9,6 +9,7 @@ components: [{
 	fileName: 'redux-tutorial/index',
 }]
 category: "JavaScript"
+images: ["images/redux.jpg"]
 ---
 
 `Redux`는 상태를 관리해주는 라이브러리로 `React JS`, `Vue JS` 등과 함께 사용되며, 큰 애플리케이션의 상태를 보다 쉽게 할 수 있도록 도와준다.

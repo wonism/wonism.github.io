@@ -10,6 +10,7 @@ tweets: [{
 	tweetId: '619531111996223488',
 }]
 category: "JavaScript"
+images: ["images/redux.jpg"]
 ---
 
 ## 셀렉터에 대해

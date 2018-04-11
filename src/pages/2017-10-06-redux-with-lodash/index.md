@@ -9,6 +9,7 @@ components: [{
 	fileName: 'redux-with-lodash/index',
 }]
 category: "JavaScript"
+images: ["images/redux.jpg"]
 ---
 
 일반적으로 리듀서에서 액션의 타입에 따라 다른 작업을 수행하기 위해 `switch`를 사용한다.<br />

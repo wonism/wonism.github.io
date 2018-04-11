@@ -1,10 +1,9 @@
 import fp from 'lodash/fp';
 
 const createReducer = (reducers = {}, initialState = {}) =>
-  (state = initialState, { type, ...action }) => (
-    fp.has(type)(reducers) ?
+  (state = initialState, { type, ...action }) =>
+    (fp.has(type)(reducers) ?
       reducers[type](state, action) :
-      state
-  );
+      state);
 
 export default createReducer;

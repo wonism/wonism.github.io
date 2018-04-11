@@ -15,6 +15,7 @@ components: [{
 	fileName: 'event-capturing',
 }]
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 `DOM`의 `event`는 이벤트 중심 프로그래밍 언어가 DOM 트리 내의 요소 노드 (`HTML`, `XHTML`, `SVG` 등)에 `이벤트 처리기/수신기`를 등록할 수 있도록 한다.<br />

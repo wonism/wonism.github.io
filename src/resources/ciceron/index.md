@@ -1,17 +1,18 @@
 ---
+type: "portfolio"
 title: "Ciceron"
 date: "2016-05-01T00:00:00.000Z"
-period: "2016. 05. ~ 2016. 05."
-path: "/portfolio/ciceron/"
-tags: []
-isNotPost: true
+path: "/portfolios/ciceron/"
 images: [
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fciceron1.png?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/wonism-github-io.appspot.com/o/portfolio%2Fciceron2.png?alt=media',
+  "ciceron/1.png",
+  "ciceron/2.png",
 ]
 ---
 
 # Ciceron
+
+## Period
+- `2016. 05. ~ 2016. 05.`
 
 ## What I did
 - Develop translation editor & memo editor via contenteditable API

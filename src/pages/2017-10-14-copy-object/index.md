@@ -5,6 +5,7 @@ path: "/copy-object/"
 tags: ["javascript", "object", "javascript 기초"]
 summary: "객체가 아닌 Primitive의 값을 복사하려면 단순히 b = a와 같이 변수에 복사하고자 하는 변수를 대입하면 된다. 하지만, 객체에서는 b = a와 같은 방법을 사용할 수 없다. 객체를 참조하는 복사가 이루어지기 때문이다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## 객체를 참조하는 복사

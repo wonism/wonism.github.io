@@ -5,6 +5,7 @@ path: "/js-pattern-1/"
 tags: ["javascript", "pattern", "design pattern", "디자인패턴", "singleton", "싱글톤"]
 summary: "디자인 패턴은 특정 문맥에서 공통적으로 발생하는 문제에 대한 재사용가능한 해결책이다. 먼저, 제일 간단한 싱글톤에 대해 알아보겠다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## 디자인 패턴이란?

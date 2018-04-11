@@ -5,6 +5,7 @@ path: "/module-exports-and-exports/"
 tags: ["javascript", "exports", "import", "require"]
 summary: "module은 exports속성이 있는 자바스크립트 객체이며, exports는 보통 module.exports로 설정되는 일반적인 자바스크립트 변수이다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 `module`은 `exports`속성이 있는 자바스크립트 객체이며, `exports`는 보통 `module.exports`로 설정되는 일반적인 자바스크립트 변수이다.<br />

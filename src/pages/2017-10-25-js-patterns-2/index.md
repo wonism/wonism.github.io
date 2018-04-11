@@ -5,6 +5,7 @@ path: "/js-pattern-2/"
 tags: ["javascript", "pattern", "design pattern", "디자인패턴", "factory", "팩토리"]
 summary: "공장의 역할은 물건을 생산하는 것이다.  프로그래밍에서도 같은 일을 수행한다. 프로그래밍에서의 팩토리는 객체들을 생성한다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## Factory

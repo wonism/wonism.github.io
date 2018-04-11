@@ -1,9 +1,8 @@
 ---
+type: "resume"
 title: "Resume"
 date: "1990-02-05T00:00:00.000Z"
 path: "/resume/"
-tags: []
-isNotPost: true
 ---
 
 ## Experience
@@ -45,9 +44,14 @@ isNotPost: true
   - Develop client/admin web page
   - Develop chart for measuring marketing performance ratio using ChartJS
 - Open sources
-  - easy-map (https://github.com/wonism/easy-map)
-  - react-google-ades (https://github.com/wonism/react-google-ads)
+  - gatsby-advanced-blog (https://github.com/wonism/gatsby-advanced-blog)
+  - react-google-ads (https://github.com/wonism/react-google-ads)
   - react-kakao-login (https://github.com/wonism/react-kakao-login)
+  - react-github-info (https://github.com/wonism/react-github-info)
+  - react-d3-pie-chart (https://github.com/wonism/react-d3-pie-chart)
+  - @wonism/react-retina-image (https://github.com/wonism/react-retina-image)
+  - @wonism/react-dropdown (https://github.com/wonism/react-dropdown)
+  - easy-map (https://github.com/wonism/easy-map)
 - Chrome extensions
   - Image downloader (https://github.com/wonism/image-downloader)
   - Special characters finder (https://github.com/wonism/special-characters-finder)

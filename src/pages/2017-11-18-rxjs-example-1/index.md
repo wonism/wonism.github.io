@@ -9,6 +9,7 @@ components: [{
   fileName: "rx-example/lerp-animation",
 }]
 category: "RxJS"
+images: ["images/rxjs.jpg"]
 ---
 
 ## 마우스를 바라보는 3D 효과

@@ -5,6 +5,7 @@ path: "/implement-bind/"
 tags: ["javascript", "bind", "this", "object", "function"]
 summary: ".bind()는 호출될 때 인자로 전달된 객체를 this로 하는 함수를 반환하며, 다음과 같이 사용한다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## bind란?

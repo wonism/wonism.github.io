@@ -5,6 +5,7 @@ path: "/rxjs-1/"
 tags: ["javascript", "rxjs", "functional reactive programming", "frp", "reactivex"]
 summary: "RxJS는 MS가 만든 ReactiveX의 JS 라이브러리로 이에 대해 공부하기 전에 먼저 Reactive 프로그래밍에 대해 아는 것이 좋다. Reactive 프로그래밍이란 비동기 데이터 스트림을 사용한 프로그래밍 기법이다."
 category: "RxJS"
+images: ["images/rxjs.jpg"]
 ---
 
 ## Reactive Programming

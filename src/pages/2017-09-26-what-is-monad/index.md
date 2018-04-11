@@ -5,6 +5,7 @@ path: "/monad-simple-example/"
 tags: ["javascript", "monad", "functional programming"]
 summary: "Monad는 순서가 있는 연산을 처리할 때 사용되는 디자인 패턴으로 부작용을 관리하기 위해 함수형 프로그래밍 언어에서 사용된다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 `Monad`는 순서가 있는 연산을 처리할 때 사용되는 디자인 패턴으로 부작용을 관리하기 위해 함수형 프로그래밍 언어에서 사용된다.

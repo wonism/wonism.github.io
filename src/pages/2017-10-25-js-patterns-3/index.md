@@ -5,6 +5,7 @@ path: "/js-pattern-3/"
 tags: ["javascript", "pattern", "design pattern", "디자인패턴", "prototype", "프로토타입"]
 summary: "여기서 말하는 프로토타입은 함수를 확장할 수 있는 Function.prototype이 아니다.  프로토타입 패턴에서의 프로토타입은 프로토타입 인스턴스를 사용하여 만들 객체의 종류를 지정하고, 이 프로토타입을 복사함으로써 새 객체를 만든다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## Prototype

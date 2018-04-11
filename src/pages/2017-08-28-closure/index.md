@@ -5,6 +5,7 @@ path: "/closure/"
 tags: ["javascript", "closure", "클로저"]
 summary: "클로저는 다른 함수의 스코프 안에 있는 변수들에 접근할 수 있는 함수를 뜻한다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 클로저는 다른 함수의 스코프 안에 있는 변수들에 접근할 수 있는 함수를 뜻한다.

@@ -1,29 +1,64 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const path = require('path');
 const fp = require('lodash/fp');
-const { PAGING_COUNT } = require('./src/constants');
+const {
+  CONTENT_PER_PAGE,
+  POST,
+  PORTFOLIO,
+  RESUME,
+} = require('./src/constants');
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.onCreateWebpackConfig = ({
+  stage,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    externals: {
+      document: true,
+      discus_config: true,
+    },
+    resolve: {
+      alias: {
+        '~': path.resolve(__dirname, 'src'),
+      },
+    },
+    plugins: [
+      plugins.define({
+        __DEVELOPMENT__: stage === 'develop' || stage === 'develop-html',
+      }),
+    ],
+  });
+};
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const contentTypes = [POST, PORTFOLIO, RESUME];
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/BlogPost.jsx');
-    const pagedBlogPost = path.resolve('./src/templates/PagedPosts.jsx');
-    const taggedBlogPost = path.resolve('./src/templates/TaggedPosts.jsx');
-    const categorizedBlogPost = path.resolve('./src/templates/CategorizedPosts.jsx');
+    const post = path.resolve('./src/templates/Post.jsx');
+    const list = path.resolve('./src/templates/List.jsx');
+    const taggedList = path.resolve('./src/templates/TaggedList.jsx');
+    const categorizedList = path.resolve('./src/templates/CategorizedList.jsx');
     const resume = path.resolve('./src/templates/Resume.jsx');
+    const portfolios = path.resolve('./src/templates/Portfolios.jsx');
     const portfolio = path.resolve('./src/templates/Portfolio.jsx');
 
     resolve(
       graphql(`
         {
-          allMarkdownRemark(limit: 1000) {
+          allMarkdownRemark(limit: 10000) {
             edges {
               node {
                 frontmatter {
                   path
-                  tags
                   category
-                  isNotPost
+                  tags
+                  type
+                  hide
                 }
               }
             }
@@ -34,113 +69,154 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors);
         }
 
-        const edges = result.data.allMarkdownRemark.edges;
+        const edges = fp.get('data.allMarkdownRemark.edges')(result);
         const tagMatrix = [];
         const categoryMatrix = [];
 
         // Create blog posts pages.
         fp.each((edge) => {
-          tagMatrix.push(fp.get('node.frontmatter.tags')(edge));
-          if (fp.get('node.frontmatter.category')(edge)) {
-            categoryMatrix.push(fp.get('node.frontmatter.category')(edge));
+          const frontmatter = fp.get('node.frontmatter')(edge);
+          const { tags, category, type, hide } = frontmatter;
+
+          if (hide !== true) {
+            if (fp.isArray(tags)) {
+              tagMatrix.push(tags);
+            }
+
+            if (fp.isString(category)) {
+              categoryMatrix.push(category);
+            }
+
+            let component = null;
+            switch (type) {
+              case PORTFOLIO:
+                component = portfolio;
+                break;
+              case RESUME:
+                component = resume;
+                break;
+              case POST:
+              default:
+                component = post;
+                break;
+            }
+
+            if (!fp.isNull(component)) {
+              createPage({
+                path: edge.node.frontmatter.path,
+                component,
+                context: {
+                },
+              });
+            }
           }
-
-          const isNotPost = fp.get('node.frontmatter.isNotPost')(edge);
-          const notPost = fp.isEqual(fp.get('node.frontmatter.path')(edge))('/resume/') ? resume : portfolio;
-
-          createPage({
-            path: edge.node.frontmatter.path,
-            component: isNotPost ? notPost : blogPost,
-            context: {
-              path: edge.node.frontmatter.path,
-            },
-          });
         })(edges);
 
-        const objectsNotPost = fp.filter(
-          fp.get('node.frontmatter.isNotPost')
+        const portfoliosCount = fp.flow(
+          fp.filter((edge) => {
+            const frontmatter = fp.get('node.frontmatter')(edge);
+            const { type } = frontmatter;
+
+            return type === PORTFOLIO;
+          }),
+          fp.size
         )(edges);
-        const notPostCount = fp.isNil(objectsNotPost) ? 0 : fp.get('length')(objectsNotPost);
-        const postsLength = fp.get('length')(edges) - notPostCount;
-        const pagesCount = postsLength ? (Math.ceil(postsLength / PAGING_COUNT) + 1) : 0;
+
+        if (portfoliosCount) {
+          createPage({
+            path: '/portfolios',
+            component: portfolios,
+            context: {
+            },
+          });
+        }
+
+        const postsCount = fp.flow(
+          fp.filter((edge) => {
+            const frontmatter = fp.get('node.frontmatter')(edge);
+            const { hide, type } = frontmatter;
+
+            return !hide && (type || POST) === POST;
+          }),
+          fp.size
+        )(edges);
+        const pagesCount = postsCount ? (Math.ceil(postsCount / CONTENT_PER_PAGE) + 1) : 1;
         const pages = fp.range(1, pagesCount);
 
-        fp.each((page) => {
-          createPage({
-            path: `/pages/${page}`,
-            component: pagedBlogPost,
-            context: {
+        if (fp.size(pages)) {
+          fp.each((page) => {
+            createPage({
               path: `/pages/${page}`,
+              component: list,
+              context: {
+              },
+            });
+          })(pages);
+        } else {
+          createPage({
+            path: `/pages/1`,
+            component: list,
+            context: {
             },
           });
-        })(pages);
+        }
 
-        const tags = fp.uniq(fp.flatten(tagMatrix));
+        const tags = fp.flow(
+          fp.flatten,
+          fp.uniq
+        )(tagMatrix);
 
         fp.each((tag) => {
-          createPage({
-            path: `/tags/${tag}`,
-            component: taggedBlogPost,
-            context: {
-              path: `/tags/${tag}`,
-            },
-          });
-
-          const taggedPostsInformation = { length: 0 };
-
-          fp.each((edge) => {
+          const taggedPostCount = fp.reduce((count, edge) => {
             const postTags = fp.get('node.frontmatter.tags')(edge);
-            taggedPostsInformation.length += fp.includes(tag)(postTags) ? 1 : 0;
-          })(edges);
 
-          const taggedPagesCount = taggedPostsInformation.length ?
-            (Math.ceil(taggedPostsInformation.length / PAGING_COUNT) + 1) :
-            0;
-          const taggedPages = fp.range(1, taggedPagesCount);
+            if (fp.includes(tag)(postTags)) {
+              return count + 1;
+            }
 
-          fp.each((taggedPage) => {
+            return count;
+          }, 0)(edges);
+          const taggedListCount = taggedPostCount ?
+            (Math.ceil(taggedPostCount / CONTENT_PER_PAGE) + 1) : 1;
+          const taggedListPages = fp.range(1, taggedListCount);
+
+          fp.each((taggedListPage) => {
             createPage({
-              path: `/tags/${tag}/${taggedPage}`,
-              component: taggedBlogPost,
+              path: `/tags/${tag}/${taggedListPage}`,
+              component: taggedList,
               context: {
-                path: `/tags/${tag}/${taggedPage}`,
               },
             });
-          })(taggedPages);
+          })(taggedListPages);
         })(tags);
 
-        const categories = fp.uniq(fp.flatten(categoryMatrix));
+        const categories = fp.flow(
+          fp.flatten,
+          fp.uniq
+        )(categoryMatrix);
 
         fp.each((category) => {
-          createPage({
-            path: `/categories/${category}`,
-            component: categorizedBlogPost,
-            context: {
-              path: `/categories/${category}`,
-            },
-          });
+          const categorizedPostCount = fp.reduce((count, edge) => {
+            const postCategory = fp.get('node.frontmatter.category')(edge);
 
-          const categorizedPostsInformation = { length: 0 };
+            if (fp.includes(category)(postCategory)) {
+              return count + 1;
+            }
 
-          fp.each((edge) => {
-            const postCategories = fp.get('node.frontmatter.category')(edge);
-            categorizedPostsInformation.length += fp.includes(category)(postCategories) ? 1 : 0;
-          })(edges);
+            return count;
+          }, 0)(edges);
+          const categorizedListCount = categorizedPostCount ?
+            (Math.ceil(categorizedPostCount / CONTENT_PER_PAGE) + 1) : 1;
+          const categorizedListPages = fp.range(1, categorizedListCount);
 
-          const categorizedPagesCount = categorizedPostsInformation.length ?
-            (Math.ceil(categorizedPostsInformation.length / PAGING_COUNT) + 1) :
-            0;
-          const categorizedPages = fp.range(1, categorizedPagesCount);
-
-          fp.each((categorizedPage) => {
+          fp.each((categorizedListPage) => {
             createPage({
-              path: `/categories/${category}/${categorizedPage}`,
-              component: categorizedBlogPost,
+              path: `/categories/${category}/${categorizedListPage}`,
+              component: categorizedList,
               context: {
-                path: `/categories/${category}/${categorizedPage}`,
               },
             });
-          })(categorizedPages);
+          })(categorizedListPages);
         })(categories);
       })
     );

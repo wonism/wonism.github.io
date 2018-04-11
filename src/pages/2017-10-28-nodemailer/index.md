@@ -5,6 +5,7 @@ path: "/nodemailer/"
 tags: ["javascript", "nodejs", "nodemailer"]
 summary: "nodemailer는 Node.js에서 e-mail을 쉽게 보낼 수 있게 도와주는 모듈이다. Gmail뿐만 아니라, Naver, Yahoo 등의 서비스도 지원한다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## Node Mailer

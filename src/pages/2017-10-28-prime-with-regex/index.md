@@ -5,6 +5,7 @@ path: "/prime-with-regex/"
 tags: ["javascript", "perl", "regular expression", "regexp", "prime number"]
 summary: "보통 소수를 찾는 방법이라 하면, 에라토네스의 체(Sieve of Eratosthenes) 가 떠오를 것이다.  하지만, 정규식을 이용해, 몇 줄만으로 소수를 찾는 방법이 있다."
 category: "Regular Expression"
+images: ["images/js.jpg"]
 ---
 
 보통 `소수`를 찾는 방법이라 하면, `에라토네스의 체(Sieve of Eratosthenes)`가 떠오를 것이다.<br />

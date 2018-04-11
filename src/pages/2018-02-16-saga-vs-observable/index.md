@@ -5,6 +5,7 @@ path: "/redux-saga-vs-redux-observable/"
 tags: ["javascript", "redux", "state", "rxjs", "saga", "asynchronous"]
 summary: "redux-observable과 redux-saga는 redux의 비동기 액션을 처리하기 위한 라이브러리다."
 category: "JavaScript"
+images: ["images/redux.jpg"]
 ---
 
 `redux-observable`과 `redux-saga`는 `redux`의 비동기 액션을 처리하기 위한 라이브러리다.<br />

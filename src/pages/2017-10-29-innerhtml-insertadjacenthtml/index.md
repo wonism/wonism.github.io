@@ -9,6 +9,7 @@ components: [{
 	fileName: 'dom-manipulation-performance',
 }]
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 DOM 노드의 내용을 수정할 때, `[DOM Element].innerHTML = VALUE`를 사용하는 경우가 있다.
