@@ -15,6 +15,7 @@ const Wrapper = styled.section`
   }
 
   img {
+    margin: 0 4px 0 0;
     border-radius: 50%;
   }
 
@@ -38,9 +39,9 @@ const Bio = () => (
         alt=""
       />
       <span>
-        Gatsby Advanced Blog
+        Front-end developer WONISM
         <br />
-        <small>Gatsby Starter for Advanced Blog</small>
+        <small>Interested in ReactJS, RxJS and ReasonML.</small>
       </span>
     </a>
   </Wrapper>

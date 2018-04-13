@@ -91,3 +91,26 @@ button, a, label {
     display: block;
   }
 }
+.render-image div,
+.render-codepen div {
+  padding: 0;
+  text-align: center;
+  border: 0;
+  border-radius: 0;
+}
+.render-image div:before,
+.render-image div:after,
+.render-image div > *:first-child:before,
+.render-image div > *:first-child:after,
+.render-codepen div:before,
+.render-codepen div:after,
+.render-codepen div > *:first-child:before,
+.render-codepen div > *:first-child:after {
+  content: none;
+}
+.render-image img {
+  max-width: 100%;
+}
+.none {
+  display: none !important;
+}

@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import fp from 'lodash/fp';
-import {
-  historyGoBack,
-  copyText,
-  printPage,
-} from '~/store/app/actions';
 import PostsWrapper from '~/components/Common/PostsWrapper';
 import Card from '~/components/Common/Card';
 import Pagination from '~/components/Common/Pagination';
@@ -79,9 +74,6 @@ TaggedList.propTypes = {
 export default connect(
   state => state,
   {
-    historyGoBack,
-    copyText,
-    printPage,
   }
 )(TaggedList);
 

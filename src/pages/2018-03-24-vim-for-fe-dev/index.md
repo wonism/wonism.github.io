@@ -3,13 +3,13 @@ title: "프론트엔드 개발자를 위한 VIM 설정"
 date: "2018-03-24T13:40:32.000Z"
 path: "/vim-for-fe-dev/"
 tags: ["vim", "vi", "text editor"]
-summary: "플러그인 매니저인 Vundle과 플로그인 & 매퍼인 Janus을 설치해야한다. 이들은 다음 명령어를 통해 설치할 수 있다."
+summary: "플러그인 매니저인 Vundle과 플러그인 & 매퍼인 Janus을 설치해야한다. 이들은 다음 명령어를 통해 설치할 수 있다."
 category: "IDE"
 ---
 
 ## Vundle & Janus 설치
 플러그인 매니저인 [Vundle](https://github.com/VundleVim/Vundle.vim)과
-플로그인 & 매퍼인 [Janus](https://github.com/carlhuda/janus)을 설치해야한다.<br />
+플러그인 & 매퍼인 [Janus](https://github.com/carlhuda/janus)을 설치해야한다.<br />
 이들은 다음 명령어를 통해 설치할 수 있다.
 
 ```

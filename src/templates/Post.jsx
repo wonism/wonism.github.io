@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { connect } from 'react-redux';
@@ -8,10 +7,6 @@ import Helmet from 'react-helmet';
 import FaTags from 'react-icons/lib/fa/tags';
 import fp from 'lodash/fp';
 import {
-  historyGoBack,
-} from '~/store/app/actions';
-import {
-  copyText,
   initDisqusConfig,
   renderTweets,
   renderComponents,
@@ -20,7 +15,6 @@ import {
 import Bio from '~/components/Bio';
 import PostWrapper from '~/components/Common/PostWrapper';
 import { SITE_URL } from '~/constants';
-import { PRIMARY_COLOR } from '~/components/Common/constants';
 import formattedDate from '~/utils/formattedDate';
 import './post.less';
 
@@ -184,8 +178,6 @@ class Post extends PureComponent {
 export default connect(
   state => state,
   {
-    historyGoBack,
-    copyText,
     initDisqusConfig,
     renderTweets,
     renderComponents,
