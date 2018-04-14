@@ -5,6 +5,7 @@ path: "/resolve-import-path/"
 tags: ["javascript", "webpack", "relative path", "absolute path", "resolve", "import"]
 summary: "파일의 구조가 복잡한 프로젝트에서 import 또는 require를 사용할 때, 상대적인 경로로 파일을 불러오는 것은 귀찮을 뿐더러 실수를 유발할 수 있다."
 category: "JavaScript"
+images: ["images/js.jpg"]
 ---
 
 ## 상대경로, 무엇이 문제인가?

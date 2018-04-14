@@ -101,6 +101,10 @@ const StyledArticle = styled.article`
     height: 106px;
     line-height: 1.4em;
     font-size: 16px;
+
+    span {
+      white-space: nowrap;
+    }
   }
 
   small {

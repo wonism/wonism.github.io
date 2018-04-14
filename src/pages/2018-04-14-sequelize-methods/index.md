@@ -5,6 +5,7 @@ path: "/unknown-sequelize-methods/"
 tags: ["javascript", "node.js", "sequelize", "orm"]
 summary: "Facebook이나 Twitter에 URL을 공유하면 대표이미지와 제목, 내용 등이 보이게 된다. 이와 같은 속성을 설정하기 위해 <meta>태그를 사용한다."
 category: "Node.js"
+images: ["images/js.jpg"]
 ---
 
 ## IS NOT NULL 조건 주기
