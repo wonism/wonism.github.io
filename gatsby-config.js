@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Gatsby Advanced Blog',
     author: 'wonism',
+    siteUrl: 'https://wonism.github.io',
   },
   pathPrefix: '/',
   plugins: [
@@ -52,6 +53,7 @@ module.exports = {
         trackingId: 'UA-80620216-1',
       },
     },
+    'gatsby-plugin-lodash',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
@@ -80,6 +82,66 @@ module.exports = {
           type: `image/png`,
         }],
         */
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        color: '3B9CFF',
+        showSpinner: false,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  url: site.siteMetadata.siteUrl + edge.node.path,
+                  guid: site.siteMetadata.siteUrl + edge.node.path,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  filter: {
+                    frontmatter: {
+                      hide: { ne: true }
+                    }
+                  }
+                  sort: { fields: [frontmatter___date], order: DESC }
+                ) {
+                  edges {
+                    node {
+                      html
+                      frontmatter {
+                        title
+                        summary
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+          },
+        ],
       },
     },
   ],
