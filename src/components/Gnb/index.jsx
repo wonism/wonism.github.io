@@ -99,7 +99,7 @@ const ListMenu = styled.li`
 
   &:hover {
     ul {
-      max-height: 360px;
+      max-height: 400px;
     }
   }
 
