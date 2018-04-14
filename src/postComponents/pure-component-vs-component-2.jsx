@@ -49,7 +49,7 @@ class App extends Component {
     this.log(true);
 
     return (
-      <div className="root">
+      <div className="component-example root">
         {this.state.counter}
         <br />
         <br />

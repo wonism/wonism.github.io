@@ -27,7 +27,7 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    this.root = document.querySelector('.pure-component-example .root');
+    this.root = document.querySelector('.pure-component-example.root');
     this.root.after(this.pTag);
   }
 
@@ -49,7 +49,7 @@ class App extends PureComponent {
     this.log(true);
 
     return (
-      <div className="root">
+      <div className="pure-component-example root">
         {this.state.counter}
         <br />
         <br />
