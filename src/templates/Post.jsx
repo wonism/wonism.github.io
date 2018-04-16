@@ -34,6 +34,7 @@ const Tags = styled.div`
 
 const PostContent = styled.section`
   padding: 1em 0 4em;
+  line-height: 1.6em;
 
   h2 {
     margin: 24px 0 10px;

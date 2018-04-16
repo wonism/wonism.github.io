@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.root = document.querySelector('.component-example .root');
+    this.root = document.querySelector('.component-example.root');
     this.root.after(this.pTag);
   }
 
