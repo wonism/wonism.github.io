@@ -82,7 +82,6 @@ const ListMenu = styled.li`
   display: inline-block;
   position: relative;
   padding: 0 0 0 2em;
-  width: 120px;
   font-weight: 500;
   @media (max-width: 414px) {
     display: none;
@@ -352,7 +351,11 @@ const Gnb = ({
     fp.replace(/\/$/, ''),
     fp.isEqual('/resume')
   )(pathname);
-  const isPost = !(isPortfolio || isHome || isResume);
+  const isOpenSource = fp.flow(
+    fp.replace(/\/$/, ''),
+    fp.includes('/open-sources')
+  )(pathname);
+  const isPost = !(isPortfolio || isHome || isResume || isOpenSource);
 
   return (
     <GnbWrapper>
@@ -403,6 +406,11 @@ const Gnb = ({
                 </StyledLink>
               </ListMenu>
             ) : null}
+            <ListMenu>
+              <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
+                Open Source
+              </StyledLink>
+            </ListMenu>
             <ListMenu>
               <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={closeMenu}>
                 Resume
@@ -490,6 +498,11 @@ const Gnb = ({
             </StyledLink>
           </ListMenu>
         ) : null}
+        <ListMenu>
+          <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
+            Open Source
+          </StyledLink>
+        </ListMenu>
         <ListMenu>
           <StyledLink to="/resume" className={isResume ? 'active' : ''}>
             Resume
