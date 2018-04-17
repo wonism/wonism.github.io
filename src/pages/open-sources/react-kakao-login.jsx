@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Repository } from 'react-github-info';
 import KakaoLogin from 'react-kakao-login';
+import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
 
-const ReactKakaoLogin = () => (
+const ReactKakaoLogin = ({
+  historyGoBack,
+}) => (
   <OpenSourceWrapper>
     <Helmet>
       <title>WONISM | React Kakao Login</title>
@@ -20,10 +25,18 @@ const ReactKakaoLogin = () => (
         onFailure={() => { alert('Failed');}}
       />
     </div>
+    <br /><br />
+    <button onClick={historyGoBack}>← Go back</button>
+    <br /><br />
   </OpenSourceWrapper>
 );
 
-export default ReactKakaoLogin;
+export default connect(
+  () => ({}),
+  {
+    historyGoBack,
+  }
+)(ReactKakaoLogin);
 
 /* eslint-disable no-undef */
 export const kakaoLoginQuery = graphql`

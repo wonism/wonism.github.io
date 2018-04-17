@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Profile, Repository } from 'react-github-info';
+import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
 
-const Github = () => (
+const Github = ({
+  historyGoBack,
+}) => (
   <OpenSourceWrapper>
     <Helmet>
       <title>WONISM | React Github Info</title>
@@ -14,10 +19,22 @@ const Github = () => (
     <Profile username="wonism" />
     <br /><br />
     <Repository username="wonism" repos="react-github-info" />
+    <br /><br />
+    <button onClick={historyGoBack}>← Go back</button>
+    <br /><br />
   </OpenSourceWrapper>
 );
 
-export default Github;
+Github.propTypes = {
+  historyGoBack: PropTypes.func.isRequired,
+};
+
+export default connect(
+  () => ({}),
+  {
+    historyGoBack,
+  }
+)(Github);
 
 /* eslint-disable no-undef */
 export const githubQuery = graphql`

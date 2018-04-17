@@ -13,8 +13,14 @@ const OpenSource = () => (
     </Helmet>
     <ul>
       <li>
-        <Link to="/open-sources/easy-map">
-          <Repository username="wonism" repos="easy-map" renderOnly />
+        <Link to="/open-sources/gatsby-advanced-blog">
+          <Repository username="wonism" repos="gatsby-advanced-blog" renderOnly />
+        </Link>
+        <br /><br />
+      </li>
+      <li>
+        <Link to="/open-sources/react-instagram-feed">
+          <Repository username="wonism" repos="react-instagram-feed" renderOnly />
         </Link>
         <br /><br />
       </li>
@@ -33,6 +39,12 @@ const OpenSource = () => (
       <li>
         <Link to="/open-sources/react-github-info">
           <Repository username="wonism" repos="react-github-info" renderOnly />
+        </Link>
+        <br /><br />
+      </li>
+      <li>
+        <Link to="/open-sources/easy-map">
+          <Repository username="wonism" repos="easy-map" renderOnly />
         </Link>
         <br /><br />
       </li>
