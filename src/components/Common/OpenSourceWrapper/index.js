@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+const OpenSourceWrapper = styled.div`
   margin: auto;
   padding: 120px 0 0;
   max-width: 1176px;
@@ -26,3 +26,5 @@ export default styled.div`
     cursor: pointer;
   }
 `;
+
+export default OpenSourceWrapper;
