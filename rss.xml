@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 18 Apr 2018 15:54:52 GMT</lastBuildDate><item><title><![CDATA[모르고 지나쳤을 수도 있는 Sequalize 메소드]]></title><link>https://wonism.github.ioundefined</link><guid isPermaLink="false">https://wonism.github.ioundefined</guid><pubDate>Sat, 14 Apr 2018 12:04:48 GMT</pubDate><content:encoded>&lt;h2&gt;IS NOT NULL 조건 주기&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 19 Apr 2018 17:12:16 GMT</lastBuildDate><item><title><![CDATA[React Native에서 alias 설정하기]]></title><link>https://wonism.github.ioundefined</link><guid isPermaLink="false">https://wonism.github.ioundefined</guid><pubDate>Fri, 20 Apr 2018 01:09:07 GMT</pubDate><content:encoded>&lt;p&gt;이전에 작성한 &lt;a href=&quot;/resolve-import-path&quot;&gt;resolve.alias로 import 개선하기&lt;/a&gt;에서 이어지는 글이다.&lt;/p&gt;
+&lt;p&gt;보통 &lt;code class=&quot;hljs-text&quot;&gt;React JS&lt;/code&gt;로 웹 애플리케이션을 개발하면 &lt;code class=&quot;hljs-text&quot;&gt;webpack&lt;/code&gt;을 사용하기 마련이지만,
+&lt;code class=&quot;hljs-text&quot;&gt;React Native&lt;/code&gt;로 모바일 애플리케이션을 개발할 땐, &lt;code class=&quot;hljs-text&quot;&gt;webpack&lt;/code&gt;을 사용하지 않는 경우도 많다.&lt;/p&gt;
+&lt;p&gt;웹팩을 통해 &lt;code class=&quot;hljs-text&quot;&gt;alias&lt;/code&gt;를 사용하는 방법은 위의 링크를 참고하고,
+웹팩을 사용하지 않는 경우, 어떻게 &lt;code class=&quot;hljs-text&quot;&gt;alias&lt;/code&gt;를 설정하는지 보겠다.&lt;/p&gt;
+&lt;p&gt;크게 두 가지 방법이 있다.&lt;/p&gt;
+&lt;h2&gt;babel을 사용하는 경우&lt;/h2&gt;
+&lt;p&gt;먼저, &lt;a href=&quot;https://github.com/tleunen/babel-plugin-module-resolver&quot;&gt;babel-plugin-module-resolver&lt;/a&gt;를 설치한 뒤, &lt;code class=&quot;hljs-text&quot;&gt;.babelrc&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;plugins&lt;/code&gt;를 다음과 같이 설정한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;{
+  &amp;quot;plugins&amp;quot;: [
+    &amp;quot;module-resolver&amp;quot;,
+    {
+      &amp;quot;root&amp;quot;: [&amp;quot;./src&amp;quot;],
+      &amp;quot;alias&amp;quot;: {
+        &amp;quot;~&amp;quot;: &amp;quot;./src&amp;quot;
+      }
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;root&lt;/code&gt;를 사용하면, 사용자 정의 프로젝트 루트를 지정한며, 위의 예제의 경우, &lt;code class=&quot;hljs-text&quot;&gt;src/some/path&lt;/code&gt;의 무언가를 가져올 때, &lt;code class=&quot;hljs-text&quot;&gt;import something from &amp;#39;some/path&amp;#39;;&lt;/code&gt;와 같이 가져올 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;alias&lt;/code&gt;는 웹팩의 &lt;code class=&quot;hljs-text&quot;&gt;resolve.alias&lt;/code&gt;와 같은 역할을 하며, &lt;code class=&quot;hljs-text&quot;&gt;src/some/path&lt;/code&gt;의 무언가를 가져올 때, &lt;code class=&quot;hljs-text&quot;&gt;import something from &amp;#39;~/some/path&amp;#39;;&lt;/code&gt;와 같이 가져올 수 있다.&lt;/p&gt;
+&lt;h2&gt;package.json 을 이용하는 방법&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;alias&lt;/code&gt;를 지정하기 위한 디렉토리에서 &lt;code class=&quot;hljs-text&quot;&gt;package.json&lt;/code&gt;을 생성한 뒤, &lt;code class=&quot;hljs-text&quot;&gt;alias&lt;/code&gt;로 지정하고자 하는 값을 &lt;code class=&quot;hljs-text&quot;&gt;name&lt;/code&gt;에 준다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;~&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;</content:encoded></item><item><title><![CDATA[모르고 지나쳤을 수도 있는 Sequalize 메소드]]></title><link>https://wonism.github.ioundefined</link><guid isPermaLink="false">https://wonism.github.ioundefined</guid><pubDate>Sat, 14 Apr 2018 12:04:48 GMT</pubDate><content:encoded>&lt;h2&gt;IS NOT NULL 조건 주기&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;where&lt;/code&gt;절에 들어갈 객체의 에서 &lt;code class=&quot;hljs-text&quot;&gt;IS NOT NULL&lt;/code&gt;이 되어야 할 &lt;code class=&quot;hljs-text&quot;&gt;컬럼&lt;/code&gt;의 값을 &lt;code class=&quot;hljs-text&quot;&gt;{ ne: null }&lt;/code&gt;로 준다.
 &lt;code class=&quot;hljs-text&quot;&gt;column_name&lt;/code&gt;이 &lt;code class=&quot;hljs-text&quot;&gt;null&lt;/code&gt;이 아닌 &lt;code class=&quot;hljs-text&quot;&gt;Row&lt;/code&gt;들을 구할 수 있다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
