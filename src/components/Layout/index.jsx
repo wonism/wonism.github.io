@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import fp from 'lodash/fp';
 // import Header from '~/components/Header';
 import Gnb from '~/containers/Gnb';
-// import Footer from '~/components/Footer';
+import Footer from '~/components/Footer';
 
 // common styles
 import './index.less';
@@ -73,11 +73,9 @@ export default class Layout extends Component {
         <main>
           {childrenWithProps}
         </main>
-        {/*
         <footer>
           <Footer />
         </footer>
-        */}
       </Background>
     );
   }

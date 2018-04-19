@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
 import FaTags from 'react-icons/lib/fa/tags';
 import fp from 'lodash/fp';
 import {
-  initDisqusConfig,
+  loadDisqus,
   renderTweets,
   renderComponents,
   createCopyButton,
@@ -93,7 +93,7 @@ class Post extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({ date: PropTypes.object }).isRequired,
     location: PropTypes.shape({}).isRequired,
-    initDisqusConfig: PropTypes.func.isRequired,
+    loadDisqus: PropTypes.func.isRequired,
     renderTweets: PropTypes.func.isRequired,
     renderComponents: PropTypes.func.isRequired,
     createCopyButton: PropTypes.func.isRequired,
@@ -106,7 +106,7 @@ class Post extends PureComponent {
     const url = fp.add(SITE_URL, identifier);
     const title = fp.get('data.markdownRemark.frontmatter.title')(this.props);
 
-    this.props.initDisqusConfig({
+    this.props.loadDisqus({
       url,
       identifier,
       title,
@@ -179,7 +179,7 @@ class Post extends PureComponent {
 export default connect(
   state => state,
   {
-    initDisqusConfig,
+    loadDisqus,
     renderTweets,
     renderComponents,
     createCopyButton,
