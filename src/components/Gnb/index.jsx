@@ -341,7 +341,7 @@ const Gnb = ({
   const { pathname } = location;
   const isPortfolio = fp.flow(
     fp.replace(/\/$/, ''),
-    fp.includes('/portfolios')
+    fp.startsWith('/portfolios')
   )(pathname);
   const isHome = fp.flow(
     fp.replace(/\/$/, ''),
@@ -353,7 +353,7 @@ const Gnb = ({
   )(pathname);
   const isOpenSource = fp.flow(
     fp.replace(/\/$/, ''),
-    fp.includes('/open-sources')
+    fp.startsWith('/open-sources')
   )(pathname);
   const isPost = !(isPortfolio || isHome || isResume || isOpenSource);
 

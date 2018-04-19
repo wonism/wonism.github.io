@@ -3,7 +3,7 @@ title: "React Native에서 alias 설정하기"
 date: "2018-04-20T01:09:07.000Z"
 path: "/react-native-alias/"
 tags: ["react js", "react native", "webpack", "babel"]
-summary: ""
+summary: "이전에 작성한 resolve.alias로 import 개선하기에서 이어지는 글이다. 보통 React JS로 웹 애플리케이션을 개발하면 webpack을 사용하기 마련이지만, React Native로 모바일 애플리케이션을 개발할 땐, webpack을 사용하지 않는 경우도 많다."
 category: "JavaScript"
 images: ["images/reactjs.jpg"]
 ---
