@@ -5,6 +5,7 @@ path: "/vim-for-fe-dev/"
 tags: ["vim", "vi", "text editor"]
 summary: "플러그인 매니저인 Vundle과 플러그인 & 매퍼인 Janus을 설치해야한다. 이들은 다음 명령어를 통해 설치할 수 있다."
 category: "IDE"
+images: ["images/ide.jpg"]
 ---
 
 ## Vundle & Janus 설치

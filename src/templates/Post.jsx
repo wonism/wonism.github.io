@@ -69,6 +69,27 @@ const PostContent = styled.section`
   pre {
     margin: 20px 0 0;
   }
+
+  ol,
+  ul {
+    padding: 0 0 0 24px;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  ul {
+    list-style: disc;
+
+    ul {
+      list-style: circle;
+    }
+  }
+
+  li {
+    padding: 0 0 0 4px;
+  }
 `;
 
 const ImageWrapper = styled.figure`

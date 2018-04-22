@@ -2,7 +2,7 @@
 title: "Critical Rendering Path란?"
 date: "2017-10-15T18:03:16.000Z"
 path: "/critical-rendering-path/"
-tags: ["javascript", "object", "javascript 기초"]
+tags: ["javascript", "browser", "critical rendering path", "dom", "cssom"]
 summary: "Critical Rendering Path(CRP)는 브라우저가 서버로부터 HTML 응답을 받아 화면을 그리기 위해 실행하는 과정이다."
 components: [{
 	rootId: 'crp-dom',
@@ -15,6 +15,7 @@ components: [{
 	fileName: 'render-images/critical-rendering-path/render-tree',
 }]
 category: "Browser"
+images: ["images/browser.jpg"]
 ---
 
 이 글은 [Ire Aderinokun](https://ireaderinokun.com/)의 허락을 받고
