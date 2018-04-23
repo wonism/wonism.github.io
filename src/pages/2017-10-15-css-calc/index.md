@@ -9,6 +9,7 @@ components: [{
 	fileName: 'render-codepens/css-calc/index',
 }]
 category: "CSS"
+images: ["images/browser.jpg"]
 ---
 
 `CSS` 함수 `calc()`는 `CSS3`에 추가된 기능 중 하나로, 계산을 해주는 속성이다.<br />
