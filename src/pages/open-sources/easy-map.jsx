@@ -6,6 +6,7 @@ import { Repository } from 'react-github-info';
 import { historyGoBack } from '~/store/app/actions';
 import { easyMapGoogle, easyMapNaver, easyMapDaum } from '~/utils/getMaps';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
+import './index.less';
 
 class EasyMapComponent extends PureComponent {
   static propTypes = {

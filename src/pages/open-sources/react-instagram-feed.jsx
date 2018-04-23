@@ -7,6 +7,7 @@ import { Repository } from 'react-github-info';
 import Feed from 'react-instagram-feed';
 import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
+import './index.less';
 
 const Frame = styled.div`
   display: block;
