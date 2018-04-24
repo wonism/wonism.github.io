@@ -355,7 +355,11 @@ const Gnb = ({
     fp.replace(/\/$/, ''),
     fp.startsWith('/open-sources')
   )(pathname);
-  const isPost = !(isPortfolio || isHome || isResume || isOpenSource);
+  const isNews = fp.flow(
+    fp.replace(/\/$/, ''),
+    fp.isEqual('/news')
+  )(pathname);
+  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || isNews);
 
   return (
     <GnbWrapper>
@@ -414,6 +418,11 @@ const Gnb = ({
             <ListMenu>
               <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={closeMenu}>
                 Resume
+              </StyledLink>
+            </ListMenu>
+            <ListMenu>
+              <StyledLink to="/news" className={isNews ? 'active' : ''} onClick={closeMenu}>
+                News
               </StyledLink>
             </ListMenu>
             <SearchBarWrapper>
@@ -506,6 +515,11 @@ const Gnb = ({
         <ListMenu>
           <StyledLink to="/resume" className={isResume ? 'active' : ''}>
             Resume
+          </StyledLink>
+        </ListMenu>
+        <ListMenu>
+          <StyledLink to="/news" className={isNews ? 'active' : ''}>
+            News
           </StyledLink>
         </ListMenu>
         <SearchBarWrapper>
