@@ -6,6 +6,7 @@ import { Repository } from 'react-github-info';
 import KakaoLogin from 'react-kakao-login';
 import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
+import './index.less';
 
 const ReactKakaoLogin = ({
   historyGoBack,

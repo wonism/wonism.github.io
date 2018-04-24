@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import fp from 'lodash/fp';
 import { Repository } from 'react-github-info';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
+import './index.less';
 
 const OpenSource = () => (
   <OpenSourceWrapper>

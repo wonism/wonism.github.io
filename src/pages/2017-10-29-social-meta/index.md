@@ -5,6 +5,7 @@ path: "/meta-for-social/"
 tags: ["html", "meta", "open graph", "SEO", "검색 엔진 최적화"]
 summary: "Facebook이나 Twitter에 URL을 공유하면 대표이미지와 제목, 내용 등이 보이게 된다. 이와 같은 속성을 설정하기 위해 <meta>태그를 사용한다."
 category: "HTML"
+images: ["images/browser.jpg"]
 ---
 
 `Facebook`이나 `Twitter`에 URL을 공유하면 대표이미지와 제목, 내용 등이 보이게 된다.<br />

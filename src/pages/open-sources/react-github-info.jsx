@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import { Profile, Repository } from 'react-github-info';
 import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
+import './index.less';
 
 const Github = ({
   historyGoBack,
