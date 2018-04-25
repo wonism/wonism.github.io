@@ -360,11 +360,13 @@ const Gnb = ({
     fp.replace(/\/$/, ''),
     fp.isEqual('/ideas')
   )(pathname);
+  /*
   const isNews = fp.flow(
     fp.replace(/\/$/, ''),
     fp.isEqual('/news')
   )(pathname);
-  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || isNews || isIdeas);
+  */
+  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || /* isNews || */ isIdeas);
 
   return (
     <GnbWrapper>
@@ -430,11 +432,13 @@ const Gnb = ({
                 Ideas
               </StyledLink>
             </ListMenu>
+            {/*
             <ListMenu>
               <StyledLink to="/news" className={isNews ? 'active' : ''} onClick={closeMenu}>
                 News
               </StyledLink>
             </ListMenu>
+            */}
             <SearchBarWrapper>
               <label htmlFor="search">
                 <FaSearch />
@@ -532,11 +536,13 @@ const Gnb = ({
             Ideas
           </StyledLink>
         </ListMenu>
+        {/*
         <ListMenu>
           <StyledLink to="/news" className={isNews ? 'active' : ''}>
             News
           </StyledLink>
         </ListMenu>
+        */}
         <SearchBarWrapper>
           <label htmlFor="search">
             <FaSearch />
