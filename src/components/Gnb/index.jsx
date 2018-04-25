@@ -358,9 +358,13 @@ const Gnb = ({
   )(pathname);
   const isIdeas = fp.flow(
     fp.replace(/\/$/, ''),
-    fp.startsWith('/ideas')
+    fp.isEqual('/ideas')
   )(pathname);
-  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || isIdeas);
+  const isNews = fp.flow(
+    fp.replace(/\/$/, ''),
+    fp.isEqual('/news')
+  )(pathname);
+  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || isNews || isIdeas);
 
   return (
     <GnbWrapper>
@@ -424,6 +428,11 @@ const Gnb = ({
             <ListMenu>
               <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
                 Ideas
+              </StyledLink>
+            </ListMenu>
+            <ListMenu>
+              <StyledLink to="/news" className={isNews ? 'active' : ''} onClick={closeMenu}>
+                News
               </StyledLink>
             </ListMenu>
             <SearchBarWrapper>
@@ -521,6 +530,11 @@ const Gnb = ({
         <ListMenu>
           <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
             Ideas
+          </StyledLink>
+        </ListMenu>
+        <ListMenu>
+          <StyledLink to="/news" className={isNews ? 'active' : ''}>
+            News
           </StyledLink>
         </ListMenu>
         <SearchBarWrapper>
