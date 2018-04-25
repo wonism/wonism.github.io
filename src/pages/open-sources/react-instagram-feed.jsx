@@ -70,6 +70,14 @@ const Wrapper = ({
   </Frame>
 );
 
+Wrapper.propTypes = {
+  children: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+};
+
+Wrapper.defaultProps = {
+  children: null,
+};
+
 class ReactInstagramFeed extends PureComponent {
   static propTypes = {
     historyGoBack: PropTypes.func.isRequired,

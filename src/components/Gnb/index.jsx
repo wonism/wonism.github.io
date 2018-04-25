@@ -83,6 +83,7 @@ const ListMenu = styled.li`
   position: relative;
   padding: 0 0 0 2em;
   font-weight: 500;
+  font-size: 14px;
   @media (max-width: 414px) {
     display: none;
   }
@@ -108,7 +109,7 @@ const ListMenu = styled.li`
 `;
 
 const Home = styled(FaHome)`
-  font-size: 40px;
+  font-size: 32px;
 `;
 
 const StyledLink = styled(Link)`
@@ -355,7 +356,11 @@ const Gnb = ({
     fp.replace(/\/$/, ''),
     fp.startsWith('/open-sources')
   )(pathname);
-  const isPost = !(isPortfolio || isHome || isResume || isOpenSource);
+  const isIdeas = fp.flow(
+    fp.replace(/\/$/, ''),
+    fp.startsWith('/ideas')
+  )(pathname);
+  const isPost = !(isPortfolio || isHome || isResume || isOpenSource || isIdeas);
 
   return (
     <GnbWrapper>
@@ -414,6 +419,11 @@ const Gnb = ({
             <ListMenu>
               <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={closeMenu}>
                 Resume
+              </StyledLink>
+            </ListMenu>
+            <ListMenu>
+              <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
+                Ideas
               </StyledLink>
             </ListMenu>
             <SearchBarWrapper>
@@ -506,6 +516,11 @@ const Gnb = ({
         <ListMenu>
           <StyledLink to="/resume" className={isResume ? 'active' : ''}>
             Resume
+          </StyledLink>
+        </ListMenu>
+        <ListMenu>
+          <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
+            Ideas
           </StyledLink>
         </ListMenu>
         <SearchBarWrapper>

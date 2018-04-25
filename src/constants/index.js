@@ -6,3 +6,7 @@ exports.PORTFOLIO = 'portfolio';
 exports.RESUME = 'resume';
 
 exports.SITE_URL = 'https://wonism.github.io';
+
+exports.TODOS = 'TODOS';
+exports.TIL = 'TIL';
+exports.BOOKMARKS = 'BOOKMARKS';

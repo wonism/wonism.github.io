@@ -13,6 +13,7 @@ const Background = styled.div`
   background-color: #fff;
 `;
 
+/* eslint-disable react/prefer-stateless-function */
 export default class Layout extends Component {
   static propTypes = {
     // historyGoBack: PropTypes.func.isRequired,
@@ -80,3 +81,4 @@ export default class Layout extends Component {
     );
   }
 }
+/* eslint-enable react/prefer-stateless-function */

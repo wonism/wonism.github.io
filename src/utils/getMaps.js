@@ -47,7 +47,7 @@ export const easyMapGoogle = element => new EasyMap({
   closeInfoWindowAuto: true,
   clickedNestedMarker: (cb, ids, strs) => {
     const userInput = prompt(`You clicked nested markers! Select on.\n${strs}`, ''); // eslint-disable-line no-alert
-    cb(+userInput);
+    cb(Number(userInput));
   },
 });
 
@@ -111,7 +111,7 @@ export const easyMapNaver = element => new EasyMap({
   closeInfoWindowAuto: true,
   clickedNestedMarker: (cb, ids, strs) => {
     const userInput = prompt(`You clicked nested markers! Select on.\n${strs}`, ''); // eslint-disable-line no-alert
-    cb(+userInput);
+    cb(Number(userInput));
   },
 });
 
@@ -172,6 +172,6 @@ export const easyMapDaum = element => new EasyMap({
   closeInfoWindowAuto: true,
   clickedNestedMarker: (cb, ids, strs) => {
     const userInput = prompt(`You clicked nested markers! Select on.\n${strs}`, ''); // eslint-disable-line no-alert
-    cb(+userInput);
+    cb(Number(userInput));
   },
 });

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PRIMARY_COLOR } from '~/components/Common/constants';
 
 const FooterWrapper = styled.section`
   padding: 10px 0;

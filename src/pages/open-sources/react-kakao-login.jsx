@@ -8,6 +8,7 @@ import { historyGoBack } from '~/store/app/actions';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
 import './index.less';
 
+/* eslint-disable no-alert */
 const ReactKakaoLogin = ({
   historyGoBack,
 }) => (
@@ -22,8 +23,8 @@ const ReactKakaoLogin = ({
     <div>
       <KakaoLogin
         jsKey="b1e7775aab8c44df50a6c46eae9dcae3"
-        onSuccess={() => { alert('Succes');}}
-        onFailure={() => { alert('Failed');}}
+        onSuccess={() => { alert('Succes'); }}
+        onFailure={() => { alert('Failed'); }}
       />
     </div>
     <br /><br />
@@ -31,6 +32,11 @@ const ReactKakaoLogin = ({
     <br /><br />
   </OpenSourceWrapper>
 );
+/* eslint-enable no-alert */
+
+ReactKakaoLogin.propTypes = {
+  historyGoBack: PropTypes.func.isRequired,
+};
 
 export default connect(
   () => ({}),

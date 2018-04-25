@@ -5,6 +5,7 @@ import Truncate from 'react-truncate';
 import FaTags from 'react-icons/lib/fa/tags';
 import styled from 'styled-components';
 import fp from 'lodash/fp';
+import formattedDate from '~/utils/formattedDate';
 
 /* eslint-disable max-len */
 const ImageWrapper = styled.figure`
@@ -157,7 +158,7 @@ const Card = ({
             </Link>
           ))(tags)}
         </TagWrapper>
-        <time>{date}</time>
+        <time>{formattedDate(date)}</time>
       </div>
     </StyledArticle>
   );

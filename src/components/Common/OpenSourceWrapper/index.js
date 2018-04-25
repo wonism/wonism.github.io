@@ -5,7 +5,6 @@ const OpenSourceWrapper = styled.div`
   padding: 120px 0 0;
   max-width: 1176px;
   text-align: center;
-
   @media (max-width: 414px) {
     padding: 70px 16px 0;
   }

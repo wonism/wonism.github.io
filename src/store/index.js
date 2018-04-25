@@ -8,18 +8,22 @@ import createReducer from '~/utils/createReducer';
 
 /* reducers */
 import appReducers from '~/store/app/reducers';
+import ideasReducers from '~/store/ideas/reducers';
 import postsReducers from '~/store/posts/reducers';
 
 /* sagas */
 import * as appSagas from '~/store/app/sagas';
+import * as ideasSagas from '~/store/ideas/sagas';
 import * as postsSagas from '~/store/posts/sagas';
 
 /* initial states */
 import appInitialState from '~/store/app/initialState';
+import ideasInitialState from '~/store/ideas/initialState';
 import postsInitialState from '~/store/posts/initialState';
 
 /* initializers */
 import appInitializer from '~/store/app/initializer';
+import ideasInitializer from '~/store/ideas/initializer';
 import postsInitializer from '~/store/posts/initializer';
 
 import {
@@ -27,6 +31,9 @@ import {
   NAVIGATE_TO_PATH,
   PRINT,
 } from '~/store/app/actionTypes';
+import {
+  FETCH_IDEAS,
+} from '~/store/ideas/actionTypes';
 import {
   INIT_COPY,
   CREATE_COPY_BUTTON,
@@ -40,16 +47,19 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const reducers = combineReducers({
   app: createReducer(appReducers, appInitialState),
+  ideas: createReducer(ideasReducers, ideasInitialState),
   posts: createReducer(postsReducers, postsInitialState),
 });
 
 const initialState = {
   app: appInitialState,
+  ideas: ideasInitialState,
   posts: postsInitialState,
 };
 
 const initializeStore = fp.flow(
   appInitializer,
+  ideasInitializer,
   postsInitializer,
 );
 
@@ -71,6 +81,8 @@ function* sagas() {
   yield takeLatest(CREATE_COPY_BUTTON, postsSagas.createCopyButton);
   // print
   yield takeEvery(PRINT, appSagas.printPage);
+  // ideas
+  yield takeLatest(FETCH_IDEAS, ideasSagas.fetchIdeas);
   // disqus
   yield takeEvery(LOAD_DISQUS_SCRIPT, postsSagas.loadDisqusScript);
   yield takeEvery(LOAD_DISQUS_SCRIPT_SUCCESS, postsSagas.initDisqusConfig);

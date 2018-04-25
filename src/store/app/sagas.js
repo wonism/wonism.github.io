@@ -18,7 +18,7 @@ export function* historyGoBack() {
 
     yield put({ type: HISTORY_GO_BACK_SUCCESS });
   } catch (e) {
-    yield call(() => { alert('can not access the history API'); });
+    yield call(() => { alert('can not access the history API'); }); // eslint-disable-line no-alert
     yield put({ type: HISTORY_GO_BACK_FAILED });
   }
 }
