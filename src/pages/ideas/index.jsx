@@ -15,9 +15,11 @@ const IdeasWrapper = PostWrapper.extend`
   margin: auto;
   padding: 120px 0 20px;
   max-width: 720px;
+  min-height: 100vh;
+  font-size: 0;
   text-align: center;
   @media (max-width: 414px) {
-    padding: 70px 16px 20px;
+    padding: 70px 16px 20px 24px;
   }
 
   ul {
@@ -29,6 +31,9 @@ const IdeasWrapper = PostWrapper.extend`
     list-style: decimal;
     font-size: 14px;
     font-weight: 400;
+    &.strike {
+      text-decoration: line-through;
+    }
   }
 
   pre {
@@ -129,7 +134,7 @@ class Ideas extends PureComponent {
                 // todos
                 if (fp.flow(fp.keys, fp.includes('doneAt'))(element)) {
                   return (
-                    <li key={element.content}>
+                    <li key={element.content} className={fp.isNil(element.doneAt) ? '' : 'strike'}>
                       {element.content}
                       <br />
                       <small>{formattedDate(element.createdAt)}</small>

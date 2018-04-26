@@ -56,13 +56,12 @@ const TaggedList = ({
 
         return null;
       })(posts)}
+      <Pagination
+        prefix={`/tags/${tag}/`}
+        postCount={postCount}
+        location={location}
+      />
     </PostsWrapper>,
-    <Pagination
-      key="pagination"
-      prefix={`/tags/${tag}/`}
-      postCount={postCount}
-      location={location}
-    />,
   ]);
 };
 

@@ -8,6 +8,7 @@ import PortfolioCard from '~/components/Common/PortfolioCard';
 
 const Wrapper = SimpleWrapper.extend`
   padding: 100px 0 0;
+  min-height: 100vh;
   @media (max-width: 414px) {
     padding: 70px 0 0;
   }

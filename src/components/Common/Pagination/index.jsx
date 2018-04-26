@@ -17,6 +17,7 @@ import getPage from '~/utils/getPage';
 const Wrapper = styled.nav`
   margin: 1em 0;
   text-align: center;
+  font-size: 16px;
 
   li {
     display: inline-block;

@@ -39,8 +39,8 @@ const List = ({
 
         return null;
       })(posts)}
+      <Pagination postCount={postCount} location={location} />
     </PostsWrapper>,
-    <Pagination key="pagination" postCount={postCount} location={location} />,
   ]);
 };
 

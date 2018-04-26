@@ -56,13 +56,12 @@ const CategorizedList = ({
 
         return null;
       })(posts)}
+      <Pagination
+        prefix={`/categories/${category}/`}
+        postCount={postCount}
+        location={location}
+      />
     </PostsWrapper>,
-    <Pagination
-      key="pagination"
-      prefix={`/categories/${category}/`}
-      postCount={postCount}
-      location={location}
-    />,
   ]);
 };
 
