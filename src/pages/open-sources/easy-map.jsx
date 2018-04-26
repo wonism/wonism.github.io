@@ -27,8 +27,8 @@ class EasyMapComponent extends PureComponent {
     return (
       <OpenSourceWrapper>
         <Helmet>
-          <title>WONISM | Easy Map</title>
-          <meta name="og:title" content="WONISM | Easy Map" />
+          <title>WONISM | EASY MAP</title>
+          <meta name="og:title" content="WONISM | EASY MAP" />
         </Helmet>
         <Repository className="react-github-info--component" username="wonism" repos="easy-map" />
         <br /><br />

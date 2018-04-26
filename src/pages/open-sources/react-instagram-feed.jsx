@@ -97,8 +97,8 @@ class ReactInstagramFeed extends PureComponent {
     return (
       <OpenSourceWrapper>
         <Helmet>
-          <title>WONISM | React Instagram Feed</title>
-          <meta name="og:title" content="WONISM | React Instagram Feed" />
+          <title>WONISM | REACT INSTAGRAM FEED</title>
+          <meta name="og:title" content="WONISM | REACT INSTAGRAM FEED" />
         </Helmet>
         <Repository username="wonism" repos="react-instagram-feed" />
         <br />

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import MarkdownRenderer from 'react-markdown-renderer';
 import styled from 'styled-components';
 import fp from 'lodash/fp';
@@ -108,6 +109,10 @@ class Ideas extends PureComponent {
 
     return (
       <IdeasWrapper>
+        <Helmet>
+          <title>WONISM | IDEAS</title>
+          <meta name="og:title" content="WONISM | IDEAS" />
+        </Helmet>
         <Button
           className={menu === TODOS ? 'active' : ''}
           onClick={() => { setIdeasMenu(TODOS); }}

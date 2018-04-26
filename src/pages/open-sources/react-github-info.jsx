@@ -12,8 +12,8 @@ const Github = ({
 }) => (
   <OpenSourceWrapper>
     <Helmet>
-      <title>WONISM | React Github Info</title>
-      <meta name="og:title" content="WONISM | React Github Info" />
+      <title>WONISM | REACT GITHUB INFO</title>
+      <meta name="og:title" content="WONISM | REACT GITHUB INFO" />
     </Helmet>
     <Repository username="wonism" repos="react-github-info" />
     <br /><br />

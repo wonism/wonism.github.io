@@ -88,8 +88,8 @@ export default class News extends PureComponent {
     return (
       <NewsWrapper>
         <Helmet>
-          <title>WONISM | Open Sources</title>
-          <meta name="og:title" content="WONISM | Open Sources" />
+          <title>WONISM | NEWS</title>
+          <meta name="og:title" content="WONISM | NEWS" />
         </Helmet>
         {fp.isNil(this.state.title) ? null : [
           <section key="list">

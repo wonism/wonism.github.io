@@ -12,8 +12,8 @@ const GatsbyAdvancedBlog = ({
 }) => (
   <OpenSourceWrapper>
     <Helmet>
-      <title>WONISM | Gatsby Advanced Blog</title>
-      <meta name="og:title" content="WONISM | Gatsby Advanced Blog" />
+      <title>WONISM | GATSBY ADVANCED BLOG</title>
+      <meta name="og:title" content="WONISM | GATSBY ADVANCED BLOG" />
     </Helmet>
     <Repository username="wonism" repos="gatsby-advanced-blog" />
     <br /><br />

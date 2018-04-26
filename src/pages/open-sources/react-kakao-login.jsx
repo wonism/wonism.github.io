@@ -14,8 +14,8 @@ const ReactKakaoLogin = ({
 }) => (
   <OpenSourceWrapper>
     <Helmet>
-      <title>WONISM | React Kakao Login</title>
-      <meta name="og:title" content="WONISM | React Kakao Login" />
+      <title>WONISM | REACT KAKAO LOGIN</title>
+      <meta name="og:title" content="WONISM | REACT KAKAO LOGIN" />
     </Helmet>
     <Repository username="wonism" repos="react-kakao-login" />
     <br />

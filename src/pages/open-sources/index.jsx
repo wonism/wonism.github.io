@@ -8,8 +8,8 @@ import './index.less';
 const OpenSource = () => (
   <OpenSourceWrapper>
     <Helmet>
-      <title>WONISM | Open Sources</title>
-      <meta name="og:title" content="WONISM | Open Sources" />
+      <title>WONISM | OPEN SOURCES</title>
+      <meta name="og:title" content="WONISM | OPEN SOURCES" />
     </Helmet>
     <ul>
       <li>

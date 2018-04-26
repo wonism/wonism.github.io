@@ -13,8 +13,8 @@ const ReactGoogleAds = ({
 }) => (
   <OpenSourceWrapper>
     <Helmet>
-      <title>WONISM | React Google Ads</title>
-      <meta name="og:title" content="WONISM | React Google Ads" />
+      <title>WONISM | REACT GOOGLE ADS</title>
+      <meta name="og:title" content="WONISM | REACT GOOGLE ADS" />
     </Helmet>
     <Repository username="wonism" repos="react-google-ads" />
     <br /><br />
