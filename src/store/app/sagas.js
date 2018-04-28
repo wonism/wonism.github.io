@@ -40,3 +40,15 @@ export function* printPage() {
     yield put({ type: PRINT_FAILED });
   }
 }
+
+export function* openMenu() {
+  yield call(() => {
+    global.document.body.classList.add('menu-opened');
+  });
+}
+
+export function* closeMenu() {
+  yield call(() => {
+    global.document.body.classList.remove('menu-opened');
+  });
+}

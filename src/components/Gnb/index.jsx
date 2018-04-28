@@ -52,8 +52,8 @@ const GnbWrapper = styled.div`
   font-weight: 600;
   z-index: 3000;
   @media (max-width: 414px) {
-    height: 60px;
-    line-height: 60px;
+    height: 48px;
+    line-height: 48px;
     background-color: transparent;
   }
 `;
@@ -281,7 +281,7 @@ const MobileMenu = styled.section`
   height: 100%;
   @media (max-width: 414px) {
     display: block;
-    line-height: 60px;
+    line-height: 48px;
     pointer-events: ${({ isActive }) => (isActive ? 'all' : 'none')};
 
     ul,
@@ -299,11 +299,13 @@ const MobileMenu = styled.section`
     & > ul {
       position: static;
       max-height: ${({ isSubActive }) => (isSubActive ? '0' : '360px')} !important;
+      font-size: 12px;
     }
   }
 
   & > div + div {
     left: ${({ isActive }) => (isActive ? '0' : '-100%')};
+    padding: 0 16px 16px;
     box-shadow: ${({ isActive }) => (isActive ? '0 2px 4px rgba(0,0,0,0.2)' : '0 0 0')};
     box-shadow: ${({ isActive }) => (isActive ? '0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08)' : '0 0 0')};
   }

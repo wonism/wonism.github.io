@@ -30,6 +30,8 @@ import {
   HISTORY_GO_BACK,
   NAVIGATE_TO_PATH,
   PRINT,
+  OPEN_MENU,
+  CLOSE_MENU,
 } from '~/store/app/actionTypes';
 import {
   FETCH_IDEAS,
@@ -73,6 +75,9 @@ const middlewares = [
 const middleware = applyMiddleware.apply(null, [...middlewares]);
 
 function* sagas() {
+  // menu
+  yield takeEvery(OPEN_MENU, appSagas.openMenu);
+  yield takeEvery(CLOSE_MENU, appSagas.closeMenu);
   // history
   yield takeEvery(HISTORY_GO_BACK, appSagas.historyGoBack);
   yield takeEvery(NAVIGATE_TO_PATH, appSagas.navigateToPath);

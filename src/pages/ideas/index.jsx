@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import MarkdownRenderer from 'react-markdown-renderer';
-import styled from 'styled-components';
+import Dropdown from '@wonism/react-dropdown';
 import fp from 'lodash/fp';
 import { TODOS, TIL, BOOKMARKS } from '~/constants';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
@@ -11,13 +11,13 @@ import { fetchIdeas, setIdeasMenu } from '~/store/ideas/actions';
 import * as ideasSelectors from '~/store/ideas/selectors';
 import PostWrapper from '~/components/Common/PostWrapper';
 import formattedDate from '~/utils/formattedDate';
+import './index.less';
 
 const IdeasWrapper = PostWrapper.extend`
   margin: auto;
   padding: 120px 0 20px;
   max-width: 720px;
   min-height: 100vh;
-  font-size: 0;
   text-align: center;
   @media (max-width: 414px) {
     padding: 70px 16px 20px 24px;
@@ -53,28 +53,6 @@ const IdeasWrapper = PostWrapper.extend`
   }
 `;
 
-const Button = styled.button`
-  padding: 2px 8px;
-  color: ${PRIMARY_COLOR};
-  background-color: #fff;
-  border-width: 1px;
-  border-left-width: 0;
-  border-style: solid;
-  border-color: ${PRIMARY_COLOR};
-  outline: 0;
-  font-size: 14px;
-
-  &:first-child {
-    border-left-width: 1px;
-  }
-
-  &.active,
-  &:hover {
-    color: #fff;
-    background-color: ${PRIMARY_COLOR};
-  }
-`;
-
 class Ideas extends PureComponent {
   static propTypes = {
     fetchIdeas: PropTypes.func.isRequired,
@@ -92,6 +70,11 @@ class Ideas extends PureComponent {
     data: null,
   };
 
+  static formatOption = option => ({
+    value: option,
+    label: fp.capitalize(option),
+  });
+
   componentDidMount() {
     this.props.fetchIdeas();
   }
@@ -107,30 +90,23 @@ class Ideas extends PureComponent {
       );
     }
 
+    const options = [
+      Ideas.formatOption(TODOS),
+      Ideas.formatOption(TIL),
+      Ideas.formatOption(BOOKMARKS),
+    ];
+
     return (
       <IdeasWrapper>
         <Helmet>
           <title>WONISM | IDEAS</title>
           <meta name="og:title" content="WONISM | IDEAS" />
         </Helmet>
-        <Button
-          className={menu === TODOS ? 'active' : ''}
-          onClick={() => { setIdeasMenu(TODOS); }}
-        >
-          {fp.capitalize(TODOS)}
-        </Button>
-        <Button
-          className={menu === TIL ? 'active' : ''}
-          onClick={() => { setIdeasMenu(TIL); }}
-        >
-          {fp.capitalize(TIL)}
-        </Button>
-        <Button
-          className={menu === BOOKMARKS ? 'active' : ''}
-          onClick={() => { setIdeasMenu(BOOKMARKS); }}
-        >
-          {fp.capitalize(BOOKMARKS)}
-        </Button>
+        <Dropdown
+          options={options}
+          onChange={fp.flow(fp.get('value'), setIdeasMenu)}
+          value={Ideas.formatOption(menu)}
+        />
         <ul>
           {fp.isObject(data) ? (
             fp.flow(
