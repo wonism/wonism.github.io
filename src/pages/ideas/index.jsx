@@ -29,16 +29,24 @@ const IdeasWrapper = PostWrapper.extend`
 
   li {
     margin: 16px 0 0;
-    list-style: decimal;
     font-size: 14px;
     font-weight: 400;
+
     &.strike {
       text-decoration: line-through;
+    }
+
+    & > span {
+      float: left;
+      margin: 0 4px 0 0;
     }
   }
 
   pre {
     margin: 16px 0 0;
+    padding: 0 0 8px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   code {
@@ -116,9 +124,17 @@ class Ideas extends PureComponent {
                 if (fp.flow(fp.keys, fp.includes('doneAt'))(element)) {
                   return (
                     <li key={element.content} className={fp.isNil(element.doneAt) ? '' : 'strike'}>
+                      <span>
+                        {fp.flow(
+                          fp.get(fp.toLower(menu)),
+                          fp.findIndex({ content: element.content }),
+                          fp.add(1),
+                          fp.add(fp.__, '. ')
+                        )(data)}
+                      </span>
                       {element.content}
                       <br />
-                      <small>{formattedDate(element.createdAt)}</small>
+                      <small>- {formattedDate(element.createdAt)}</small>
                     </li>
                   );
                 }
@@ -127,6 +143,14 @@ class Ideas extends PureComponent {
                 if (fp.flow(fp.keys, fp.includes('link'))(element)) {
                   return (
                     <li key={element.link}>
+                      <span>
+                        {fp.flow(
+                          fp.get(fp.toLower(menu)),
+                          fp.findIndex({ link: element.link }),
+                          fp.add(1),
+                          fp.add(fp.__, '. ')
+                        )(data)}
+                      </span>
                       <a href={element.link} target="_blank" rel="noopener noreferrer">
                         {element.name}
                       </a>
@@ -138,8 +162,16 @@ class Ideas extends PureComponent {
                 if (fp.flow(fp.keys, fp.includes('createdAt'))(element)) {
                   return (
                     <li key={element.content}>
+                      <span>
+                        {fp.flow(
+                          fp.get(fp.toLower(menu)),
+                          fp.findIndex({ content: element.content }),
+                          fp.add(1),
+                          fp.add(fp.__, '. ')
+                        )(data)}
+                      </span>
                       <MarkdownRenderer markdown={element.content} />
-                      <small>{formattedDate(element.createdAt)}</small>
+                      <small>- {formattedDate(element.createdAt)}</small>
                     </li>
                   );
                 }
