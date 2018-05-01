@@ -108,10 +108,10 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+              return allMarkdownRemark.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
-                  url: site.siteMetadata.siteUrl + edge.node.path,
-                  guid: site.siteMetadata.siteUrl + edge.node.path,
+                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
                   custom_elements: [{ "content:encoded": edge.node.html }],
                 });
               });
@@ -131,6 +131,7 @@ module.exports = {
                       html
                       frontmatter {
                         title
+                        path
                         summary
                         date
                       }
