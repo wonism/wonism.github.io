@@ -8,7 +8,7 @@ import {
 function* fetchIdeas() {
   try {
     const response = yield call(Api.fetchData, {
-      url: 'https://api.github.com/repos/wonism/ideas/git/blobs/28f751b793583c37819e7ed60a4d982607be7ddc',
+      url: 'https://api.github.com/repos/wonism/ideas/contents/main.json',
     });
 
     if (response.status >= 200 && response.status < 300) {
