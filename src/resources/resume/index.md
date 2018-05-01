@@ -19,8 +19,7 @@ path: "/resume/"
   - Do Internationalization work for Japan
 
 ## Education
-- B.S. in Computer Science Engineering at Seoul Tech
-  - 2008. 03 ~ 2015. 02
+- B.S. in Computer Science Engineering at Seoul Tech ∙ 2008. 03 ~ 2015. 02
 
 ## Projects
 - Korbit (https://korbit.co.kr) ∙ 2017. 05 ~ Present

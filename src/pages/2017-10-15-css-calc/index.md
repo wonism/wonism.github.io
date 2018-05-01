@@ -8,7 +8,7 @@ components: [{
 	rootId: 'css-calc-example',
 	fileName: 'render-codepens/css-calc/index',
 }]
-category: "CSS"
+category: "HTML/CSS"
 images: ["images/browser.jpg"]
 ---
 

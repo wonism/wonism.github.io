@@ -49,6 +49,9 @@ const StyledArticle = styled.article`
   width: 25%;
   font-size: 14px;
   vertical-align: top;
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
   @media (max-width: 414px) {
     margin: 0 0 16px;
     padding: 0 0 16px;

@@ -6,7 +6,7 @@ const PostsWrapper = styled.section`
   max-width: 1176px;
   min-height: 100vh;
   font-size: 0;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     padding: 70px 16px 0;
   }
 

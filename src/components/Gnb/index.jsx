@@ -16,7 +16,7 @@ const Hamburger = styled.div`
   top: 0;
   right: 0;
   z-index: 5000;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: block;
   }
 
@@ -51,7 +51,7 @@ const GnbWrapper = styled.div`
   font-family: Lato;
   font-weight: 600;
   z-index: 3000;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     height: 48px;
     line-height: 48px;
     background-color: transparent;
@@ -84,7 +84,7 @@ const ListMenu = styled.li`
   padding: 0 0 0 2em;
   font-weight: 500;
   font-size: 14px;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 
@@ -133,7 +133,7 @@ const SearchBarWrapper = styled.div`
   margin: auto;
   padding: 0 36px 0 0;
   text-align: right;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: none;
     position: relative;
     padding: 0;
@@ -162,7 +162,7 @@ const SearchBar = styled.input`
   font-size: 18px;
   outline: 0;
   z-index: 1000;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: none;
     right: 0;
     left: 0;
@@ -185,7 +185,7 @@ const SearchedPosts = styled.div`
   box-shadow: ${({ isEmpty }) => (isEmpty ? '0 0 0' : '0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08)')};
   font-weight: 400;
   overflow-y: auto;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: none;
     position: static;
     width: 100%;
@@ -250,7 +250,7 @@ const Background = styled.div`
   background-color: #000;
   transition: opacity .4s ease-out .1s;
   opacity: ${({ isActive }) => (isActive ? '.5' : '0')};
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: block;
   }
 `;
@@ -267,7 +267,7 @@ const MobileMenus = styled.div`
   transition: left.4s ease-out .1s;
   z-index: 3;
   overflow-y: auto;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: block;
   }
 `;
@@ -279,7 +279,7 @@ const MobileMenu = styled.section`
   left: 0;
   width: 100%;
   height: 100%;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     display: block;
     line-height: 48px;
     pointer-events: ${({ isActive }) => (isActive ? 'all' : 'none')};

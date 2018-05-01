@@ -42,6 +42,7 @@
     "react-markdown-renderer": "^1.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-spinners": "^0.3.2",
     "react-truncate": "^2.3.0",
     "react-twitter-widgets": "^1.7.1",
     "redux": "^3.7.2",

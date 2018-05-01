@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'gatsby-link';
 import FaRss from 'react-icons/lib/fa/rss-square';
 import FaGithub from 'react-icons/lib/fa/github';
 import FaFacebook from 'react-icons/lib/fa/facebook';
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import FaLinkedin from 'react-icons/lib/fa/linkedin';
+import GoMail from 'react-icons/lib/go/mail';
 
 const FooterWrapper = styled.section`
   padding: 10px;
@@ -36,6 +38,10 @@ const Footer = () => (
         wonism
       </a>
     </div>
+    &nbsp;&nbsp;
+    <Link to="/contacts">
+      <GoMail />
+    </Link>
     &nbsp;&nbsp;
     <a
       href="https://github.com/wonism"

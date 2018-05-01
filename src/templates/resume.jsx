@@ -16,7 +16,7 @@ import * as profileUrl from '~/resources/me.jpg';
 const Wrapper = styled.section`
   padding: 100px 0 0;
   min-height: 100vh;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     padding: 70px 16px 0;
   }
 

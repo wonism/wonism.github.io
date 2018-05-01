@@ -2,14 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import MarkdownRenderer from 'react-markdown-renderer';
 import Dropdown from '@wonism/react-dropdown';
+import { RingLoader } from 'react-spinners';
 import fp from 'lodash/fp';
 import { TODOS, TIL, BOOKMARKS } from '~/constants';
-import { PRIMARY_COLOR } from '~/components/Common/constants';
 import { fetchIdeas, setIdeasMenu } from '~/store/ideas/actions';
 import * as ideasSelectors from '~/store/ideas/selectors';
 import PostWrapper from '~/components/Common/PostWrapper';
+import { PRIMARY_COLOR } from '~/components/Common/constants';
 import formattedDate from '~/utils/formattedDate';
 import './index.less';
 
@@ -19,8 +21,14 @@ const IdeasWrapper = PostWrapper.extend`
   max-width: 720px;
   min-height: 100vh;
   text-align: center;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     padding: 70px 16px 20px 24px;
+  }
+
+  .loading-wrapper {
+    & > div {
+      margin: auto;
+    }
   }
 
   ul {
@@ -93,7 +101,28 @@ class Ideas extends PureComponent {
     if (isFailed) {
       return (
         <IdeasWrapper>
+          <Helmet>
+            <title>WONISM | IDEAS</title>
+            <meta name="og:title" content="WONISM | IDEAS" />
+          </Helmet>
           Failed to fetch datas
+        </IdeasWrapper>
+      );
+    }
+
+    if (fp.isEmpty(data)) {
+      return (
+        <IdeasWrapper>
+          <Helmet>
+            <title>WONISM | IDEAS</title>
+            <meta name="og:title" content="WONISM | IDEAS" />
+          </Helmet>
+          <div className="loading-wrapper">
+            <RingLoader
+              color={PRIMARY_COLOR}
+              loading
+            />
+          </div>
         </IdeasWrapper>
       );
     }

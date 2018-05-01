@@ -9,7 +9,7 @@ const PortfolioCard = styled.section`
   height: 0;
   background-color: #eee;
   overflow: hidden;
-  @media (max-width: 414px) {
+  @media (max-width: 1024px) {
     padding: 56.25% 0 0;
     width: 100%;
   }
