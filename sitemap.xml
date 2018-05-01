@@ -49,6 +49,7 @@
 <url> <loc>https://wonism.github.io/portfolios/ciceron/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/resume/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios/korbit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/set-interval-correction/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -168,6 +169,10 @@
 <url> <loc>https://wonism.github.io/tags/domain sharding/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/reflow/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/repain/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/setinterval/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/settimeout/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/interval/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/correction/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
