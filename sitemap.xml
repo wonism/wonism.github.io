@@ -51,6 +51,7 @@
 <url> <loc>https://wonism.github.io/portfolios/goodoc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios/korbit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/resume/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/git-tips/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -177,6 +178,11 @@
 <url> <loc>https://wonism.github.io/tags/anchor/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/email/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/mailto/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/git/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/github/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/vcs/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/submodule/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/alias/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -188,6 +194,7 @@
 <url> <loc>https://wonism.github.io/categories/RxJS/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/IDE/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/Node.js/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/categories/Git/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/contacts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/ideas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
