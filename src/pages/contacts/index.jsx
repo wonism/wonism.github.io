@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
+import ReactMailForm from 'react-mail-form';
 import fp from 'lodash/fp';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
 
@@ -59,45 +60,14 @@ const Wrapper = styled.section`
   }
 `;
 
-export default class Contacts extends PureComponent {
-  state = {
-    title: '',
-    contents: '',
-    to: 'yocee57@gmail.com',
-  };
+const Contacts = () => (
+  <Wrapper>
+    <Helmet>
+      <title>WONISM | CONTACTS</title>
+      <meta name="og:title" content="WONISM | CONTACTS" />
+    </Helmet>
+    <ReactMailForm to="yocee57@gmail.com" />
+  </Wrapper>
+);
 
-  handleTitle = (e) => {
-    this.setState({ title: e.target.value });
-  };
-
-  handleContents = (e) => {
-    this.setState({ contents: e.target.value });
-  };
-
-  render() {
-    return (
-      <Wrapper>
-        <Helmet>
-          <title>WONISM | CONTACTS</title>
-          <meta name="og:title" content="WONISM | CONTACTS" />
-        </Helmet>
-        <input
-          type="text"
-          value={this.state.title}
-          onChange={this.handleTitle}
-          maxLength={50}
-          placeholder="Title of mail"
-        />
-        <textarea
-          value={this.state.contents}
-          onChange={this.handleContents}
-          rows={8}
-          placeholder="Contents of mail"
-        />
-        <a href={`mailto:${this.state.to}?subject=${this.state.title}&body=${fp.replace(/\n/g, '%0D%0A')(this.state.contents)}`}>
-          Send E-mail
-        </a>
-      </Wrapper>
-    );
-  }
-}
+export default Contacts;

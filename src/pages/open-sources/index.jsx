@@ -43,6 +43,12 @@ const OpenSource = () => (
         <br /><br />
       </li>
       <li>
+        <Link to="/open-sources/react-mail-form">
+          <Repository username="wonism" repos="react-mail-form" renderOnly />
+        </Link>
+        <br /><br />
+      </li>
+      <li>
         <Link to="/open-sources/easy-map">
           <Repository username="wonism" repos="easy-map" renderOnly />
         </Link>

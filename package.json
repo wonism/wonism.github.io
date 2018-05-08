@@ -38,6 +38,7 @@
     "react-icons": "^2.2.7",
     "react-instagram-feed": "^0.1.3-alpha",
     "react-kakao-login": "^1.0.7",
+    "react-mail-form": "^1.0.1",
     "react-markdown": "^3.3.0",
     "react-markdown-renderer": "^1.4.0",
     "react-redux": "^5.0.7",
