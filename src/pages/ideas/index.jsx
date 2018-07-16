@@ -1,19 +1,20 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
+import { bool, oneOf, shape, func, array } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 import MarkdownRenderer from 'react-markdown-renderer';
 import Dropdown from '@wonism/react-dropdown';
 import { RingLoader } from 'react-spinners';
 import fp from 'lodash/fp';
 import { TODOS, TIL, BOOKMARKS } from '~/constants';
-import { fetchIdeas, setIdeasMenu } from '~/store/ideas/actions';
+import * as ideasActions from '~/store/ideas/actions';
 import * as ideasSelectors from '~/store/ideas/selectors';
+import Layout from '~/components/Layout';
 import PostWrapper from '~/components/Common/PostWrapper';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
 import formattedDate from '~/utils/formattedDate';
-import './index.less';
+import './index.scss';
 
 const IdeasWrapper = PostWrapper.extend`
   margin: auto;
@@ -71,15 +72,15 @@ const IdeasWrapper = PostWrapper.extend`
 
 class Ideas extends PureComponent {
   static propTypes = {
-    fetchIdeas: PropTypes.func.isRequired,
-    setIdeasMenu: PropTypes.func.isRequired,
-    data: PropTypes.shape({
-      todos: PropTypes.array,
-      til: PropTypes.array,
-      bookmarks: PropTypes.array,
+    fetchIdeas: func.isRequired,
+    setIdeasMenu: func.isRequired,
+    data: shape({
+      todos: array,
+      til: array,
+      bookmarks: array,
     }),
-    isFailed: PropTypes.bool.isRequired,
-    menu: PropTypes.oneOf([TODOS, TIL, BOOKMARKS]).isRequired,
+    isFailed: bool.isRequired,
+    menu: oneOf([TODOS, TIL, BOOKMARKS]).isRequired,
   };
 
   static defaultProps = {
@@ -215,14 +216,22 @@ class Ideas extends PureComponent {
   }
 }
 
-export default connect(
+const ConnectedIdeas = connect(
   state => ({
     menu: ideasSelectors.getMenu(state),
     data: ideasSelectors.getData(state),
     isFailed: ideasSelectors.isFailed(state),
   }),
   {
-    fetchIdeas,
-    setIdeasMenu,
+    fetchIdeas: ideasActions.fetchIdeas,
+    setIdeasMenu: ideasActions.setIdeasMenu,
   }
 )(Ideas);
+
+const IdeasLayout = props => (
+  <Layout {...props}>
+    <ConnectedIdeas />
+  </Layout>
+);
+
+export default IdeasLayout;

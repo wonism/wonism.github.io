@@ -1,9 +1,11 @@
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import { Repository } from 'react-github-info';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
 const OpenSource = () => (
   <OpenSourceWrapper>
@@ -58,17 +60,10 @@ const OpenSource = () => (
   </OpenSourceWrapper>
 );
 
-export default OpenSource;
+const OpenSourceLayout = props => (
+  <Layout {...props}>
+    <OpenSource />
+  </Layout>
+);
 
-/* eslint-disable no-undef */
-export const openSourceQuery = graphql`
-  query OpenSourceQuery {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+export default OpenSourceLayout;

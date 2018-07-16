@@ -1,16 +1,18 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Repository } from 'react-github-info';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import { easyMapGoogle, easyMapNaver, easyMapDaum } from '~/utils/getMaps';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
 class EasyMapComponent extends PureComponent {
   static propTypes = {
-    historyGoBack: PropTypes.func.isRequired,
+    historyGoBack: func.isRequired,
   };
 
   componentDidMount() {
@@ -45,21 +47,17 @@ class EasyMapComponent extends PureComponent {
   }
 }
 
-export default connect(
+const ConnectedEasyMap = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(EasyMapComponent);
 
-/* eslint-disable no-undef */
-export const easyMapComponent = graphql`
-  query EasyMapComponentQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+const EasyMapLayout = props => (
+  <Layout {...props}>
+    <ConnectedEasyMap />
+  </Layout>
+);
+
+export default EasyMapLayout;

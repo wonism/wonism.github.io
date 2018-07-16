@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import ReactMailForm from 'react-mail-form';
-import fp from 'lodash/fp';
+import Layout from '~/components/Layout';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
 
 const Wrapper = styled.section`
@@ -60,14 +61,16 @@ const Wrapper = styled.section`
   }
 `;
 
-const Contacts = () => (
-  <Wrapper>
-    <Helmet>
-      <title>WONISM | CONTACTS</title>
-      <meta name="og:title" content="WONISM | CONTACTS" />
-    </Helmet>
-    <ReactMailForm to="yocee57@gmail.com" />
-  </Wrapper>
+const Contacts = props => (
+  <Layout {...props}>
+    <Wrapper>
+      <Helmet>
+        <title>WONISM | CONTACTS</title>
+        <meta name="og:title" content="WONISM | CONTACTS" />
+      </Helmet>
+      <ReactMailForm to="yocee57@gmail.com" />
+    </Wrapper>
+  </Layout>
 );
 
 export default Contacts;

@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Repository } from 'react-github-info';
 import KakaoLogin from 'react-kakao-login';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
 /* eslint-disable no-alert */
 const ReactKakaoLogin = ({
@@ -35,24 +37,20 @@ const ReactKakaoLogin = ({
 /* eslint-enable no-alert */
 
 ReactKakaoLogin.propTypes = {
-  historyGoBack: PropTypes.func.isRequired,
+  historyGoBack: func.isRequired,
 };
 
-export default connect(
+const ConnectedReactKakaoLogin = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(ReactKakaoLogin);
 
-/* eslint-disable no-undef */
-export const kakaoLoginQuery = graphql`
-  query KakaoLoginQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+const ReactKakaoLoginLayout = props => (
+  <Layout {...props}>
+    <ConnectedReactKakaoLogin />
+  </Layout>
+);
+
+export default ReactKakaoLoginLayout;

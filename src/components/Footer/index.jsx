@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import FaRss from 'react-icons/lib/fa/rss-square';

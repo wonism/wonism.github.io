@@ -1,14 +1,16 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { Repository } from 'react-github-info';
 import MailForm from 'react-mail-form';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
-import './index.less';
+import './index.scss';
 
 const Form = styled(MailForm)`
   margin: auto;
@@ -76,9 +78,21 @@ const ReactMailForm = ({ historyGoBack }) => (
   </OpenSourceWrapper>
 );
 
-export default connect(
+ReactMailForm.propTypes = {
+  historyGoBack: func.isRequired,
+};
+
+const ConnectedReactMailForm = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(ReactMailForm);
+
+const ReactMailFormLayout = props => (
+  <Layout {...props}>
+    <ConnectedReactMailForm />
+  </Layout>
+);
+
+export default ReactMailFormLayout;

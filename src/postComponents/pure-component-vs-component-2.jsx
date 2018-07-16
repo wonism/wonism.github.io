@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/** @jsx createElement */
+import { createElement, Component } from 'react';
 
 const logClosure = () => {
   let clickedCount = 0;

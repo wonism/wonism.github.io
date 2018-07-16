@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 import Rx from 'rxjs';
 
 window.Rx = Rx;

@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { shape, string, number } from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 import FaAngleDoubleLeft from 'react-icons/lib/fa/angle-double-left';
@@ -7,7 +8,7 @@ import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right';
 import FaAngleLeft from 'react-icons/lib/fa/angle-left';
 import FaAngleRight from 'react-icons/lib/fa/angle-right';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
-import fp from 'lodash/fp';
+import { isEqual, isEmpty, range, map, filter, includes } from 'lodash/fp';
 import {
   CONTENT_PER_PAGE,
   PAGE_PER_SCREEN,
@@ -35,18 +36,18 @@ const Pagination = ({
   prefix,
 }) => {
   const pageCount = postCount ? Math.ceil(postCount / CONTENT_PER_PAGE) : 0;
-  const pages = fp.range(1, pageCount + 1);
+  const pages = range(1, pageCount + 1);
   const index = prefix === '/pages/' ? 2 : 3;
   const page = getPage(index)(location);
   const hasManyPages = pageCount >= PAGE_PER_SCREEN;
-  const filteredPages = hasManyPages ? fp.filter((p) => {
+  const filteredPages = hasManyPages ? filter((p) => {
     const range = page - p;
     return Math.abs(range) <= Math.floor(PAGE_PER_SCREEN / 2);
   })(pages) : pages;
-  const isNearStart = fp.includes(1)(filteredPages);
-  const isNearEnd = fp.includes(pageCount)(filteredPages);
+  const isNearStart = includes(1)(filteredPages);
+  const isNearEnd = includes(pageCount)(filteredPages);
 
-  if (fp.isEmpty(pages)) {
+  if (isEmpty(pages)) {
     return null;
   }
 
@@ -63,19 +64,19 @@ const Pagination = ({
             <FaEllipsisH />
           </li>,
         ]) : null}
-        {!fp.isEqual(1)(page) ? (
+        {!isEqual(1)(page) ? (
           <li>
             <Link to={`${prefix}${page - 1}`}>
               <FaAngleLeft />
             </Link>
           </li>
         ) : null}
-        {fp.map((i) => {
-          if (fp.isEqual(i)(page)) {
+        {map((i) => {
+          if (isEqual(i)(page)) {
             return (
               <li
                 key={i}
-                className={fp.isEqual(i)(page) ? 'active' : ''}
+                className={isEqual(i)(page) ? 'active' : ''}
               >
                 {i}
               </li>
@@ -85,7 +86,7 @@ const Pagination = ({
           return (
             <li
               key={i}
-              className={fp.isEqual(i)(page) ? 'active' : ''}
+              className={isEqual(i)(page) ? 'active' : ''}
             >
               <Link to={`${prefix}${i}`}>
                 {i}
@@ -93,7 +94,7 @@ const Pagination = ({
             </li>
           );
         })(filteredPages)}
-        {!fp.isEqual(pageCount)(page) ? (
+        {!isEqual(pageCount)(page) ? (
           <li>
             <Link to={`${prefix}${page + 1}`}>
               <FaAngleRight />
@@ -116,9 +117,9 @@ const Pagination = ({
 };
 
 Pagination.propTypes = {
-  postCount: PropTypes.number.isRequired,
-  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
-  prefix: PropTypes.string,
+  postCount: number.isRequired,
+  location: shape({ pathname: string.isRequired }).isRequired,
+  prefix: string,
 };
 
 Pagination.defaultProps = {

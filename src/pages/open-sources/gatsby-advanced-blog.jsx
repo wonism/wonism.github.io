@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Repository } from 'react-github-info';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
-const GatsbyAdvancedBlog = ({
-  historyGoBack,
-}) => (
+const GatsbyAdvancedBlog = ({ historyGoBack }) => (
   <OpenSourceWrapper>
     <Helmet>
       <title>WONISM | GATSBY ADVANCED BLOG</title>
@@ -23,24 +23,20 @@ const GatsbyAdvancedBlog = ({
 );
 
 GatsbyAdvancedBlog.propTypes = {
-  historyGoBack: PropTypes.func.isRequired,
+  historyGoBack: func.isRequired,
 };
 
-export default connect(
+const ConnectedGatsbyAdvancedBlog = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(GatsbyAdvancedBlog);
 
-/* eslint-disable no-undef */
-export const GatsbyAdvancedBlogQuery = graphql`
-  query gatsbyAdvancedBlogQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+const GatsbyAdvancedBlogLayout = props => (
+  <Layout {...props}>
+    <ConnectedGatsbyAdvancedBlog />
+  </Layout>
+);
+
+export default GatsbyAdvancedBlogLayout;

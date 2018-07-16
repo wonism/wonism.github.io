@@ -1,3 +1,12 @@
+/** @jsx createElement */
+import { createElement } from 'react';
 import Home from '~/containers/Home';
+import Layout from '~/components/Layout';
 
-export default Home;
+const HomeLayout = props => (
+  <Layout {...props}>
+    <Home />
+  </Layout>
+);
+
+export default HomeLayout;

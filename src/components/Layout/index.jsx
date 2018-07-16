@@ -1,84 +1,114 @@
-import React, { Children, cloneElement, Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import fp from 'lodash/fp';
-// import Header from '~/components/Header';
-import Gnb from '~/containers/Gnb';
-import Footer from '~/components/Footer';
+/** @jsx createElement */
+import { createElement, Children, cloneElement, Fragment } from 'react';
+import { node } from 'prop-types';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { StaticQuery, graphql } from 'gatsby';
+import { flow, isString, isEqual, keys, map, filter, reduce, set, get, first, size, defaultTo } from 'lodash/fp';
+import {
+  reducers,
+  initialState,
+  composeEnhancers,
+  middleware,
+  sagaMiddleware,
+  sagas,
+  initializeStore,
+} from '~/store';
+import ConnectedLayout from '~/containers/HigherOrderLayout';
+import { POST, PORTFOLIO } from '~/constants';
 
-// common styles
-import './index.less';
+const GatsbyApp = ({ children, ...otherProps }) => (
+  <StaticQuery
+    query={graphql`
+      query GatsbyQuery {
+        allMarkdownRemark(
+          filter: { frontmatter: { hide: { ne: true } } }
+        ){
+          edges {
+            node {
+              frontmatter {
+                path
+                type
+                title
+                category
+                summary
+                tags
+                images
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={(data) => {
+      const edges = get('allMarkdownRemark.edges')(data);
+      const portfolios = filter(flow(
+        get('node.frontmatter.type'),
+        isEqual(PORTFOLIO)
+      ))(edges);
+      const categories = flow(
+        map(get('node.frontmatter.category')),
+        filter(isString),
+        _ => (reduce((prev, curr) => ({
+          ...prev,
+          [curr]: prev[curr] ? prev[curr] + 1 : 1,
+        }), { __ALL__: size(_) }))(_),
+        _ => flow(
+          keys,
+          map(key => ({
+            key,
+            length: _[key],
+          }))
+        )(_)
+      )(edges);
+      const postInformations = flow(
+        filter(flow(
+          get('node.frontmatter.type'),
+          defaultTo(POST),
+          isEqual(POST)
+        )),
+        map(edge => ({
+          path: get('node.frontmatter.path')(edge),
+          title: get('node.frontmatter.title')(edge),
+          summary: get('node.frontmatter.summary')(edge),
+          tags: get('node.frontmatter.tags')(edge) || [],
+          category: get('node.frontmatter.category')(edge),
+        }))
+      )(edges);
 
-const Background = styled.div`
-  background-color: #fff;
-`;
+      const state = flow(
+        set('app.portfolios', portfolios),
+        set('app.categories', categories),
+        set('app.postInformations', postInformations),
+      )(initialState);
 
-/* eslint-disable react/prefer-stateless-function */
-export default class Layout extends Component {
-  static propTypes = {
-    // historyGoBack: PropTypes.func.isRequired,
-    printPage: PropTypes.func.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.shape({})),
-    postInformations: PropTypes.arrayOf(PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-      category: PropTypes.string,
-    })),
-    portfolios: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    children: PropTypes.node,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-    }).isRequired,
-  };
+      const createdStore = createStore(reducers, state, composeEnhancers(middleware));
+      sagaMiddleware.run(sagas);
+      const store = initializeStore(createdStore);
 
-  static defaultProps = {
-    categories: [],
-    postInformations: [],
-    children: null,
-  };
+      const childrenWithProps = Children.map(
+        children,
+        child => cloneElement(
+          child,
+          otherProps,
+        )
+      );
 
-  render() {
-    const {
-      // historyGoBack,
-      printPage,
-      categories,
-      postInformations,
-      portfolios,
-      children,
-      location,
-    } = this.props;
+      return (
+        <Provider store={store}>
+          <ConnectedLayout {...otherProps}>
+            <Fragment>
+              {first(childrenWithProps)}
+            </Fragment>
+          </ConnectedLayout>
+        </Provider>
+      );
+    }}
+  />
+);
 
-    const childrenWithProps = Children.map(children, child =>
-      cloneElement(child, {
-        location,
-        printPage,
-        portfolios,
-      }));
+GatsbyApp.propTypes = {
+  children: node.isRequired,
+};
 
-    return (
-      <Background>
-        {/*
-        <header>
-          <Header pathname={location.pathname} historyGoBack={historyGoBack} />
-        </header>
-        */}
-        <nav>
-          <Gnb
-            location={location}
-            categories={categories}
-            postInformations={postInformations}
-            hasPortfolio={fp.size(portfolios) > 0}
-          />
-        </nav>
-        <main>
-          {childrenWithProps}
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </Background>
-    );
-  }
-}
-/* eslint-enable react/prefer-stateless-function */
+export default GatsbyApp;

@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 
 const Sample = () => (
   <h1>This is small React application</h1>

@@ -1,5 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 import FaAngleLeft from 'react-icons/lib/fa/angle-left';
@@ -24,7 +25,7 @@ const Header = ({ historyGoBack }) => (
 );
 
 Header.propTypes = {
-  historyGoBack: PropTypes.func.isRequired,
+  historyGoBack: func.isRequired,
 };
 
 export default Header;

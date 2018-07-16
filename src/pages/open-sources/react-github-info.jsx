@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Profile, Repository } from 'react-github-info';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
-const Github = ({
-  historyGoBack,
-}) => (
+const Github = ({ historyGoBack }) => (
   <OpenSourceWrapper>
     <Helmet>
       <title>WONISM | REACT GITHUB INFO</title>
@@ -27,25 +27,20 @@ const Github = ({
 );
 
 Github.propTypes = {
-  historyGoBack: PropTypes.func.isRequired,
+  historyGoBack: func.isRequired,
 };
 
-export default connect(
+const ConnectedGithub = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(Github);
 
-/* eslint-disable no-undef */
-export const githubQuery = graphql`
-  query GithubQuery {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+const GithubLayout = props => (
+  <Layout {...props}>
+    <ConnectedGithub />
+  </Layout>
+);
+
+export default GithubLayout;

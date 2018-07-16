@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { arrayOf, string } from 'prop-types';
 import Link from 'gatsby-link';
 import Truncate from 'react-truncate';
 import FaTags from 'react-icons/lib/fa/tags';
 import styled from 'styled-components';
-import fp from 'lodash/fp';
+import { isNil, map, includes, first } from 'lodash/fp';
 import formattedDate from '~/utils/formattedDate';
 
 /* eslint-disable max-len */
@@ -125,16 +126,16 @@ const Card = ({
   date,
   summary,
 }) => {
-  const image = fp.first(images);
+  const image = first(images);
 
   return (
     <StyledArticle>
       <div>
         <Link to={path}>
           <ImageWrapper>
-            {fp.isNil(image) ? null : (
+            {isNil(image) ? null : (
               <img
-                src={fp.includes('//')(image) ? image : require(`~/resources/${image}`)}
+                src={includes('//')(image) ? image : require(`~/resources/${image}`)}
                 alt={title}
               />
             )}
@@ -152,7 +153,7 @@ const Card = ({
         </Link>
         <TagWrapper>
           <FaTags />
-          {fp.map(tag => (
+          {map(tag => (
             <Link
               key={tag}
               to={`/tags/${tag}/1`}
@@ -168,12 +169,12 @@ const Card = ({
 };
 
 Card.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string),
-  path: PropTypes.string.isRequired,
-  images: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string,
-  date: PropTypes.string,
-  summary: PropTypes.string,
+  tags: arrayOf(string),
+  path: string.isRequired,
+  images: arrayOf(string),
+  title: string,
+  date: string,
+  summary: string,
 };
 
 Card.defaultProps = {

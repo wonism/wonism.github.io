@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx createElement */
+import { createElement } from 'react';
 import * as image from '~/resources/images/posts/critical-rendering-path/cssom.png';
 
 export default () => (

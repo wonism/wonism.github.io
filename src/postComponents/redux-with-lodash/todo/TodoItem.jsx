@@ -1,13 +1,14 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
+import { string, number, bool, func } from 'prop-types';
 
 export default class TodoItem extends PureComponent {
   static propTypes = {
-    index: PropTypes.number.isRequired,
-    todo: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
-    toggleTodo: PropTypes.func.isRequired,
-    removeTodo: PropTypes.func.isRequired,
+    index: number.isRequired,
+    todo: string.isRequired,
+    done: bool.isRequired,
+    toggleTodo: func.isRequired,
+    removeTodo: func.isRequired,
   };
 
   render() {

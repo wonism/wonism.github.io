@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
 
 class App extends PureComponent {
   constructor(props) {

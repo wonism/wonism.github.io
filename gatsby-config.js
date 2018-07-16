@@ -57,7 +57,7 @@ module.exports = {
     // 'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-less',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

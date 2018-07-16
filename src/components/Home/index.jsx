@@ -1,13 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { arrayOf, shape } from 'prop-types';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
-import fp from 'lodash/fp';
+import { flow, isEmpty, isArray, slice, map, get, first, includes, size } from 'lodash/fp';
 import Helmet from 'react-helmet';
 import Wrapper from '~/components/Common/Wrapper';
 import SimpleWrapper from '~/components/Common/SimpleWrapper';
 import PortfolioCard from '~/components/Common/PortfolioCard';
-import './index.less';
+
+const styles = require('!raw-loader!sass-loader!./index.scss');
+
+const StylesWrapper = styled.div`
+  ${styles}
+`;
 
 const Title = styled.h1`
   position: absolute;
@@ -30,55 +36,57 @@ const Title = styled.h1`
 
 const Home = ({
   portfolios,
-}) => ([
-  <Wrapper key="main" isHome>
-    <Title>
-      I'm Wonism!
-    </Title>
-    <Helmet>
-      <title>I'm Wonism!</title>
-      <meta name="og:title" content="I'm Wonism!" />
-    </Helmet>
-  </Wrapper>,
-  fp.size(portfolios) >= 4 ? (
-    <SimpleWrapper key="portfolios">
-      {fp.flow(
-        fp.slice(0, 4),
-        fp.map((edge) => {
-          const portfolio = fp.get('node.frontmatter')(edge);
-          const { path, title, images } = portfolio;
-          const image = fp.isArray(images) ? fp.first(images) : null;
+}) => (
+  <StylesWrapper>
+    <Wrapper isHome>
+      <Title>
+        I'm Wonism!
+      </Title>
+      <Helmet>
+        <title>I'm Wonism!</title>
+        <meta name="og:title" content="I'm Wonism!" />
+      </Helmet>
+    </Wrapper>
+    {size(portfolios) >= 4 ? (
+      <SimpleWrapper key="portfolios">
+        {flow(
+          slice(0, 4),
+          map((edge) => {
+            const portfolio = get('node.frontmatter')(edge);
+            const { path, title, images } = portfolio;
+            const image = isArray(images) ? first(images) : null;
 
-          if (!fp.isEmpty(image)) {
+            if (!isEmpty(image)) {
+              return (
+                <PortfolioCard key={path}>
+                  <Link to={path}>
+                    {includes('//')(image) ? (
+                      <img src={image} alt="portfolio" />
+                    ) : (
+                      <img src={require(`~/resources/${image}`)} alt="portfolio" />
+                    )}
+                    <h6>{title}</h6>
+                  </Link>
+                </PortfolioCard>
+              );
+            }
+
             return (
               <PortfolioCard key={path}>
                 <Link to={path}>
-                  {fp.includes('//')(image) ? (
-                    <img src={image} alt="portfolio" />
-                  ) : (
-                    <img src={require(`~/resources/${image}`)} alt="portfolio" />
-                  )}
-                  <h6>{title}</h6>
+                  <h4>{title}</h4>
                 </Link>
               </PortfolioCard>
             );
-          }
-
-          return (
-            <PortfolioCard key={path}>
-              <Link to={path}>
-                <h4>{title}</h4>
-              </Link>
-            </PortfolioCard>
-          );
-        })
-      )(portfolios)}
-    </SimpleWrapper>
-  ) : null,
-]);
+          })
+        )(portfolios)}
+      </SimpleWrapper>
+    ) : null}
+  </StylesWrapper>
+);
 
 Home.propTypes = {
-  portfolios: PropTypes.arrayOf(PropTypes.shape({})),
+  portfolios: arrayOf(shape({})),
 };
 
 Home.defaultProps = {

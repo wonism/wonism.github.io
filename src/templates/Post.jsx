@@ -1,213 +1,26 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
-import { connect } from 'react-redux';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import Helmet from 'react-helmet';
-import FaTags from 'react-icons/lib/fa/tags';
-import fp from 'lodash/fp';
-import {
-  loadDisqus,
-  renderTweets,
-  renderComponents,
-  createCopyButton,
-} from '~/store/posts/actions';
-import Bio from '~/components/Bio';
-import PostWrapper from '~/components/Common/PostWrapper';
-import { SITE_URL } from '~/constants';
-import formattedDate from '~/utils/formattedDate';
-import './post.less';
+import Layout from '~/components/Layout';
+import Post from '~/containers/Post';
 
-const Tags = styled.div`
-  margin: 1em 0;
+const styles = require('!raw-loader!sass-loader!./post.scss');
 
-  a {
-    margin: 0 0 0 4px;
-    color: #000;
-    text-decoration: blink;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+const StylesWrapper = styled.div`
+  ${styles}
 `;
 
-const PostContent = styled.section`
-  padding: 1em 0 4em;
-  line-height: 1.6em;
+const PostTemplate = props => (
+  <Layout {...props}>
+    <StylesWrapper>
+      <Post {...props} />
+    </StylesWrapper>
+  </Layout>
+);
 
-  h2 {
-    margin: 24px 0 10px;
-    font-size: 28px;
-  }
+export default PostTemplate;
 
-  h3 {
-    margin: 24px 0 10px;
-    font-size: 24px;
-  }
-
-  h4 {
-    margin: 24px 0 10px;
-    font-size: 21px;
-  }
-
-  p {
-    margin: 16px 0 0;
-    font-size: 16px;
-  }
-
-  blockquote {
-    margin: 40px 0 0;
-    padding: 0 0 0 2em;
-    line-height: 1.2em;
-    color: #aaa;
-    font-style: italic;
-    font-family: 'Kaushan Script';
-    font-size: 24px;
-  }
-
-  pre {
-    margin: 20px 0 0;
-  }
-
-  ol,
-  ul {
-    padding: 0 0 0 24px;
-  }
-
-  ol {
-    list-style: decimal;
-  }
-
-  ul {
-    list-style: disc;
-
-    ul {
-      list-style: circle;
-    }
-  }
-
-  li {
-    padding: 0 0 0 4px;
-  }
-`;
-
-const ImageWrapper = styled.figure`
-  position: relative;
-  width: 100%;
-  padding: 56.25% 0 0;
-  overflow: hidden;
-
-  img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 100%;
-    height: auto;
-  }
-`;
-
-class Post extends PureComponent {
-  static propTypes = {
-    data: PropTypes.shape({ date: PropTypes.object }).isRequired,
-    location: PropTypes.shape({}).isRequired,
-    loadDisqus: PropTypes.func.isRequired,
-    renderTweets: PropTypes.func.isRequired,
-    renderComponents: PropTypes.func.isRequired,
-    createCopyButton: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-    const { location } = this.props;
-    const { pathname: identifier } = location;
-    const url = fp.add(SITE_URL, identifier);
-    const title = fp.get('data.markdownRemark.frontmatter.title')(this.props);
-
-    this.props.loadDisqus({
-      url,
-      identifier,
-      title,
-    });
-  }
-
-  componentDidMount() {
-    const { data } = this.props;
-    const frontmatter = fp.get('markdownRemark.frontmatter')(data);
-    const { tweets, components } = frontmatter;
-
-    this.props.createCopyButton();
-    this.props.renderTweets(tweets);
-    this.props.renderComponents(components);
-  }
-
-  render() {
-    const { data } = this.props;
-    const post = fp.get('markdownRemark')(data);
-    const { frontmatter } = post;
-    const { title, tags, image } = frontmatter;
-
-    return (
-      <PostWrapper>
-        <Helmet>
-          <title>
-            WONISM | {title}
-          </title>
-          <meta name="og:title" content={`WONISM | ${title}`} />
-        </Helmet>
-        {fp.isNil(image) ? null : (
-          <ImageWrapper>
-            <img src={image} alt={title} />
-          </ImageWrapper>
-        )}
-        <h1>
-          {title}
-        </h1>
-        <time>
-          {fp.flow(fp.get('frontmatter.date'), formattedDate)(post)}
-        </time>
-        {fp.isEmpty(tags) ? null : (
-          <Tags>
-            <FaTags />
-            {fp.map(tag => (
-              <Link
-                key={tag}
-                to={`/tags/${tag}/1`}
-              >
-                <small>{tag}</small>
-              </Link>
-            ))(tags)}
-          </Tags>
-        )}
-        <Bio />
-        <PostContent>
-          {/* eslint-disable react/no-danger */}
-          <div id="post-contents" dangerouslySetInnerHTML={{ __html: fp.get('html')(post) }} />
-          {/* eslint-enable react/no-danger */}
-        </PostContent>
-        <div id="disqus_thread" />
-        <noscript>
-          Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </PostWrapper>
-    );
-  }
-}
-
-export default connect(
-  state => state,
-  {
-    loadDisqus,
-    renderTweets,
-    renderComponents,
-    createCopyButton,
-  }
-)(Post);
-
-/* eslint-disable no-undef */
 export const pageQuery = graphql`
   query PostByPath($path: String!) {
     markdownRemark (
@@ -235,4 +48,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-/* eslint-enable no-undef */

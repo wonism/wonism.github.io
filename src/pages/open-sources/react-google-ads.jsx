@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import GoogleAds from 'react-google-ads';
 import { Repository } from 'react-github-info';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
 const ReactGoogleAds = ({
   historyGoBack,
@@ -30,24 +32,20 @@ const ReactGoogleAds = ({
 );
 
 ReactGoogleAds.propTypes = {
-  historyGoBack: PropTypes.func.isRequired,
+  historyGoBack: func.isRequired,
 };
 
-export default connect(
+const ConnectedReactGoogleAds = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(ReactGoogleAds);
 
-/* eslint-disable no-undef */
-export const GoogleAdsQuery = graphql`
-  query googleAdsQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
-/* eslint-enable no-undef */
+const ReactGoogleAdsLayout = props => (
+  <Layout {...props}>
+    <ConnectedReactGoogleAds />
+  </Layout>
+);
+
+export default ReactGoogleAdsLayout;

@@ -27,6 +27,7 @@ module.exports = {
     'import/no-unresolved': off,
     'import/extensions': off,
     'import/no-deprecated': warn,
+    'import/no-webpack-loader-syntax': off,
     indent: off,
     'jsx-a11y/anchor-is-valid': off,
     'jsx-a11y/click-events-have-key-events': error,
@@ -70,11 +71,27 @@ module.exports = {
     'react/no-unescaped-entities': off,
   },
   parser: 'babel-eslint',
-  overrides: [{
-    files: ['src/components/Common/Card/index.jsx', 'src/layouts/index.jsx', 'src/components/Home/index.jsx', 'src/templates/Portfolio.jsx', 'src/templates/Portfolios.jsx'],
-    rules: {
-      'global-require': off,
-      'import/no-dynamic-require': off,
+  overrides: [
+    {
+      files: ['src/components/Common/Card/index.jsx', 'src/components/Home/index.jsx'],
+      rules: {
+        'global-require': off,
+        'import/no-dynamic-require': off,
+      },
     },
-  }],
+    {
+      files: ['src/components/HigherOrderLayout/index.jsx'],
+      rules: {
+        'react/prefer-stateless-function': off,
+      },
+    },
+    {
+      files: ['src/components/Resume/index.jsx', 'src/components/Portfolios/index.jsx', 'src/components/Portfolio/index.jsx', 'src/components/Post/index.jsx'],
+      rules: {
+        'global-require': off,
+        'import/no-dynamic-require': off,
+        'react/no-danger': off,
+      },
+    },
+  ],
 };

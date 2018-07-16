@@ -1,8 +1,8 @@
-import fp from 'lodash/fp';
+import { has } from 'lodash/fp';
 
 const createReducer = (reducers = {}, initialState = {}) =>
   (state = initialState, { type, ...action }) => (
-    fp.has(type)(reducers) ?
+    has(type)(reducers) ?
       reducers[type](state, action) :
       state
   );

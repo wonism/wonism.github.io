@@ -1,4 +1,4 @@
-import fp from 'lodash/fp';
+import { isEmpty, find } from 'lodash/fp';
 import {
   ADD_TODO,
   REMOVE_TODO,
@@ -11,7 +11,7 @@ export const addTodo = todo =>
     const state = getState();
     const { todos } = state;
 
-    if (fp.isEmpty(fp.find({ todo })(todos))) {
+    if (isEmpty(find({ todo })(todos))) {
       return dispatch({
         type: ADD_TODO,
         todo,

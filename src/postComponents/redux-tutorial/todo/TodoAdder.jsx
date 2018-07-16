@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
+import { func } from 'prop-types';
 
 export default class TodoAdder extends PureComponent {
   static propTypes = {
-    addTodo: PropTypes.func.isRequired,
+    addTodo: func.isRequired,
   };
 
   constructor(props) {

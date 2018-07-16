@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
 
 const logClosure = () => {
   let clickedCount = 0;

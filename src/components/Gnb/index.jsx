@@ -1,14 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement } from 'react';
+import { shape, arrayOf, bool, func, string } from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 import FaCaretDown from 'react-icons/lib/fa/caret-down';
 import FaHome from 'react-icons/lib/fa/home';
 import FaSearch from 'react-icons/lib/fa/search';
 import FaTags from 'react-icons/lib/fa/tags';
-import fp from 'lodash/fp';
+import { flow, isEqual, isEmpty, map, filter, toLower, replace, startsWith, get, size, uniq } from 'lodash/fp';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '~/components/Common/constants';
-import './index.less';
+
+const styles = require('!raw-loader!sass-loader!./index.scss');
+
+const StylesWrapper = styled.div`
+  ${styles}
+`;
 
 const Hamburger = styled.div`
   position: fixed;
@@ -326,283 +332,285 @@ const Gnb = ({
   openSubMenu,
   closeSubMenu,
 }) => {
-  const filteredPosts = !fp.isEmpty(searchKeyword) ?
-    fp.filter(({ category = '', title = '', tags = [] }) => {
-      const c = fp.toLower(category);
-      const h = fp.toLower(title);
-      const t = fp.map(fp.toLower)(tags);
+  const filteredPosts = !isEmpty(searchKeyword) ?
+    filter(({ category = '', title = '', tags = [] }) => {
+      const c = toLower(category);
+      const h = toLower(title);
+      const t = map(toLower)(tags);
 
       const searchedWithCategory = c.search(searchKeyword) !== -1;
       const searchedWithTitle = h.search(searchKeyword) !== -1;
-      const searchedWithTags = fp.flow(
-        fp.filter(t => (t.search(searchKeyword) !== -1)),
-        filtered => !fp.isEmpty(filtered)
+      const searchedWithTags = flow(
+        filter(t => (t.search(searchKeyword) !== -1)),
+        filtered => !isEmpty(filtered)
       )(t);
 
       return searchedWithCategory || searchedWithTitle || searchedWithTags;
     })(postInformations) : [];
   const { pathname } = location;
-  const isPortfolio = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.startsWith('/portfolios')
+  const isPortfolio = flow(
+    replace(/\/$/, ''),
+    startsWith('/portfolios')
   )(pathname);
-  const isHome = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.isEqual('')
+  const isHome = flow(
+    replace(/\/$/, ''),
+    isEqual('')
   )(pathname);
-  const isResume = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.isEqual('/resume')
+  const isResume = flow(
+    replace(/\/$/, ''),
+    isEqual('/resume')
   )(pathname);
-  const isOpenSource = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.startsWith('/open-sources')
+  const isOpenSource = flow(
+    replace(/\/$/, ''),
+    startsWith('/open-sources')
   )(pathname);
-  const isIdeas = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.isEqual('/ideas')
+  const isIdeas = flow(
+    replace(/\/$/, ''),
+    isEqual('/ideas')
   )(pathname);
   /*
-  const isNews = fp.flow(
-    fp.replace(/\/$/, ''),
-    fp.isEqual('/news')
+  const isNews = flow(
+    replace(/\/$/, ''),
+    isEqual('/news')
   )(pathname);
   */
   const isPost = !(isPortfolio || isHome || isResume || isOpenSource || /* isNews || */ isIdeas);
 
   return (
-    <GnbWrapper>
-      <MobileMenu isActive={isMenuOpened} isSubActive={isSubMenuOpened}>
-        <Background onClick={closeMenu} isActive={isMenuOpened} />
-        <MobileMenus>
-          <ul>
-            <ListMenu>
-              <StyledLink to="/" onClick={closeMenu}>
-                <Home />
-              </StyledLink>
-            </ListMenu>
-            <ListMenu>
-              <StyledLink to="/pages/1" className={isPost ? 'active' : ''} onClick={closeMenu}>
-                Posts
-              </StyledLink>
-              {
-                fp.size(categories) ?
-                  [
-                    ' ',
-                    <MovableFaCaretDown
-                      className={isSubMenuOpened ? 'is-active' : ''}
-                      key="arrow"
-                      onClick={isSubMenuOpened ? closeSubMenu : openSubMenu}
-                    />,
-                  ] :
-                  null
-              }
-              <SubMenu>
-                <div>
-                  {fp.flow(
-                    fp.filter(({ key }) => !fp.isEqual('__ALL__')(key)),
-                    fp.map(({ key, length }) => (
-                      <li key={key}>
-                        <Link to={`/categories/${key}/1`} onClick={closeMenu}>
-                          {key} <small>({length})</small>
-                        </Link>
-                      </li>
-                    ))
-                  )(categories)}
-                </div>
-              </SubMenu>
-            </ListMenu>
-            {hasPortfolio ? (
+    <StylesWrapper>
+      <GnbWrapper>
+        <MobileMenu isActive={isMenuOpened} isSubActive={isSubMenuOpened}>
+          <Background onClick={closeMenu} isActive={isMenuOpened} />
+          <MobileMenus>
+            <ul>
               <ListMenu>
-                <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''} onClick={closeMenu}>
-                  Portfolio
+                <StyledLink to="/" onClick={closeMenu}>
+                  <Home />
                 </StyledLink>
               </ListMenu>
-            ) : null}
-            <ListMenu>
-              <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
-                Open Source
-              </StyledLink>
-            </ListMenu>
-            <ListMenu>
-              <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={closeMenu}>
-                Resume
-              </StyledLink>
-            </ListMenu>
-            <ListMenu>
-              <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
-                Ideas
-              </StyledLink>
-            </ListMenu>
-            {/*
-            <ListMenu>
-              <StyledLink to="/news" className={isNews ? 'active' : ''} onClick={closeMenu}>
-                News
-              </StyledLink>
-            </ListMenu>
-            */}
-            <SearchBarWrapper>
-              <label htmlFor="search">
-                <FaSearch />
-              </label>
-              <SearchBar
-                id="search"
-                type="text"
-                value={searchKeyword}
-                onChange={fp.flow(
-                  fp.get('target.value'),
-                  inputKeyword,
-                )}
-              />
-            </SearchBarWrapper>
-            <SearchedPosts isEmpty={fp.isEmpty(filteredPosts)}>
-              {fp.map(({ path, title, summary, tags }) => (
-                <SearchedPost key={path}>
-                  <Title onClick={() => { navigateToPath(path); }}>
-                    {title}
-                  </Title>
-                  <Summary onClick={() => { navigateToPath(path); }}>
-                    {summary}
-                  </Summary>
-                  {fp.size(tags) ? (
-                    <FaTags />
-                  ) : null}
-                  {fp.flow(
-                    fp.uniq,
-                    fp.map(tag => (
-                      <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>
-                        <small>
-                          {tag}
-                        </small>
-                      </Tag>
-                    ))
-                  )(tags)}
-                </SearchedPost>
-              ))(filteredPosts)}
-            </SearchedPosts>
-          </ul>
-        </MobileMenus>
-      </MobileMenu>
-      <Hamburger
-        className={`hamburger hamburger--spin js-hamburger ${isMenuOpened ? 'is-active' : ''}`}
-        onClick={isMenuOpened ? closeMenu : openMenu}
-      >
-        <div className="hamburger-box">
-          <div className="hamburger-inner" />
-        </div>
-      </Hamburger>
-      <ul>
-        <ListMenu>
-          <StyledLink to="/">
-            <Home />
-          </StyledLink>
-        </ListMenu>
-        <ListMenu>
-          <StyledLink to="/pages/1" className={isPost ? 'active' : ''}>
-            Posts {fp.size(categories) ? <FaCaretDown /> : null}
-          </StyledLink>
-          <SubMenu>
-            <div>
-              {fp.flow(
-                fp.filter(({ key }) => !fp.isEqual('__ALL__')(key)),
-                fp.map(({ key, length }) => (
-                  <li key={key}>
-                    <Link to={`/categories/${key}/1`}>
-                      {key} <small>({length})</small>
-                    </Link>
-                  </li>
-                ))
-              )(categories)}
-            </div>
-          </SubMenu>
-        </ListMenu>
-        {hasPortfolio ? (
+              <ListMenu>
+                <StyledLink to="/pages/1" className={isPost ? 'active' : ''} onClick={closeMenu}>
+                  Posts
+                </StyledLink>
+                {
+                  size(categories) ?
+                    [
+                      ' ',
+                      <MovableFaCaretDown
+                        className={isSubMenuOpened ? 'is-active' : ''}
+                        key="arrow"
+                        onClick={isSubMenuOpened ? closeSubMenu : openSubMenu}
+                      />,
+                    ] :
+                    null
+                }
+                <SubMenu>
+                  <div>
+                    {flow(
+                      filter(({ key }) => !isEqual('__ALL__')(key)),
+                      map(({ key, length }) => (
+                        <li key={key}>
+                          <Link to={`/categories/${key}/1`} onClick={closeMenu}>
+                            {key} <small>({length})</small>
+                          </Link>
+                        </li>
+                      ))
+                    )(categories)}
+                  </div>
+                </SubMenu>
+              </ListMenu>
+              {hasPortfolio ? (
+                <ListMenu>
+                  <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''} onClick={closeMenu}>
+                    Portfolio
+                  </StyledLink>
+                </ListMenu>
+              ) : null}
+              <ListMenu>
+                <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
+                  Open Source
+                </StyledLink>
+              </ListMenu>
+              <ListMenu>
+                <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={closeMenu}>
+                  Resume
+                </StyledLink>
+              </ListMenu>
+              <ListMenu>
+                <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
+                  Ideas
+                </StyledLink>
+              </ListMenu>
+              {/*
+              <ListMenu>
+                <StyledLink to="/news" className={isNews ? 'active' : ''} onClick={closeMenu}>
+                  News
+                </StyledLink>
+              </ListMenu>
+              */}
+              <SearchBarWrapper>
+                <label htmlFor="search">
+                  <FaSearch />
+                </label>
+                <SearchBar
+                  id="search"
+                  type="text"
+                  value={searchKeyword}
+                  onChange={flow(
+                    get('target.value'),
+                    inputKeyword,
+                  )}
+                />
+              </SearchBarWrapper>
+              <SearchedPosts isEmpty={isEmpty(filteredPosts)}>
+                {map(({ path, title, summary, tags }) => (
+                  <SearchedPost key={path}>
+                    <Title onClick={() => { navigateToPath(path); }}>
+                      {title}
+                    </Title>
+                    <Summary onClick={() => { navigateToPath(path); }}>
+                      {summary}
+                    </Summary>
+                    {size(tags) ? (
+                      <FaTags />
+                    ) : null}
+                    {flow(
+                      uniq,
+                      map(tag => (
+                        <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>
+                          <small>
+                            {tag}
+                          </small>
+                        </Tag>
+                      ))
+                    )(tags)}
+                  </SearchedPost>
+                ))(filteredPosts)}
+              </SearchedPosts>
+            </ul>
+          </MobileMenus>
+        </MobileMenu>
+        <Hamburger
+          className={`hamburger hamburger--spin js-hamburger ${isMenuOpened ? 'is-active' : ''}`}
+          onClick={isMenuOpened ? closeMenu : openMenu}
+        >
+          <div className="hamburger-box">
+            <div className="hamburger-inner" />
+          </div>
+        </Hamburger>
+        <ul>
           <ListMenu>
-            <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''}>
-              Portfolio
+            <StyledLink to="/">
+              <Home />
             </StyledLink>
           </ListMenu>
-        ) : null}
-        <ListMenu>
-          <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
-            Open Source
-          </StyledLink>
-        </ListMenu>
-        <ListMenu>
-          <StyledLink to="/resume" className={isResume ? 'active' : ''}>
-            Resume
-          </StyledLink>
-        </ListMenu>
-        <ListMenu>
-          <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
-            Ideas
-          </StyledLink>
-        </ListMenu>
-        {/*
-        <ListMenu>
-          <StyledLink to="/news" className={isNews ? 'active' : ''}>
-            News
-          </StyledLink>
-        </ListMenu>
-        */}
-        <SearchBarWrapper>
-          <label htmlFor="search">
-            <FaSearch />
-          </label>
-          <SearchBar
-            id="search"
-            type="text"
-            value={searchKeyword}
-            onChange={fp.flow(
-              fp.get('target.value'),
-              inputKeyword,
-            )}
-          />
-        </SearchBarWrapper>
-        <SearchedPosts isEmpty={fp.isEmpty(filteredPosts)}>
-          {fp.map(({ path, title, summary, tags }) => (
-            <SearchedPost key={path}>
-              <Title onClick={() => { navigateToPath(path); }}>
-                {title}
-              </Title>
-              <Summary onClick={() => { navigateToPath(path); }}>
-                {summary}
-              </Summary>
-              {fp.size(tags) ? (
-                <FaTags />
-              ) : null}
-              {fp.flow(
-                fp.uniq,
-                fp.map(tag => (
-                  <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>
-                    <small>
-                      {tag}
-                    </small>
-                  </Tag>
-                ))
-              )(tags)}
-            </SearchedPost>
-          ))(filteredPosts)}
-        </SearchedPosts>
-      </ul>
-    </GnbWrapper>
+          <ListMenu>
+            <StyledLink to="/pages/1" className={isPost ? 'active' : ''}>
+              Posts {size(categories) ? <FaCaretDown /> : null}
+            </StyledLink>
+            <SubMenu>
+              <div>
+                {flow(
+                  filter(({ key }) => !isEqual('__ALL__')(key)),
+                  map(({ key, length }) => (
+                    <li key={key}>
+                      <Link to={`/categories/${key}/1`}>
+                        {key} <small>({length})</small>
+                      </Link>
+                    </li>
+                  ))
+                )(categories)}
+              </div>
+            </SubMenu>
+          </ListMenu>
+          {hasPortfolio ? (
+            <ListMenu>
+              <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''}>
+                Portfolio
+              </StyledLink>
+            </ListMenu>
+          ) : null}
+          <ListMenu>
+            <StyledLink to="/open-sources" className={isOpenSource ? 'active' : ''} onClick={closeMenu}>
+              Open Source
+            </StyledLink>
+          </ListMenu>
+          <ListMenu>
+            <StyledLink to="/resume" className={isResume ? 'active' : ''}>
+              Resume
+            </StyledLink>
+          </ListMenu>
+          <ListMenu>
+            <StyledLink to="/ideas" className={isIdeas ? 'active' : ''} onClick={closeMenu}>
+              Ideas
+            </StyledLink>
+          </ListMenu>
+          {/*
+          <ListMenu>
+            <StyledLink to="/news" className={isNews ? 'active' : ''}>
+              News
+            </StyledLink>
+          </ListMenu>
+          */}
+          <SearchBarWrapper>
+            <label htmlFor="search">
+              <FaSearch />
+            </label>
+            <SearchBar
+              id="search"
+              type="text"
+              value={searchKeyword}
+              onChange={flow(
+                get('target.value'),
+                inputKeyword,
+              )}
+            />
+          </SearchBarWrapper>
+          <SearchedPosts isEmpty={isEmpty(filteredPosts)}>
+            {map(({ path, title, summary, tags }) => (
+              <SearchedPost key={path}>
+                <Title onClick={() => { navigateToPath(path); }}>
+                  {title}
+                </Title>
+                <Summary onClick={() => { navigateToPath(path); }}>
+                  {summary}
+                </Summary>
+                {size(tags) ? (
+                  <FaTags />
+                ) : null}
+                {flow(
+                  uniq,
+                  map(tag => (
+                    <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>
+                      <small>
+                        {tag}
+                      </small>
+                    </Tag>
+                  ))
+                )(tags)}
+              </SearchedPost>
+            ))(filteredPosts)}
+          </SearchedPosts>
+        </ul>
+      </GnbWrapper>
+    </StylesWrapper>
   );
 };
 
 Gnb.propTypes = {
-  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({})),
-  postInformations: PropTypes.arrayOf(PropTypes.shape({})),
-  hasPortfolio: PropTypes.bool.isRequired,
-  navigateToPath: PropTypes.func.isRequired,
-  inputKeyword: PropTypes.func.isRequired,
-  searchKeyword: PropTypes.string.isRequired,
-  isMenuOpened: PropTypes.bool.isRequired,
-  openMenu: PropTypes.func.isRequired,
-  closeMenu: PropTypes.func.isRequired,
-  isSubMenuOpened: PropTypes.bool.isRequired,
-  openSubMenu: PropTypes.func.isRequired,
-  closeSubMenu: PropTypes.func.isRequired,
+  location: shape({ pathname: string.isRequired }).isRequired,
+  categories: arrayOf(shape({})),
+  postInformations: arrayOf(shape({})),
+  hasPortfolio: bool.isRequired,
+  navigateToPath: func.isRequired,
+  inputKeyword: func.isRequired,
+  searchKeyword: string.isRequired,
+  isMenuOpened: bool.isRequired,
+  openMenu: func.isRequired,
+  closeMenu: func.isRequired,
+  isSubMenuOpened: bool.isRequired,
+  openSubMenu: func.isRequired,
+  closeSubMenu: func.isRequired,
 };
 
 Gnb.defaultProps = {

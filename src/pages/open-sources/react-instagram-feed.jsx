@@ -1,13 +1,15 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+/** @jsx createElement */
+import { createElement, PureComponent } from 'react';
+import { any, func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { Repository } from 'react-github-info';
 import Feed from 'react-instagram-feed';
-import { historyGoBack } from '~/store/app/actions';
+import * as appActions from '~/store/app/actions';
+import Layout from '~/components/Layout';
 import OpenSourceWrapper from '~/components/Common/OpenSourceWrapper';
-import './index.less';
+import './index.scss';
 
 const Frame = styled.div`
   display: block;
@@ -71,7 +73,7 @@ const Wrapper = ({
 );
 
 Wrapper.propTypes = {
-  children: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  children: any, // eslint-disable-line react/forbid-prop-types
 };
 
 Wrapper.defaultProps = {
@@ -80,7 +82,7 @@ Wrapper.defaultProps = {
 
 class ReactInstagramFeed extends PureComponent {
   static propTypes = {
-    historyGoBack: PropTypes.func.isRequired,
+    historyGoBack: func.isRequired,
   };
 
   state = {
@@ -128,9 +130,21 @@ class ReactInstagramFeed extends PureComponent {
   }
 }
 
-export default connect(
+ReactInstagramFeed.propTypes = {
+  historyGoBack: func.isRequired,
+};
+
+const ConnectedReactInstagramFeed = connect(
   () => ({}),
   {
-    historyGoBack,
+    historyGoBack: appActions.historyGoBack,
   }
 )(ReactInstagramFeed);
+
+const ReactInstagramFeedLayout = props => (
+  <Layout {...props}>
+    <ConnectedReactInstagramFeed />
+  </Layout>
+);
+
+export default ReactInstagramFeedLayout;

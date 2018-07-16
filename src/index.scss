@@ -29,9 +29,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font: inherit;
 	font-size: 100%;
-  font-family: Lato;
+	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -85,6 +84,15 @@ button, a, label {
   /*background-color: #3B9CFF;*/
   /*border-radius: 6px;*/
 /*}*/
+@media print {
+  div, section, header, footer {
+    display: none;
+  }
+
+  .resume-page {
+    display: block;
+  }
+}
 @media print {
   div, section, header, footer {
     display: none;

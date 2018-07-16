@@ -1,19 +1,19 @@
 import { createSelector } from 'reselect';
-import fp from 'lodash/fp';
+import { get } from 'lodash/fp';
 
-const getIdeasSubState = fp.get('ideas');
+const getIdeasSubState = get('ideas');
 
 export const getMenu = createSelector(
   getIdeasSubState,
-  fp.get('menu')
+  get('menu')
 );
 
 export const getData = createSelector(
   getIdeasSubState,
-  fp.get('data')
+  get('data')
 );
 
 export const isFailed = createSelector(
   getIdeasSubState,
-  fp.get('failed')
+  get('failed')
 );
