@@ -18,12 +18,12 @@ const StylesWrapper = styled.div`
 
 const Hamburger = styled.div`
   position: fixed;
-  display: none;
+  display: none !important;
   top: 0;
   right: 0;
   z-index: 5000;
   @media (max-width: 1024px) {
-    display: block;
+    display: block !important;
   }
 
   &:before,
