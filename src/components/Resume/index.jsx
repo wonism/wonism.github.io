@@ -14,6 +14,7 @@ import * as profileUrl from '~/resources/me.jpg';
 
 const Wrapper = styled.section`
   padding: 100px 0 0;
+
   @media (max-width: 414px) {
     padding: 70px 16px 0;
   }

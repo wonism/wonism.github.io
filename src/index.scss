@@ -85,21 +85,25 @@ button, a, label {
   /*border-radius: 6px;*/
 /*}*/
 @media print {
-  div, section, header, footer {
-    display: none;
-  }
+  #___gatsby > div {
+    & > nav,
+    & > footer {
+      display: none;
+    }
 
-  .resume-page {
-    display: block;
-  }
-}
-@media print {
-  div, section, header, footer {
-    display: none;
-  }
+    a {
+      padding: 0;
+      color: #000;
+    }
 
-  .resume-page {
-    display: block;
+    img {
+      filter: grayscale(100%);
+    }
+
+    svg,
+    button {
+      display: none;
+    }
   }
 }
 .render-image div,
