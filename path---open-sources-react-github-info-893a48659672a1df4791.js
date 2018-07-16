@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{250:function(t){t.exports={data:{site:{siteMetadata:{title:"Gatsby Advanced Blog",author:"wonism"}}},pageContext:{}}}}]);
-//# sourceMappingURL=path---open-sources-react-github-info-893a48659672a1df4791.js.map
