@@ -4,7 +4,7 @@ import { node } from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticQuery, graphql } from 'gatsby';
-import { flow, isString, isEqual, keys, map, filter, reduce, set, get, first, size, defaultTo } from 'lodash/fp';
+import { flow, isString, isEqual, keys, map, filter, reduce, set, get, head, size, defaultTo } from 'lodash/fp';
 import {
   reducers,
   initialState,
@@ -38,9 +38,17 @@ const GatsbyApp = ({ children, ...otherProps }) => (
             }
           }
         }
+        allFile(filter: { extension: { eq: "pdf" } }) {
+          edges {
+            node {
+              publicURL
+            }
+          }
+        }
       }
     `}
     render={(data) => {
+      const files = get('allFile.edges')(data);
       const edges = get('allMarkdownRemark.edges')(data);
       const portfolios = filter(flow(
         get('node.frontmatter.type'),
@@ -80,6 +88,7 @@ const GatsbyApp = ({ children, ...otherProps }) => (
         set('app.portfolios', portfolios),
         set('app.categories', categories),
         set('app.postInformations', postInformations),
+        set('app.files', files),
       )(initialState);
 
       const createdStore = createStore(reducers, state, composeEnhancers(middleware));
@@ -90,6 +99,7 @@ const GatsbyApp = ({ children, ...otherProps }) => (
         children,
         child => cloneElement(
           child,
+          files,
           otherProps,
         )
       );
@@ -98,7 +108,7 @@ const GatsbyApp = ({ children, ...otherProps }) => (
         <Provider store={store}>
           <ConnectedLayout {...otherProps}>
             <Fragment>
-              {first(childrenWithProps)}
+              {head(childrenWithProps)}
             </Fragment>
           </ConnectedLayout>
         </Provider>

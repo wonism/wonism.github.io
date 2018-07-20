@@ -15,6 +15,7 @@ export default connect(
     searchKeyword: appSelectors.getSearchKeyword(state),
     isMenuOpened: appSelectors.isMenuOpened(state),
     isSubMenuOpened: appSelectors.isSubMenuOpened(state),
+    files: appSelectors.getFiles(state),
   }),
   {
     navigateToPath,

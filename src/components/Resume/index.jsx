@@ -1,6 +1,8 @@
 /** @jsx createElement */
 import { createElement, PureComponent } from 'react';
-import { shape, func } from 'prop-types';
+import { arrayOf, shape, string, func } from 'prop-types';
+import { Document, Page } from 'react-pdf';
+import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import FaPinrt from 'react-icons/lib/fa/print';
@@ -27,6 +29,19 @@ const Wrapper = styled.section`
   button {
     float: right;
   }
+`;
+
+const PdfWrapper = styled.div`
+  margin: 20px auto;
+  max-width: 640px;
+`;
+
+const PdfLinkWrapper = styled.div`
+  margin: 20px auto;
+  max-width: 640px;
+  font-weight: 900;
+  text-align: right;
+  text-decoration: underline;
 `;
 
 const BasicInformation = styled.section`
@@ -85,23 +100,58 @@ const MDInformation = styled.section`
 class Resume extends PureComponent {
   static propTypes = {
     data: shape({ date: shape({}) }).isRequired,
+    files: arrayOf(shape({ node: shape({ publicURL: string }) })),
     printPage: func.isRequired,
   };
 
-  componentDidMount() {
-    const anchors = this.$mdWrapper.getElementsByTagName('a');
+  static defaultProps = {
+    files: [],
+  };
 
-    forEach((anchor) => {
-      const href = anchor.getAttribute('href');
-      if (startsWith('http')(href)) {
-        anchor.setAttribute('target', '_blank');
-        anchor.setAttribute('rel', 'noreferrer noopener');
-      }
-    })(anchors);
+  componentDidMount() {
+    if (this.$mdWrapper) {
+      const anchors = this.$mdWrapper.getElementsByTagName('a');
+
+      forEach((anchor) => {
+        const href = anchor.getAttribute('href');
+        if (startsWith('http')(href)) {
+          anchor.setAttribute('target', '_blank');
+          anchor.setAttribute('rel', 'noreferrer noopener');
+        }
+      })(anchors);
+    }
   }
 
   render() {
-    const { data, printPage } = this.props;
+    const { files, data, printPage } = this.props;
+
+    if (files) {
+      const resume = get('0.node.publicURL')(files);
+
+      return (
+        <Wrapper>
+          <Clearfix>
+            <Helmet>
+              <title>
+                WONISM | RESUME
+              </title>
+              <meta name="og:title" content="WONISM | RESUME" />
+            </Helmet>
+            <PdfLinkWrapper>
+              <Link to={resume} target="_blank">
+                <b>See via PDF file</b>
+              </Link>
+            </PdfLinkWrapper>
+            <PdfWrapper>
+              <Document file={resume} renderMode="svg">
+                <Page pageNumber={1} renderMode="svg" />
+              </Document>
+            </PdfWrapper>
+          </Clearfix>
+        </Wrapper>
+      );
+    }
+
     const resume = get('markdownRemark')(data);
 
     return (

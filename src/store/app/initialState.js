@@ -8,4 +8,5 @@ export default {
   categories: [],
   isMenuOpened: false,
   isSubMenuOpened: false,
+  files: [],
 };

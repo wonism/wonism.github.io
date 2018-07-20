@@ -42,3 +42,8 @@ export const isSubMenuOpened = createSelector(
   getAppSubState,
   get('isSubMenuOpened')
 );
+
+export const getFiles = createSelector(
+  getAppSubState,
+  get('files')
+);
