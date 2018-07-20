@@ -99,8 +99,7 @@ const GatsbyApp = ({ children, ...otherProps }) => (
         children,
         child => cloneElement(
           child,
-          files,
-          otherProps,
+          { files, ...otherProps },
         )
       );
 
