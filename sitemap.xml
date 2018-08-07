@@ -54,6 +54,7 @@
 <url> <loc>https://wonism.github.io/resume/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios/korbit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/what-is-decorator/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/javascript-iteration-protocol/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/portfolios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/pages/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -190,10 +191,12 @@
 <url> <loc>https://wonism.github.io/tags/virtual dom/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/jsx/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/tags/descriptor/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/tags/iterables/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/JavaScript/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wonism.github.io/categories/JavaScript/5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/HTML/CSS/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/Browser/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wonism.github.io/categories/Regular Expression/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
