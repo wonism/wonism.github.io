@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 07 Aug 2018 15:40:19 GMT</lastBuildDate><item><title><![CDATA[JavaScript iterables와 iterator 이해하기]]></title><link>https://wonism.github.io/javascript-iteration-protocol/</link><guid isPermaLink="false">https://wonism.github.io/javascript-iteration-protocol/</guid><pubDate>Wed, 08 Aug 2018 00:28:31 GMT</pubDate><content:encoded>&lt;h2&gt;Iteration&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 08 Aug 2018 13:06:09 GMT</lastBuildDate><item><title><![CDATA[JavaScript iterables와 iterator 이해하기]]></title><link>https://wonism.github.io/javascript-iteration-protocol/</link><guid isPermaLink="false">https://wonism.github.io/javascript-iteration-protocol/</guid><pubDate>Wed, 08 Aug 2018 00:28:31 GMT</pubDate><content:encoded>&lt;h2&gt;Iteration&lt;/h2&gt;
 &lt;p&gt;Iteration 프로토콜에는 두 가지 프로토콜이 있다. 한 가지는 &lt;code class=&quot;hljs-text&quot;&gt;iterable&lt;/code&gt; 프로토콜이고 또 다른 한 가지는 &lt;code class=&quot;hljs-text&quot;&gt;iterator&lt;/code&gt; 프로토콜이다.&lt;br /&gt;
 ES2015에서 추가된 이 두 가지는 새로운 빌트인 혹은 구문이 아닌 프로토콜 즉, 규약이다. 이들은 같은 규칙을 준수하는 객체에 의해 구현될 수 있다.&lt;/p&gt;
 &lt;h2&gt;Iterables&lt;/h2&gt;
@@ -31,12 +31,12 @@ iterator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
       &lt;/div&gt;
 &lt;p&gt;하지만, 이런 경우는 시퀸스가 무한하기 때문에 &lt;code class=&quot;hljs-text&quot;&gt;for..of&lt;/code&gt; 루프 사용 시 조건문을 사용해야 한다.&lt;/p&gt;
 &lt;h2&gt;Iterator&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;iterator&lt;/code&gt; 프로토콜은 반복 가능한 객체의 값을 시퀸스대로 처리하는 프로토콜로 다음은 반복자에 대한 설명이다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;iterator&lt;/code&gt; 프로토콜은 반복 가능한 객체의 값을 시퀸스대로 처리하는 프로토콜로 다음은 iterator 에 대한 설명이다.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;컬렉션 내의 항목에 대해 한 번에 하나씩 접근하면서 현재의 위치를 추적하는 방법을 알고 있는 객체&lt;/li&gt;
 &lt;li&gt;반복 가능 인터페이스에 의해 반환되는 객체&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;반복자 객체는 &lt;code class=&quot;hljs-text&quot;&gt;next&lt;/code&gt; 메소드를 통해 다음 시퀸스를 진행하게 된다. 이 메소드는 위에서 살펴본 대로 &lt;code class=&quot;hljs-text&quot;&gt;value&lt;/code&gt;와 &lt;code class=&quot;hljs-text&quot;&gt;done&lt;/code&gt;을 가진 객체를 리턴한다.&lt;/p&gt;
+&lt;p&gt;iterator 객체는 &lt;code class=&quot;hljs-text&quot;&gt;next&lt;/code&gt; 메소드를 통해 다음 시퀸스를 진행하게 된다. 이 메소드는 위에서 살펴본 대로 &lt;code class=&quot;hljs-text&quot;&gt;value&lt;/code&gt;와 &lt;code class=&quot;hljs-text&quot;&gt;done&lt;/code&gt;을 가진 객체를 리턴한다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
       &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Symbol&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;iterator&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
