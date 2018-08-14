@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 14 Aug 2018 17:59:12 GMT</lastBuildDate><item><title><![CDATA[React를 실질적으로 제어하는 updater]]></title><link>https://wonism.github.io/react-updater/</link><guid isPermaLink="false">https://wonism.github.io/react-updater/</guid><pubDate>Wed, 15 Aug 2018 02:00:56 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;node_modules&lt;/code&gt;에서 &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt; 모듈의 내용을 보면, &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;는 추상 클래스의 모음이고, 실제 중요한 로직들은 대부분 &lt;code class=&quot;hljs-text&quot;&gt;react-reconsiler&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;react-dom&lt;/code&gt; 등 안에 구현되어 있다.&lt;br /&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 14 Aug 2018 18:05:06 GMT</lastBuildDate><item><title><![CDATA[React를 실질적으로 제어하는 updater]]></title><link>https://wonism.github.io/react-updater/</link><guid isPermaLink="false">https://wonism.github.io/react-updater/</guid><pubDate>Wed, 15 Aug 2018 02:00:56 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;node_modules&lt;/code&gt;에서 &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt; 모듈의 내용을 보면, &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;는 추상 클래스의 모음이고, 실제 중요한 로직들은 대부분 &lt;code class=&quot;hljs-text&quot;&gt;react-reconsiler&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;react-dom&lt;/code&gt; 등 안에 구현되어 있다.&lt;br /&gt;
 이번 글에서 알아보고자 하는 &lt;code class=&quot;hljs-text&quot;&gt;updater&lt;/code&gt;(&lt;code class=&quot;hljs-text&quot;&gt;UpdateQueue&lt;/code&gt;)는 &lt;code class=&quot;hljs-text&quot;&gt;setState&lt;/code&gt; 및 &lt;code class=&quot;hljs-text&quot;&gt;forceUpdate&lt;/code&gt; 등에 사용된다.&lt;/p&gt;
 &lt;p&gt;(이 글은 React 16.4.1 버전을 기준으로 작성되었다.)&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;Component&lt;/code&gt;를 살펴보면, &lt;code class=&quot;hljs-text&quot;&gt;updater&lt;/code&gt;가 사용된다는 것을 살펴볼 수 있다.&lt;/p&gt;
@@ -94,7 +94,178 @@ A1 - B2 - C1 - D2&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;더 알아보기&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=nLF0n9SACd4&quot;&gt;Youtube : Dan Abramov: Beyond React 16 | JSConf Iceland 2018&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JavaScript Generator 이해하기]]></title><link>https://wonism.github.io/javascript-generator/</link><guid isPermaLink="false">https://wonism.github.io/javascript-generator/</guid><pubDate>Wed, 08 Aug 2018 00:35:14 GMT</pubDate><content:encoded>&lt;h2&gt;Generator Function&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Gatsby로 블로그 만들기]]></title><link>https://wonism.github.io/create-blog-with-gatsby/</link><guid isPermaLink="false">https://wonism.github.io/create-blog-with-gatsby/</guid><pubDate>Mon, 13 Aug 2018 23:54:12 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;Gatsby&lt;/a&gt;는 React를 기반으로 한 정적 사이트 생성기(Jekyll(Ruby), Hexo(Node.js), Hugo(Go) 등이 있다.)이며, PWA, Hot reloading, SSR 등 다양한 기능을 제공한다. 더 자세한 내용은 이 &lt;a href=&quot;https://www.gatsbyjs.org/features/&quot;&gt;링크&lt;/a&gt;에서 참고할 수 있다.&lt;/p&gt;
+&lt;h2&gt;Gatsby CLI와 Gatsby 스타터 다운받기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ npm i -g gatsby-cli
+$ gatsby new &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt; https://github.com/wonism/gatsby-advanced-blog
+$ cd &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt;
+$ npm run dev&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Post 작성하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;주의 사항&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;&amp;lt;&amp;lt;PROJECT_ROOT&amp;gt;&amp;gt;/src/pages&lt;/code&gt; 경로에 &lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일이 있는데, 이 파일을 지우면 GraphQL 쿼리의 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt; 프로퍼티의 &lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt; 등을 가져올 수 없다는 에러가 발생한다.&lt;br /&gt;
+&lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일은 더미 데이터의 역할을 하여 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt;의 필드를 생성한다고 보면 된다.&lt;/p&gt;
+&lt;h3&gt;마크다운 파일의 기본 구성 요소&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/hello-world/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;should&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Hello, World!&amp;quot;
+date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can create your own blog with Gatsby!&amp;quot;
+---
+
+Content of this page&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;는 카테고리 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/categories/&amp;lt;&amp;lt;CATEGORY_NAME&amp;gt;&amp;gt;&lt;/code&gt;과 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;tags&lt;/code&gt;는 태그 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/tags/&amp;lt;&amp;lt;TAG_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;와 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 페이지의 제목, &lt;code class=&quot;hljs-text&quot;&gt;summary&lt;/code&gt;는 페이지의 요약된 내용이다. 아래 이미지에서 각각 빨간 줄과 파란 줄에 해당된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt;는 글이 작성된 날짜로 포스트들은 이 값을 기반으로 정렬된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;render-image&quot; id=&quot;post-detail&quot;&gt;&lt;/div&gt;
+&lt;p&gt;이 값들은 &lt;code class=&quot;hljs-text&quot;&gt;src/templates/Post.jsx&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;query&lt;/code&gt;에 의해 불려지게 되며, &lt;a href=&quot;http://localhost:8000/___graphql&quot;&gt;http://localhost:8000/___graphql&lt;/a&gt; 에서 쿼리를 직접 실행해볼 수 있다.&lt;/p&gt;
+&lt;h3&gt;포스트에 이미지 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;images: [&amp;quot;(&amp;lt;&amp;lt;src/resources/&amp;gt;&amp;gt;)PATH_TO/IMAGE&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;http://&lt;/code&gt;혹은 &lt;code class=&quot;hljs-text&quot;&gt;https://&lt;/code&gt;를 포함한 절대경로를 사용하거나, &lt;code class=&quot;hljs-text&quot;&gt;src/resources&lt;/code&gt;를 기준으로 한 상대경로를 할당해준다.&lt;/p&gt;
+&lt;p&gt;(&lt;code class=&quot;hljs-text&quot;&gt;components/Post/index.jsx&lt;/code&gt;의 145번째 줄을 보면, &lt;code class=&quot;hljs-text&quot;&gt;IF CONDITION ? &amp;lt;&amp;lt;image&amp;gt;&amp;gt; : &amp;#39;&amp;lt;&amp;lt;src/resources/${image}&amp;gt;&amp;gt;&amp;#39;&lt;/code&gt;와 같이 이미지를 불러온다.)&lt;/p&gt;
+&lt;h3&gt;포스트에 리액트 애플리케이션 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-app/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting React application&amp;quot;
+date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject react application into post&amp;quot;
+components: [{
+  rootId: &amp;#39;sample-component&amp;#39;, # &amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  fileName: &amp;#39;sample&amp;#39;, # this will render src/postComponents/sample/index.jsx
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;추가할 리액트 애플리케이션의 파일의 경로와, 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
+그리고 글 중간에 리액트 애플리케이션을 삽입하고 싶은 곳에 이 ID를 가진 태그를 추가해준다.&lt;/p&gt;
+&lt;h3&gt;포스트에 트윗 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-tweet/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting Tweet&amp;quot;
+date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject tweet into post&amp;quot;
+tweets: [{
+  rootId: &amp;#39;sample-tweet&amp;#39;, # &amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  userId: &amp;#39;twitter&amp;#39;, # twitter user id
+  tweetId: &amp;#39;977557540199456775&amp;#39;, # tweet id
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;추가할 트윗을 작성한 사람과 해당 트윗의 ID, 그리고 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
+그리고 리액트 애플리케이션을 삽입했던 것처럼 사용하면 된다.&lt;/p&gt;
+&lt;h2&gt;포트폴리오 추가하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;portfolio&amp;quot;
+title: &amp;quot;Gatsby Advanced Blog&amp;quot;
+date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
+path: &amp;quot;/portfolios/portfolio-1/&amp;quot;
+images: [
+  &amp;quot;test-1/1.png&amp;quot;,
+  &amp;quot;test-1/2.png&amp;quot;,
+]
+---
+
+# Gatsby Advanced Blog
+
+## What I did
+- Develop Gatsby Advanced Blog
+
+## Libraries / Tools
+- ReactJS
+- Redux
+- Redux saga
+- ...
+
+[Go to Web Site →](https://github.com/wonism/gatsby-advanced-blog)&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;portfolio&lt;/code&gt;라고 할당한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 포트폴리오의 제목이다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt;는 포트폴리오에 첨부하고자 하는 이미지들로, 포스트와 같은 형태의 값을 가진다. 이미지는 배열에 추가된 순서로 렌더링이 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt;는 글이 작성된 날짜로 포트폴리오들은 이 값을 기반으로 정렬된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;이력서 추가하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;resume&amp;quot;
+title: &amp;quot;Resume&amp;quot;
+date: &amp;quot;2000-01-01T00:00:00.000Z&amp;quot;
+path: &amp;quot;/resume/&amp;quot;
+---
+
+## Experience
+- Engineer at OOO ∙ 2000. 01 ~ Present
+  - Develop something
+  - Maintain something
+
+## Education
+- B.S. in Computer Science Engineering at OOO
+  - 2000. 01 ~ 2000. 01
+
+## Projects
+- Gatsby Advanced Blog (https://github.com/wonism/gatsby-advanced-blog) ∙ 2000. 01 ~ Present
+  - Integrate Redux
+    - Use Redux, Redux Saga, Reselect...
+
+## Skills
+- JavaScript
+  - ES2015+
+  - ReactJS
+  - Lodash
+- CSS
+  - SASS
+  - Less&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;resume&lt;/code&gt;라고 할당한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;기타 기능&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GNB의 오른쪽에선 포스트의 제목, 요약된 내용, 태그, 카테고리 등으로 검색을 할 수 있다.&lt;/li&gt;
+&lt;li&gt;코드를 추가하면, 코드를 복사할 수 있는 버튼이 자동으로 생성된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;배포&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;npm run build&lt;/code&gt;를 통해 애플리케이션을 빌드하고,
+&lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Page&lt;/a&gt; 또는 &lt;a href=&quot;https://aws.amazon.com/s3&quot;&gt;AWS S3&lt;/a&gt;, &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt; 등 자신이 원하는 곳에 배포하면 된다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[JavaScript Generator 이해하기]]></title><link>https://wonism.github.io/javascript-generator/</link><guid isPermaLink="false">https://wonism.github.io/javascript-generator/</guid><pubDate>Wed, 08 Aug 2018 00:35:14 GMT</pubDate><content:encoded>&lt;h2&gt;Generator Function&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;Generator Function&lt;/code&gt;는 사용자의 요구에 따라 다른 시간 간격으로 여러 값을 반환할 수 있으며, 내부 상태를 관리할 수 있는 함수이며, &lt;code class=&quot;hljs-text&quot;&gt;function* generatorFunction() { /* ... */ }&lt;/code&gt;와 같이 사용한다.&lt;/p&gt;
 &lt;p&gt;단 한 번의 실행으로 함수의 끝까지 실행이 완료되는 일반 함수와는 달리,&lt;br /&gt;
 제너레이터 함수는 사용자의 요구에 따라 (&lt;code class=&quot;hljs-text&quot;&gt;yield&lt;/code&gt;와 &lt;code class=&quot;hljs-text&quot;&gt;next&lt;/code&gt;를 통해) 일시적으로 정지될 수도 있고, 다시 시작될 수도 있다.&lt;br /&gt;
