@@ -36,18 +36,26 @@ const PostContent = styled.section`
   line-height: 1.6em;
 
   h2 {
-    margin: 24px 0 10px;
+    margin: 48px 0 10px;
     font-size: 28px;
   }
 
   h3 {
-    margin: 24px 0 10px;
+    margin: 48px 0 10px;
     font-size: 24px;
   }
 
   h4 {
-    margin: 24px 0 10px;
+    margin: 48px 0 10px;
     font-size: 21px;
+  }
+
+  h2,
+  h3,
+  h4 {
+    &:nth-child(1) {
+      margin: 24px 0 10px;
+    }
   }
 
   p {
@@ -55,8 +63,12 @@ const PostContent = styled.section`
     font-size: 16px;
   }
 
+  li {
+    font-size: 16px;
+  }
+
   blockquote {
-    margin: 40px 0 0;
+    margin: 40px 0 40px;
     padding: 0 0 0 2em;
     line-height: 1.2em;
     color: #aaa;
@@ -99,28 +111,23 @@ class PostTemplate extends PureComponent {
     createCopyButton: func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    const { location, loadDisqus } = this.props;
+  componentDidMount() {
+    const { location, data, createCopyButton, renderTweets, renderComponents, loadDisqus } = this.props;
+    const frontmatter = get('markdownRemark.frontmatter')(data);
+    const { title, tweets, components } = frontmatter;
+
     const { pathname: identifier } = location;
     const url = add(SITE_URL, identifier);
-    const title = get('data.markdownRemark.frontmatter.title')(this.props);
+
+    createCopyButton();
+    renderTweets(tweets);
+    renderComponents(components);
 
     loadDisqus({
       url,
       identifier,
       title,
     });
-  }
-
-  componentDidMount() {
-    const { data, createCopyButton, renderTweets, renderComponents } = this.props;
-    const frontmatter = get('markdownRemark.frontmatter')(data);
-    const { tweets, components } = frontmatter;
-
-    createCopyButton();
-    renderTweets(tweets);
-    renderComponents(components);
   }
 
   render() {
