@@ -1,4 +1,695 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 14 Aug 2018 18:05:06 GMT</lastBuildDate><item><title><![CDATA[React를 실질적으로 제어하는 updater]]></title><link>https://wonism.github.io/react-updater/</link><guid isPermaLink="false">https://wonism.github.io/react-updater/</guid><pubDate>Wed, 15 Aug 2018 02:00:56 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;node_modules&lt;/code&gt;에서 &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt; 모듈의 내용을 보면, &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;는 추상 클래스의 모음이고, 실제 중요한 로직들은 대부분 &lt;code class=&quot;hljs-text&quot;&gt;react-reconsiler&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;react-dom&lt;/code&gt; 등 안에 구현되어 있다.&lt;br /&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Advanced Blog]]></title><description><![CDATA[Gatsby Advanced Blog]]></description><link>https://wonism.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Aug 2018 14:06:56 GMT</lastBuildDate><item><title><![CDATA[Create your own blog with Gatsby]]></title><link>https://wonism.github.io/create-blog-with-gatsby-en/</link><guid isPermaLink="false">https://wonism.github.io/create-blog-with-gatsby-en/</guid><pubDate>Wed, 15 Aug 2018 21:24:50 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;Gatsby&lt;/a&gt; is a Static site generator. (There are so many kinds of generator like Jekyll(Ruby), Hexo(Node.js), Hugo(Go), etc.) Gatsby support PWA(Progressive Web App), Hot reloading, SSR(Server Side Rendering).&lt;br /&gt;
+You can see more detailed in &lt;a href=&quot;https://www.gatsbyjs.org/features/&quot;&gt;this link&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Install Gatsby CLI and Gatsby Starter&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ npm i -g gatsby-cli
+$ gatsby new &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt; https://github.com/wonism/gatsby-advanced-blog
+$ cd &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt;
+$ npm run dev&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Basic structure of project&lt;/h2&gt;
+&lt;p&gt;The project has the following structure.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;src/
+├── components
+│   ├── ... # Many of shared sections
+│   └── layout.jsx # general layout for page
+├── constants
+├── containers # to connect states to react component
+├── html.jsx # page template for page
+├── pages # pages of your web site
+│   ├── 404.jsx
+│   └── index.js
+├── postComponents # react application that will be added in page
+│   └── ...
+├── resources # asset files
+│   └── images
+├── store # to use redux
+│   ├── ...
+│   └── index.js
+├── templates # template for creating page with file system
+│   └── ...
+└── utils # utilities
+    └── ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Create a post&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;These markdown files are referred by the &lt;code class=&quot;hljs-text&quot;&gt;gatsby-source-filesystem&lt;/code&gt; and converted to HTML files by &lt;code class=&quot;hljs-text&quot;&gt;gatsby-transformer-remark&lt;/code&gt;.&lt;br /&gt;
+These are called at build time. You can check this &lt;code class=&quot;hljs-text&quot;&gt;createPages&lt;/code&gt; in &lt;code class=&quot;hljs-text&quot;&gt;gatsby-node.js&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Caution&lt;/h3&gt;
+&lt;p&gt;There is a &lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; file in &lt;code class=&quot;hljs-text&quot;&gt;&amp;lt;&amp;lt;PROJECT_ROOT&amp;gt;&amp;gt;/src/pages&lt;/code&gt;.
+If you delete this file, you can not get &lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;image&lt;/code&gt;, etc. in &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt; of GraphQL query.&lt;br /&gt;
+The &lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; file serves as the dummy data and creates custom &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt; fields.&lt;/p&gt;
+&lt;h3&gt;The basic components of a markdown file&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/hello-world/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;should&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Hello, World!&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can create your own blog with Gatsby!&amp;quot;
+---
+
+Content of this page&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt; is a &lt;strong&gt;required&lt;/strong&gt; attribute to create a page. It must be unique.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt; allows you to create category pages and access to pages like &lt;code class=&quot;hljs-text&quot;&gt;/categories/&amp;lt;&amp;lt;CATEGORY_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;tags&lt;/code&gt; allows you to create tag pages and access to pages like &lt;code class=&quot;hljs-text&quot;&gt;/tags/&amp;lt;&amp;lt;TAG_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;As you can see the name oof property. &lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt; is the title of the page, and &lt;code class=&quot;hljs-text&quot;&gt;summary&lt;/code&gt; is a summary of the page. In below image, each corresponds to a red line and a blue line.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt; is the date the post was created, and posts are sorted based on it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(You can more detailed information about the formatting in &lt;a href=&quot;https://github.com/jonschlinkert/gray-matter&quot;&gt;gray-matter&lt;/a&gt;.)&lt;/p&gt;
+&lt;div class=&quot;render-image&quot; id=&quot;post-detail&quot;&gt;&lt;/div&gt;
+&lt;p&gt;Those will be called by &lt;code class=&quot;hljs-text&quot;&gt;query&lt;/code&gt; in &lt;code class=&quot;hljs-text&quot;&gt;src/templates/Post.jsx&lt;/code&gt;. and you can run the query directly on &lt;a href=&quot;http://localhost:8000/___graphql&quot;&gt;http://localhost:8000/___graphql&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Add image into post&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;images: [&amp;quot;(&amp;lt;&amp;lt;src/resources/&amp;gt;&amp;gt;)PATH_TO/IMAGE&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Use an absolute path including &lt;code class=&quot;hljs-text&quot;&gt;http://&lt;/code&gt; or &lt;code class=&quot;hljs-text&quot;&gt;https://&lt;/code&gt;. or use a relative path relative to &lt;code class=&quot;hljs-text&quot;&gt;src/resources&lt;/code&gt;.
+(On line 145 of&lt;code class=&quot;hljs-text&quot;&gt;components/Post/index.jsx&lt;/code&gt;, the image is imported via &lt;code class=&quot;hljs-text&quot;&gt;IF CONDITION ? &amp;lt;&amp;lt;image&amp;gt;&amp;gt; : &amp;#39;&amp;lt;&amp;lt;src/resources/${image}&amp;gt;&amp;gt;&amp;#39;&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Add react application into post&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-app/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting React application&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject react application into post&amp;quot;
+components: [{
+  rootId: &amp;#39;sample-component&amp;#39;, # &amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  fileName: &amp;#39;sample&amp;#39;, # this will render src/postComponents/sample/index.jsx
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Put an object in the array. Object has to include the path to the file of the react application that is to be added and the ID of the tag to be rendered.&lt;br /&gt;
+Then, in the middle of the article, add the tag with this ID where you want to insert the react application.&lt;/p&gt;
+&lt;h3&gt;Add tweet into post&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-tweet/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting Tweet&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject tweet into post&amp;quot;
+tweets: [{
+  rootId: &amp;#39;sample-tweet&amp;#39;, # &amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  userId: &amp;#39;twitter&amp;#39;, # twitter user id
+  tweetId: &amp;#39;977557540199456775&amp;#39;, # tweet id
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Put an object in the array. Object has to include the tweet’s ID and the author or the tweet and the ID of the tag to be rendered.&lt;br /&gt;
+You can use it as you added the react application.&lt;/p&gt;
+&lt;h3&gt;Add codes into post&lt;/h3&gt;
+&lt;p&gt;If you write the three back quote ` before and after the codes that you want to highlight, It will be highlighted by &lt;code class=&quot;hljs-text&quot;&gt;gatsby-remark-prismjs&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Add portfolios&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;portfolio&amp;quot;
+title: &amp;quot;Gatsby Advanced Blog&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+path: &amp;quot;/portfolios/portfolio-1/&amp;quot;
+images: [
+  &amp;quot;test-1/1.png&amp;quot;,
+  &amp;quot;test-1/2.png&amp;quot;,
+]
+---
+
+# Gatsby Advanced Blog
+
+## What I did
+- Develop Gatsby Advanced Blog
+
+## Libraries / Tools
+- ReactJS
+- Redux
+- Redux saga
+- ...
+
+[Go to Web Site →](https://github.com/wonism/gatsby-advanced-blog)&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt; is a &lt;strong&gt;required&lt;/strong&gt; attribute to create a page. It must be unique.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt; is a value that allows you to specify the format of the page, in this case it should be &lt;code class=&quot;hljs-text&quot;&gt;portfolio&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt; is the title of the portfolio.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt; are the images you want to attach to the portfolio and have the same value as the post’s. Images are rendered in the order they were added to the array.&lt;/li&gt;
+&lt;li&gt;Portfolios are sorted based on the &lt;code class=&quot;hljs-text&quot;&gt;data&lt;/code&gt;. Give a bigger value to the portfolio to show first.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Portfolios will be shown one the portfolio page. and if there are more than 4, they will be shown on the home page.&lt;br /&gt;
+(You can see it in &lt;code class=&quot;hljs-text&quot;&gt;src/components/Home&lt;/code&gt; and modify how it is rendered.)&lt;/p&gt;
+&lt;h2&gt;Add resume&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;resume&amp;quot;
+title: &amp;quot;Resume&amp;quot;
+date: &amp;quot;2000-01-01T00:00:00.000Z&amp;quot;
+path: &amp;quot;/resume/&amp;quot;
+---
+
+## Experience
+- Engineer at OOO ∙ 2000. 01 ~ Present
+  - Develop something
+  - Maintain something
+
+## Education
+- B.S. in Computer Science Engineering at OOO
+  - 2000. 01 ~ 2000. 01
+
+## Projects
+- Gatsby Advanced Blog (https://github.com/wonism/gatsby-advanced-blog) ∙ 2000. 01 ~ Present
+  - Integrate Redux
+    - Use Redux, Redux Saga, Reselect...
+
+## Skills
+- JavaScript
+  - ES2015+
+  - ReactJS
+  - Lodash
+- CSS
+  - SASS
+  - Less&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt; is a &lt;strong&gt;required&lt;/strong&gt; attribute to create a page. It must be unique.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt; is a value that allows you to specify the format of the page, in this case it should be &lt;code class=&quot;hljs-text&quot;&gt;portfolio&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Other features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;On the right side of the GNB, you can search posts by title, summary, tag, category, etc. of the post.&lt;/li&gt;
+&lt;li&gt;When you add codes in markdown, a button will be created automatically. If user clicks the button, user can copy the codes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Deployment&lt;/h2&gt;
+&lt;p&gt;You can build the application with &lt;code class=&quot;hljs-text&quot;&gt;npm run build&lt;/code&gt;.
+Then you can distribute it where you want. such as &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Page&lt;/a&gt;, &lt;a href=&quot;https://aws.amazon.com/s3&quot;&gt;AWS S3&lt;/a&gt; or &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React - 기본적인 이론 컨셉]]></title><link>https://wonism.github.io/react-basic/</link><guid isPermaLink="false">https://wonism.github.io/react-basic/</guid><pubDate>Wed, 15 Aug 2018 20:34:38 GMT</pubDate><content:encoded>&lt;p&gt;참고 : 이 문서는 &lt;a href=&quot;https://github.com/reactjs/react-basic&quot;&gt;react-basic&lt;/a&gt; 을 번역한 것으로 의역 혹은 오역이 있을 수 있음을 참고바랍니다.&lt;/p&gt;
+&lt;p&gt;이 문서는 필자의 React 모델에 대한 이해를 설명하기 위한 문서이다.
+이 디자인을 이끄는 연역적 추론의 관점에서 이를 설명하고자 한다.&lt;/p&gt;
+&lt;p&gt;분명 논쟁의 여지가 있는 몇 가지 전제가 있을 수 있으며, 예제의 실제 디자인은 버그나 틈이 있을 수 있다.
+이 예제는 단지 공식화의 시작이며,
+어떻게 공식화하는 지에 대한 더 좋은 아이디어가 있다면 망설이지 말고 &lt;a href=&quot;https://github.com/reactjs/react-basic/pulls&quot;&gt;Pull Request&lt;/a&gt;를 보내주길 바란다.
+단순 &gt; 복잡으로의 진행은 너무 많은 라이브러리 세부사항 없이도 합당해야 한다.&lt;/p&gt;
+&lt;p&gt;리액트의 실제 구현은 실용적인 솔루션, 점진적 단계, 알고리즘 최적화, 레거시 코드, 디버깅 툴 및 실제로 유용하게 만드는 데 필요한 것들로 구성되어있다.
+그러한 것들은 순간적이며, 시간이 흐름에 따라 더 효율적이고 높은 우선 순위를 가지는 것들과 바뀔 수 있다.
+실제 구현은 추론하기가 매우 어렵다.&lt;/p&gt;
+&lt;p&gt;나는 내가 생각할 수 있는 더 단순한 이해를 하고 싶다.&lt;/p&gt;
+&lt;h2&gt;변형&lt;/h2&gt;
+&lt;p&gt;리액트의 핵짐 전제는 UI가 단순히 데이터를 다른 형식의 데이터로 투영한다는 것이다.
+동일한 입력은 항상 동일한 결과를 출력하며, 단순한 순수 함수이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;NameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; fontWeight&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bold&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; labelContent&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; name &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;&amp;#39;Sebastian Markbåge&amp;#39; -&amp;gt;
+{ fontWeight: &amp;#39;bold&amp;#39;, labelContent: &amp;#39;Sebastian Markbåge&amp;#39; };&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;추상&lt;/h2&gt;
+&lt;p&gt;하나의 함수에 복잡한 UI를 넣을 수 없다.
+UI를 재사용 가능한 부분으로 추상화하는 것이 중요하며, 재사용 가능한 부분은 구현 세부 사항을 누설하지 않는다.
+하나의 함수를 다른 함수에서 호출한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyUserBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    borderStyle&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1px solid blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    childContent&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&apos;Name: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token function&quot;&gt;NameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;firstName &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lastName&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;{ firstName: &amp;#39;Sebastian&amp;#39;, lastName: &amp;#39;Markbåge&amp;#39; } -&amp;gt;
+{
+  borderStyle: &amp;#39;1px solid blue&amp;#39;,
+  childContent: [
+    &amp;#39;Name: &amp;#39;,
+    { fontWeight: &amp;#39;bold&amp;#39;, labelContent: &amp;#39;Sebastian Markbåge&amp;#39; }
+  ]
+};&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;구성&lt;/h2&gt;
+&lt;p&gt;진정으로 재사용할 수 있는 기능을 구성하기 위해서는 단순히 재사용 가능한 것들을 사용하는 것만으로는 충분하지 않다.
+그들을 위한 새로운 컨테이너를 구성해야 한다.
+또한, 다른 추상화를 구성하는 컨테이너에서 추상화를 구성할 수 있어야 한다.
+내가 구성에 대해 생각하는 방식은 둘 이상의 다른 추상화를 새로운 추상화로 결합하는 것이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;children&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    borderStyle&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1px solid blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    children&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; children
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;UserBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Name: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;NameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;firstName &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lastName&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;상태&lt;/h2&gt;
+&lt;p&gt;UI는 단순히 서버와 비지니스 로직의 상태에 대한 사본이 아니다.
+실제로 정확한 투영과 관련이 있는 상태가 많이 있으며, 다른 투영과는 관련이 없다.
+예를 들어 텍스트 필드에 입력을 하면, 다른 탭이나 모바일 기기에 복제되거나 복제되지 않을 수 있다.
+스크롤 위치는 여러 투영 사이에 거의 복제되지 않는 전형적인 예이다.&lt;/p&gt;
+&lt;p&gt;우리는 데이터 모델이 불변하기를 선호하는 경향이 있다.
+우리는 맨 위에 있는 단일 원자로써 상태를 업데이트 할 수 있는 함수를 쓰레드한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyNameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likes&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; onClick&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Name: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;NameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;firstName &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lastName&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Likes: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;LikeBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;likes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;LikeButton&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;onClick&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Implementation Details&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; likes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;addOneMoreLike&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  likes&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;rerender&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Init&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;FancyNameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; firstName&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Sebastian&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lastName&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Markbåge&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  likes&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  addOneMoreLike
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;참고 : 이 예제는 상태를 업데이트하기 위해 사이드 이펙트를 사용한다.
+실제 리액트의 모델은 업데이트 과정에서 다음 버전의 상태를 반환한다.
+위의 코드처럼 설명하는 것이 더 간단하지만, 미래에 이 예제를 바꾸고자 한다.&lt;/p&gt;
+&lt;h2&gt;메모이제이션&lt;/h2&gt;
+&lt;p&gt;어떤 함수가 순수하다는 것을 아는 상태에서 그 함수를 반복해서 호출하는 것은 낭비이다.
+마지막 인자와 마지막 결과를 추적하는 메모이즈된 버전의 함수를 만들 수 있다.
+이렇게 하면 같은 값을 넘겨받는 함수를 다시 실행할 필요가 없다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memoize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cachedArg&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cachedResult&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cachedArg &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; arg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; cachedResult&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    cachedArg &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arg&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    cachedResult &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; cachedResult&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; MemoizedNameBox &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memoize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;NameBox&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;NameAndAgeBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; currentTime&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Name: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;MemoizedNameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;firstName &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lastName&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Age in milliseconds: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    currentTime &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dateOfBirth
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;역자 주 : &lt;a href=&quot;https://wonism.github.io/memoization/&quot;&gt;메모이제이션에 대해 작성한 글&lt;/a&gt;을 보면 더 자세히 알 수 있다.&lt;/p&gt;
+&lt;h2&gt;리스트&lt;/h2&gt;
+&lt;p&gt;대부분의 UI는 목록에 있는 각 항목에 대해 여러 값을 만드는 어떤 형태의 목록이다.
+이것은 자연적인 계층 구조를 만든다.&lt;/p&gt;
+&lt;p&gt;목록에 있는 각 항목에 대한 상태를 관리하기 위해 특정 항목의 상태를 유지하는 &lt;code class=&quot;hljs-text&quot;&gt;Map&lt;/code&gt;을 만들 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updateUserLikes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; users&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyNameBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    user&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;updateUserLikes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; likesPerUser &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;updateUserLikes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likeCount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likeCount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;rerender&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updateUserLikes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;참고 : 이제 &lt;code class=&quot;hljs-text&quot;&gt;FancyNameBox&lt;/code&gt;에 전달되는 여러 다른 인자들이 있다.
+여러 다른 인자들과 함께 호출되는 함수로 하여금 메모이제이션을 깨지게 하는데, 한 번에 하나의 값만 기억할 수 있기 때문이다.
+아래에 더 자세한 내용이 후술된다.&lt;/p&gt;
+&lt;h2&gt;연속성&lt;/h2&gt;
+&lt;p&gt;불행히도, UI 목록에는 너무 많은 목록이 있어서 명시적으로 관리해야하는 상용구 코드가 많아진다.&lt;/p&gt;
+&lt;p&gt;함수의 실행을 연기함으로써 상용구 코드의 일부를 중요 비지니스 로직 바깥으로 옮기는 것이 가능하다.
+예를 들어, &lt;code class=&quot;hljs-text&quot;&gt;Partial Application&lt;/code&gt;을 사용할 수 있다.
+그 다음, 상용구 코드로 부터 자유로워진 핵심 함수의 외부로부터 상태를 전달한다.&lt;/p&gt;
+&lt;p&gt;역자 주 : 원 글에서는 &lt;code class=&quot;hljs-text&quot;&gt;Partial Application&lt;/code&gt;이 아닌 &lt;code class=&quot;hljs-text&quot;&gt;Currying&lt;/code&gt;이라고 되어있다. 하지만 커링이라면, &lt;code class=&quot;hljs-text&quot;&gt;box.children(likesPerUser)(updateUserLikes)&lt;/code&gt;과 같이 코드가 작성되어야 한다. 이 외에도 &lt;code class=&quot;hljs-text&quot;&gt;bind&lt;/code&gt; 에 대한 링크가 추가되어 있는데, 별 관련성이 없다고 생각하기 때문에 제거하였다. 커링과 파셜 애플리케이션의 차이는 &lt;a href=&quot;https://codeburst.io/javascript-currying-vs-partial-application-4db5b2442be8&quot;&gt;Javascript- Currying VS Partial Application&lt;/a&gt;에서 더 자세하게 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;이것은 상용구 코드를 줄이진 않지만, 중요한 비지니스 로직 바깥으로 벗어나야 한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyUserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    UserList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; box &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyUserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; resolvedChildren &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; box&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updateUserLikes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; resolvedBox &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;box&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  children&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; resolvedChildren
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;상태 Map&lt;/h2&gt;
+&lt;p&gt;앞서 우리는 반복되는 패턴을 볼 때 같은 패턴을 다시 구현하는 것을 피하기 위해 구성을 할 수 있다는 것을 안다.
+상태를 추출하고 전달하는 로직을 재사용되는 저수준 함수로 옮길 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBoxWithState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  children&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  stateMap&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  updateState
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    children&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;child &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; child&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;continuation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      stateMap&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;child&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      updateState
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; users&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    continuation&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; FancyNameBox&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    key&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyUserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; FancyBoxWithState&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; continuation &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyUserList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;continuation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;likesPerUser&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updateUserLikes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;메모이제이션 Map&lt;/h2&gt;
+&lt;p&gt;목록에 있는 여러 항복을 메모이즈하는 것은 상당히 어렵다.
+메모리 사용량과 빈도 사이의 균형을 맞추는 복잡한 캐싱 알고리즘을 찾아야 한다.&lt;/p&gt;
+&lt;p&gt;다행히도, UI는 동일한 위치에서 안정되려는 경향이 있다.
+트리의 같은 위치는 항상 같은 값을 가지며, 이 트리는 메모이제이션에 유용한 전략임이 밝혀졌다.&lt;/p&gt;
+&lt;p&gt;우리는 상태에 사용했던 것과 동일한 트릭을 사용할 수 있으며, 구성 가능한 함수를 통해 메모이제이션 캐시를 전달할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memoize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;arg &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; arg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;arg &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arg&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBoxWithState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  children&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  stateMap&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  updateState&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  memoizationCache
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    children&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;child &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; child&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;continuation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      stateMap&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;child&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      updateState&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      memoizationCache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;child&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; MemoizedFancyNameBox &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memoize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;FancyNameBox&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;대수학 효과&lt;/h2&gt;
+&lt;p&gt;여러 수준의 추상화를 통해 필요한 모든 작은 값을 전달하는 것은 PITA와 같은 것으로 밝혀졌다.
+중간 생성자를 포함하지 않은 채 두 추상화 사이에서 무언가를 전달하기 위한 지름길을 갖는 것이 때때로 바람직하다.
+리액트에서는 이것을 &lt;code class=&quot;hljs-text&quot;&gt;컨텍스트&lt;/code&gt;라고 부른다.&lt;/p&gt;
+&lt;p&gt;역자 주 : PITA의 뜻이 뭔지 찾아봤는데, 알아내지 못했다. 원문은 다음과 같다.&lt;br /&gt;
+It turns out that it is kind of a PITA to pass every little value you might need through several levels of abstractions.&lt;/p&gt;
+&lt;p&gt;때로는 데이터 종속성이 추상화 트리를 완전히 따르지 않는 경우가 있다.
+예를 들어, 레이아웃 알고리즘에서 하위의 크기를 알아야 그들의 위치를 완전하게 이행할 수 있다.&lt;/p&gt;
+&lt;p&gt;이제, 이 예제는 조금 바깥에 있다.
+&lt;a href=&quot;https://esdiscuss.org/topic/one-shot-delimited-continuations-with-effect-handlers&quot;&gt;ECMAScript&lt;/a&gt;에 제안된 &lt;a href=&quot;http://math.andrej.com/eff/&quot;&gt;대수학 효과&lt;/a&gt;를 사용하겠다.
+함수형 프로그래밍에 익숙하다면 모나드에 의해 부과된 중간 식을 피할 것이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;
+      &lt;pre class=&quot;hljs-js&quot;&gt;&lt;code class=&quot;hljs-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ThemeBorderColorRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FancyBox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;children&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; color &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; raise &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ThemeBorderColorRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    borderWidth&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1px&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    borderColor&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; color&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    children&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; children
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;BlueTheme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;children&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; effect ThemeBorderColorRequest &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; continuation&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;continuation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;BlueTheme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    FancyUserList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;users&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;</content:encoded></item><item><title><![CDATA[Gatsby로 블로그 만들기]]></title><link>https://wonism.github.io/create-blog-with-gatsby/</link><guid isPermaLink="false">https://wonism.github.io/create-blog-with-gatsby/</guid><pubDate>Wed, 15 Aug 2018 03:39:28 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;Gatsby&lt;/a&gt;는 React를 기반으로 한 정적 사이트 생성기(Jekyll(Ruby), Hexo(Node.js), Hugo(Go) 등이 있다.)이며, PWA, Hot reloading, SSR 등 다양한 기능을 제공한다. 더 자세한 내용은 이 &lt;a href=&quot;https://www.gatsbyjs.org/features/&quot;&gt;링크&lt;/a&gt;에서 참고할 수 있다.&lt;/p&gt;
+&lt;h2&gt;Gatsby CLI와 Gatsby 스타터 다운받기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ npm i -g gatsby-cli
+$ gatsby new &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt; https://github.com/wonism/gatsby-advanced-blog
+$ cd &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt;
+$ npm run dev&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;기본 구조 살펴보기&lt;/h2&gt;
+&lt;p&gt;프로젝트는 다음과 같은 구조로 이루어져있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;src/
+├── components
+│   ├── ... # Many of shared sections
+│   └── layout.jsx # general layout for page
+├── constants
+├── containers # to connect states to react component
+├── html.jsx # page template for page
+├── pages # pages of your web site
+│   ├── 404.jsx
+│   └── index.js
+├── postComponents # react application that will be added in page
+│   └── ...
+├── resources # asset files
+│   └── images
+├── store # to use redux
+│   ├── ...
+│   └── index.js
+├── templates # template for creating page with file system
+│   └── ...
+└── utils # utilities
+    └── ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Post 작성하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;이 마크다운 파일들은 &lt;code class=&quot;hljs-text&quot;&gt;gatsby-source-filesystem&lt;/code&gt;에 의해 불려지게 되며, &lt;code class=&quot;hljs-text&quot;&gt;gatsby-transformer-remark&lt;/code&gt; 에 의해 HTML 파일로 변환된다.&lt;br /&gt;
+이들은 빌드 타임에 호출되며, &lt;code class=&quot;hljs-text&quot;&gt;gatsby-node.js&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;createPages&lt;/code&gt;를 참고하면 된다.&lt;/p&gt;
+&lt;h3&gt;주의 사항&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;&amp;lt;&amp;lt;PROJECT_ROOT&amp;gt;&amp;gt;/src/pages&lt;/code&gt; 경로에 &lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일이 있는데, 이 파일을 지우면 GraphQL 쿼리의 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt; 프로퍼티의 &lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt; 등을 가져올 수 없다는 에러가 발생한다.&lt;br /&gt;
+&lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일은 더미 데이터의 역할을 하여 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt;의 필드를 생성한다고 보면 된다.&lt;/p&gt;
+&lt;h3&gt;마크다운 파일의 기본 구성 요소&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/hello-world/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;should&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Hello, World!&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can create your own blog with Gatsby!&amp;quot;
+---
+
+Content of this page&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;는 카테고리 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/categories/&amp;lt;&amp;lt;CATEGORY_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;와 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;tags&lt;/code&gt;는 태그 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/tags/&amp;lt;&amp;lt;TAG_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;와 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 페이지의 제목, &lt;code class=&quot;hljs-text&quot;&gt;summary&lt;/code&gt;는 페이지의 요약된 내용이다. 아래 이미지에서 각각 빨간 줄과 파란 줄에 해당된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt;는 글이 작성된 날짜로 포스트들은 이 값을 기반으로 정렬된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(이는 &lt;a href=&quot;https://github.com/jonschlinkert/gray-matter&quot;&gt;gray-matter&lt;/a&gt;를 참고하면 더 자세한 작동 원리를 알 수 있다.)&lt;/p&gt;
+&lt;div class=&quot;render-image&quot; id=&quot;post-detail&quot;&gt;&lt;/div&gt;
+&lt;p&gt;이 값들은 &lt;code class=&quot;hljs-text&quot;&gt;src/templates/Post.jsx&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;query&lt;/code&gt;에 의해 불려지게 되며, &lt;a href=&quot;http://localhost:8000/___graphql&quot;&gt;http://localhost:8000/___graphql&lt;/a&gt; 에서 쿼리를 직접 실행해볼 수 있다.&lt;/p&gt;
+&lt;h3&gt;포스트에 이미지 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;images: [&amp;quot;(&amp;lt;&amp;lt;src/resources/&amp;gt;&amp;gt;)PATH_TO/IMAGE&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;http://&lt;/code&gt;혹은 &lt;code class=&quot;hljs-text&quot;&gt;https://&lt;/code&gt;를 포함한 절대경로를 사용하거나, &lt;code class=&quot;hljs-text&quot;&gt;src/resources&lt;/code&gt;를 기준으로 한 상대경로를 할당해준다.&lt;/p&gt;
+&lt;p&gt;(&lt;code class=&quot;hljs-text&quot;&gt;components/Post/index.jsx&lt;/code&gt;의 145번째 줄을 보면, &lt;code class=&quot;hljs-text&quot;&gt;IF CONDITION ? &amp;lt;&amp;lt;image&amp;gt;&amp;gt; : &amp;#39;&amp;lt;&amp;lt;src/resources/${image}&amp;gt;&amp;gt;&amp;#39;&lt;/code&gt;와 같이 이미지를 불러온다.)&lt;/p&gt;
+&lt;h3&gt;포스트에 리액트 애플리케이션 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-app/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting React application&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject react application into post&amp;quot;
+components: [{
+  rootId: &amp;#39;sample-component&amp;#39;, # &amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  fileName: &amp;#39;sample&amp;#39;, # this will render src/postComponents/sample/index.jsx
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;추가할 리액트 애플리케이션의 파일의 경로와, 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
+그리고 글 중간에 리액트 애플리케이션을 삽입하고 싶은 곳에 이 ID를 가진 태그를 추가해준다.&lt;/p&gt;
+&lt;h3&gt;포스트에 트윗 추가하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+path: &amp;quot;/inject-tweet/&amp;quot;
+category: &amp;quot;Sample&amp;quot;
+tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
+title: &amp;quot;Injecting Tweet&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+summary: &amp;quot;You can inject tweet into post&amp;quot;
+tweets: [{
+  rootId: &amp;#39;sample-tweet&amp;#39;, # &amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
+  userId: &amp;#39;twitter&amp;#39;, # twitter user id
+  tweetId: &amp;#39;977557540199456775&amp;#39;, # tweet id
+}]
+---
+
+1. ...
+
+&amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+2. ...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;추가할 트윗을 작성한 사람과 해당 트윗의 ID, 그리고 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
+그리고 리액트 애플리케이션을 삽입했던 것처럼 사용하면 된다.&lt;/p&gt;
+&lt;h3&gt;포스트에 코드 추가하기&lt;/h3&gt;
+&lt;p&gt;하이라이팅을 하고자 하는 코드의 앞 뒤로 `를 연달아 3개를 붙여넣어주면, &lt;code class=&quot;hljs-text&quot;&gt;gatsby-remark-prismjs&lt;/code&gt;에 의해 하이라이팅이 된다.&lt;/p&gt;
+&lt;h2&gt;포트폴리오 추가하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
+      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
+$ touch src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;portfolio&amp;quot;
+title: &amp;quot;Gatsby Advanced Blog&amp;quot;
+date: &amp;quot;2018-08-15T00:00:00.000Z&amp;quot;
+path: &amp;quot;/portfolios/portfolio-1/&amp;quot;
+images: [
+  &amp;quot;test-1/1.png&amp;quot;,
+  &amp;quot;test-1/2.png&amp;quot;,
+]
+---
+
+# Gatsby Advanced Blog
+
+## What I did
+- Develop Gatsby Advanced Blog
+
+## Libraries / Tools
+- ReactJS
+- Redux
+- Redux saga
+- ...
+
+[Go to Web Site →](https://github.com/wonism/gatsby-advanced-blog)&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;portfolio&lt;/code&gt;라고 할당한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 포트폴리오의 제목이다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt;는 포트폴리오에 첨부하고자 하는 이미지들로, 포스트와 같은 형태의 값을 가진다. 이미지는 배열에 추가된 순서로 렌더링이 된다.&lt;/li&gt;
+&lt;li&gt;포트폴리오들은 &lt;code class=&quot;hljs-text&quot;&gt;data&lt;/code&gt; 값을 기반으로 정렬된다. 우선적으로 보여줄 포트폴리오에 큰 값을 준다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;포트폴리오는 포트폴레오 페이지에서 보여지게 되며, 포트폴리오가 4개 이상일 경우 홈페이지 메인에서도 보여지게 된다.&lt;br /&gt;
+(&lt;code class=&quot;hljs-text&quot;&gt;src/components/Home&lt;/code&gt;에서 확인할 수 있으며, 어떻게 렌더링할 지는 수정하면 된다.)&lt;/p&gt;
+&lt;h2&gt;Resume 추가하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
+      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
+type: &amp;quot;resume&amp;quot;
+title: &amp;quot;Resume&amp;quot;
+date: &amp;quot;2000-01-01T00:00:00.000Z&amp;quot;
+path: &amp;quot;/resume/&amp;quot;
+---
+
+## Experience
+- Engineer at OOO ∙ 2000. 01 ~ Present
+  - Develop something
+  - Maintain something
+
+## Education
+- B.S. in Computer Science Engineering at OOO
+  - 2000. 01 ~ 2000. 01
+
+## Projects
+- Gatsby Advanced Blog (https://github.com/wonism/gatsby-advanced-blog) ∙ 2000. 01 ~ Present
+  - Integrate Redux
+    - Use Redux, Redux Saga, Reselect...
+
+## Skills
+- JavaScript
+  - ES2015+
+  - ReactJS
+  - Lodash
+- CSS
+  - SASS
+  - Less&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;resume&lt;/code&gt;라고 할당한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;기타 기능&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GNB의 오른쪽에선 포스트의 제목, 요약된 내용, 태그, 카테고리 등으로 검색을 할 수 있다.&lt;/li&gt;
+&lt;li&gt;코드를 추가하면, 코드를 복사할 수 있는 버튼이 자동으로 생성된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;배포&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;npm run build&lt;/code&gt;를 통해 애플리케이션을 빌드하고,
+&lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Page&lt;/a&gt; 또는 &lt;a href=&quot;https://aws.amazon.com/s3&quot;&gt;AWS S3&lt;/a&gt;, &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt; 등 자신이 원하는 곳에 배포하면 된다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React를 실질적으로 제어하는 updater]]></title><link>https://wonism.github.io/react-updater/</link><guid isPermaLink="false">https://wonism.github.io/react-updater/</guid><pubDate>Wed, 15 Aug 2018 02:00:56 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;node_modules&lt;/code&gt;에서 &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt; 모듈의 내용을 보면, &lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;는 추상 클래스의 모음이고, 실제 중요한 로직들은 대부분 &lt;code class=&quot;hljs-text&quot;&gt;react-reconsiler&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;react-dom&lt;/code&gt; 등 안에 구현되어 있다.&lt;br /&gt;
 이번 글에서 알아보고자 하는 &lt;code class=&quot;hljs-text&quot;&gt;updater&lt;/code&gt;(&lt;code class=&quot;hljs-text&quot;&gt;UpdateQueue&lt;/code&gt;)는 &lt;code class=&quot;hljs-text&quot;&gt;setState&lt;/code&gt; 및 &lt;code class=&quot;hljs-text&quot;&gt;forceUpdate&lt;/code&gt; 등에 사용된다.&lt;/p&gt;
 &lt;p&gt;(이 글은 React 16.4.1 버전을 기준으로 작성되었다.)&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;react&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;Component&lt;/code&gt;를 살펴보면, &lt;code class=&quot;hljs-text&quot;&gt;updater&lt;/code&gt;가 사용된다는 것을 살펴볼 수 있다.&lt;/p&gt;
@@ -94,178 +785,7 @@ A1 - B2 - C1 - D2&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;더 알아보기&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=nLF0n9SACd4&quot;&gt;Youtube : Dan Abramov: Beyond React 16 | JSConf Iceland 2018&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Gatsby로 블로그 만들기]]></title><link>https://wonism.github.io/create-blog-with-gatsby/</link><guid isPermaLink="false">https://wonism.github.io/create-blog-with-gatsby/</guid><pubDate>Mon, 13 Aug 2018 23:54:12 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;Gatsby&lt;/a&gt;는 React를 기반으로 한 정적 사이트 생성기(Jekyll(Ruby), Hexo(Node.js), Hugo(Go) 등이 있다.)이며, PWA, Hot reloading, SSR 등 다양한 기능을 제공한다. 더 자세한 내용은 이 &lt;a href=&quot;https://www.gatsbyjs.org/features/&quot;&gt;링크&lt;/a&gt;에서 참고할 수 있다.&lt;/p&gt;
-&lt;h2&gt;Gatsby CLI와 Gatsby 스타터 다운받기&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
-      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ npm i -g gatsby-cli
-$ gatsby new &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt; https://github.com/wonism/gatsby-advanced-blog
-$ cd &amp;lt;&amp;lt;BLOG_NAME&amp;gt;&amp;gt;
-$ npm run dev&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;h2&gt;Post 작성하기&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
-      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
-$ touch src/pages/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;h3&gt;주의 사항&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;&amp;lt;&amp;lt;PROJECT_ROOT&amp;gt;&amp;gt;/src/pages&lt;/code&gt; 경로에 &lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일이 있는데, 이 파일을 지우면 GraphQL 쿼리의 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt; 프로퍼티의 &lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;, &lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt; 등을 가져올 수 없다는 에러가 발생한다.&lt;br /&gt;
-&lt;code class=&quot;hljs-text&quot;&gt;.sample.md&lt;/code&gt; 파일은 더미 데이터의 역할을 하여 &lt;code class=&quot;hljs-text&quot;&gt;frontmatter&lt;/code&gt;의 필드를 생성한다고 보면 된다.&lt;/p&gt;
-&lt;h3&gt;마크다운 파일의 기본 구성 요소&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
-path: &amp;quot;/hello-world/&amp;quot;
-category: &amp;quot;Sample&amp;quot;
-tags: [&amp;quot;tag&amp;quot;, &amp;quot;should&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
-title: &amp;quot;Hello, World!&amp;quot;
-date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
-summary: &amp;quot;You can create your own blog with Gatsby!&amp;quot;
----
-
-Content of this page&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;category&lt;/code&gt;는 카테고리 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/categories/&amp;lt;&amp;lt;CATEGORY_NAME&amp;gt;&amp;gt;&lt;/code&gt;과 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;tags&lt;/code&gt;는 태그 페이지를 생성하게 해주며, &lt;code class=&quot;hljs-text&quot;&gt;/tags/&amp;lt;&amp;lt;TAG_NAME&amp;gt;&amp;gt;/&amp;lt;&amp;lt;PAGE_NUMBER&amp;gt;&amp;gt;&lt;/code&gt;와 같은 페이지에 접근할 수 있게 된다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 페이지의 제목, &lt;code class=&quot;hljs-text&quot;&gt;summary&lt;/code&gt;는 페이지의 요약된 내용이다. 아래 이미지에서 각각 빨간 줄과 파란 줄에 해당된다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt;는 글이 작성된 날짜로 포스트들은 이 값을 기반으로 정렬된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;render-image&quot; id=&quot;post-detail&quot;&gt;&lt;/div&gt;
-&lt;p&gt;이 값들은 &lt;code class=&quot;hljs-text&quot;&gt;src/templates/Post.jsx&lt;/code&gt;의 &lt;code class=&quot;hljs-text&quot;&gt;query&lt;/code&gt;에 의해 불려지게 되며, &lt;a href=&quot;http://localhost:8000/___graphql&quot;&gt;http://localhost:8000/___graphql&lt;/a&gt; 에서 쿼리를 직접 실행해볼 수 있다.&lt;/p&gt;
-&lt;h3&gt;포스트에 이미지 추가하기&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;images: [&amp;quot;(&amp;lt;&amp;lt;src/resources/&amp;gt;&amp;gt;)PATH_TO/IMAGE&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;http://&lt;/code&gt;혹은 &lt;code class=&quot;hljs-text&quot;&gt;https://&lt;/code&gt;를 포함한 절대경로를 사용하거나, &lt;code class=&quot;hljs-text&quot;&gt;src/resources&lt;/code&gt;를 기준으로 한 상대경로를 할당해준다.&lt;/p&gt;
-&lt;p&gt;(&lt;code class=&quot;hljs-text&quot;&gt;components/Post/index.jsx&lt;/code&gt;의 145번째 줄을 보면, &lt;code class=&quot;hljs-text&quot;&gt;IF CONDITION ? &amp;lt;&amp;lt;image&amp;gt;&amp;gt; : &amp;#39;&amp;lt;&amp;lt;src/resources/${image}&amp;gt;&amp;gt;&amp;#39;&lt;/code&gt;와 같이 이미지를 불러온다.)&lt;/p&gt;
-&lt;h3&gt;포스트에 리액트 애플리케이션 추가하기&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
-path: &amp;quot;/inject-app/&amp;quot;
-category: &amp;quot;Sample&amp;quot;
-tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
-title: &amp;quot;Injecting React application&amp;quot;
-date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
-summary: &amp;quot;You can inject react application into post&amp;quot;
-components: [{
-  rootId: &amp;#39;sample-component&amp;#39;, # &amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
-  fileName: &amp;#39;sample&amp;#39;, # this will render src/postComponents/sample/index.jsx
-}]
----
-
-1. ...
-
-&amp;lt;div id=&amp;quot;sample-component&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-2. ...&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;p&gt;추가할 리액트 애플리케이션의 파일의 경로와, 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
-그리고 글 중간에 리액트 애플리케이션을 삽입하고 싶은 곳에 이 ID를 가진 태그를 추가해준다.&lt;/p&gt;
-&lt;h3&gt;포스트에 트윗 추가하기&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
-path: &amp;quot;/inject-tweet/&amp;quot;
-category: &amp;quot;Sample&amp;quot;
-tags: [&amp;quot;tag&amp;quot;, &amp;quot;must&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;array&amp;quot;]
-title: &amp;quot;Injecting Tweet&amp;quot;
-date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
-summary: &amp;quot;You can inject tweet into post&amp;quot;
-tweets: [{
-  rootId: &amp;#39;sample-tweet&amp;#39;, # &amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; must be in contents
-  userId: &amp;#39;twitter&amp;#39;, # twitter user id
-  tweetId: &amp;#39;977557540199456775&amp;#39;, # tweet id
-}]
----
-
-1. ...
-
-&amp;lt;div id=&amp;quot;sample-tweet&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-2. ...&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;p&gt;추가할 트윗을 작성한 사람과 해당 트윗의 ID, 그리고 렌더될 태그의 ID 값을 포함한 객체를 배열 안에 넣어준다.&lt;br /&gt;
-그리고 리액트 애플리케이션을 삽입했던 것처럼 사용하면 된다.&lt;/p&gt;
-&lt;h2&gt;포트폴리오 추가하기&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;
-      &lt;pre class=&quot;hljs-text&quot;&gt;&lt;code class=&quot;hljs-text&quot;&gt;$ mkdir src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;
-$ touch src/resources/&amp;lt;&amp;lt;DIRECTORY_NAME&amp;gt;&amp;gt;/index.md&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
-type: &amp;quot;portfolio&amp;quot;
-title: &amp;quot;Gatsby Advanced Blog&amp;quot;
-date: &amp;quot;2018-08-13T00:00:00.000Z&amp;quot;
-path: &amp;quot;/portfolios/portfolio-1/&amp;quot;
-images: [
-  &amp;quot;test-1/1.png&amp;quot;,
-  &amp;quot;test-1/2.png&amp;quot;,
-]
----
-
-# Gatsby Advanced Blog
-
-## What I did
-- Develop Gatsby Advanced Blog
-
-## Libraries / Tools
-- ReactJS
-- Redux
-- Redux saga
-- ...
-
-[Go to Web Site →](https://github.com/wonism/gatsby-advanced-blog)&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;portfolio&lt;/code&gt;라고 할당한다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;title&lt;/code&gt;는 포트폴리오의 제목이다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;images&lt;/code&gt;는 포트폴리오에 첨부하고자 하는 이미지들로, 포스트와 같은 형태의 값을 가진다. 이미지는 배열에 추가된 순서로 렌더링이 된다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;date&lt;/code&gt;는 글이 작성된 날짜로 포트폴리오들은 이 값을 기반으로 정렬된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;이력서 추가하기&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;md&quot;&gt;
-      &lt;pre class=&quot;hljs-md&quot;&gt;&lt;code class=&quot;hljs-md&quot;&gt;---
-type: &amp;quot;resume&amp;quot;
-title: &amp;quot;Resume&amp;quot;
-date: &amp;quot;2000-01-01T00:00:00.000Z&amp;quot;
-path: &amp;quot;/resume/&amp;quot;
----
-
-## Experience
-- Engineer at OOO ∙ 2000. 01 ~ Present
-  - Develop something
-  - Maintain something
-
-## Education
-- B.S. in Computer Science Engineering at OOO
-  - 2000. 01 ~ 2000. 01
-
-## Projects
-- Gatsby Advanced Blog (https://github.com/wonism/gatsby-advanced-blog) ∙ 2000. 01 ~ Present
-  - Integrate Redux
-    - Use Redux, Redux Saga, Reselect...
-
-## Skills
-- JavaScript
-  - ES2015+
-  - ReactJS
-  - Lodash
-- CSS
-  - SASS
-  - Less&lt;/code&gt;&lt;/pre&gt;
-      &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;path&lt;/code&gt;는 페이지를 생성하기 위해 &lt;strong&gt;반드시&lt;/strong&gt; 필요한 속성으로 값은 유일한 값을 가져야 한다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;hljs-text&quot;&gt;type&lt;/code&gt;은 페이지의 형식을 지정할 수 있는 값으로 여기에서는 &lt;code class=&quot;hljs-text&quot;&gt;resume&lt;/code&gt;라고 할당한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;기타 기능&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;GNB의 오른쪽에선 포스트의 제목, 요약된 내용, 태그, 카테고리 등으로 검색을 할 수 있다.&lt;/li&gt;
-&lt;li&gt;코드를 추가하면, 코드를 복사할 수 있는 버튼이 자동으로 생성된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;배포&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;npm run build&lt;/code&gt;를 통해 애플리케이션을 빌드하고,
-&lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Page&lt;/a&gt; 또는 &lt;a href=&quot;https://aws.amazon.com/s3&quot;&gt;AWS S3&lt;/a&gt;, &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt; 등 자신이 원하는 곳에 배포하면 된다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[JavaScript Generator 이해하기]]></title><link>https://wonism.github.io/javascript-generator/</link><guid isPermaLink="false">https://wonism.github.io/javascript-generator/</guid><pubDate>Wed, 08 Aug 2018 00:35:14 GMT</pubDate><content:encoded>&lt;h2&gt;Generator Function&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JavaScript Generator 이해하기]]></title><link>https://wonism.github.io/javascript-generator/</link><guid isPermaLink="false">https://wonism.github.io/javascript-generator/</guid><pubDate>Wed, 08 Aug 2018 00:35:14 GMT</pubDate><content:encoded>&lt;h2&gt;Generator Function&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;hljs-text&quot;&gt;Generator Function&lt;/code&gt;는 사용자의 요구에 따라 다른 시간 간격으로 여러 값을 반환할 수 있으며, 내부 상태를 관리할 수 있는 함수이며, &lt;code class=&quot;hljs-text&quot;&gt;function* generatorFunction() { /* ... */ }&lt;/code&gt;와 같이 사용한다.&lt;/p&gt;
 &lt;p&gt;단 한 번의 실행으로 함수의 끝까지 실행이 완료되는 일반 함수와는 달리,&lt;br /&gt;
 제너레이터 함수는 사용자의 요구에 따라 (&lt;code class=&quot;hljs-text&quot;&gt;yield&lt;/code&gt;와 &lt;code class=&quot;hljs-text&quot;&gt;next&lt;/code&gt;를 통해) 일시적으로 정지될 수도 있고, 다시 시작될 수도 있다.&lt;br /&gt;
