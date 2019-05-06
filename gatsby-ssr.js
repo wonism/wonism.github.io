@@ -1,11 +1,12 @@
 import Helmet from 'react-helmet';
 
-exports.onRenderBody = ({
+export const onRenderBody = ({
   setHeadComponents,
   setHtmlAttributes,
   setBodyAttributes,
 }, pluginOptions) => {
   const helmet = Helmet.renderStatic();
+
   setHtmlAttributes(helmet.htmlAttributes.toComponent());
   setBodyAttributes(helmet.bodyAttributes.toComponent());
   setHeadComponents([

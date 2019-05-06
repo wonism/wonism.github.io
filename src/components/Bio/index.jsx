@@ -1,12 +1,11 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
   margin: 1em 0;
 
   a {
-    color: #000;
+    color: ${({ theme: { color } }) => color};
   }
 
   span,

@@ -16,7 +16,7 @@ const PortfolioCard = styled.section`
 
   &:nth-child(4n + 2),
   &:nth-child(4n + 3) {
-    background-color: #fff;
+    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   }
 
   &:hover {
@@ -36,7 +36,7 @@ const PortfolioCard = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    color: #000;
+    color: ${({ theme: { color } }) => color};
   }
 
   img {

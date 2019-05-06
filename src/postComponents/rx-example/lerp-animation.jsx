@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import Rx from 'rxjs';
 import styled from 'styled-components';
 import * as url from './logan.jpg';

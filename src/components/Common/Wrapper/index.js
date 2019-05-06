@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { oneOfType, node, element, array, string } from 'prop-types';
 import styled from 'styled-components';
 

@@ -1,8 +1,7 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 import styled from 'styled-components';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { flow, isEmpty, isArray, slice, map, get, first, includes, size } from 'lodash/fp';
 import Helmet from 'react-helmet';
 import Wrapper from '~/components/Common/Wrapper';
@@ -32,6 +31,8 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+
+  color: ${({ theme: { color } }) => color};
 `;
 
 const Home = ({

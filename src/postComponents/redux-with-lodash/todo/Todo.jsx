@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { arrayOf, shape, string, bool, func } from 'prop-types';
 import { map, findIndex } from 'lodash/fp';
 import TodoItem from './TodoItem';

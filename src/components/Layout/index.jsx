@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, Children, cloneElement, Fragment } from 'react';
+import React, { Children, cloneElement } from 'react';
 import { node } from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -106,9 +105,9 @@ const GatsbyApp = ({ children, ...otherProps }) => (
       return (
         <Provider store={store}>
           <ConnectedLayout {...otherProps}>
-            <Fragment>
+            <>
               {head(childrenWithProps)}
-            </Fragment>
+            </>
           </ConnectedLayout>
         </Provider>
       );

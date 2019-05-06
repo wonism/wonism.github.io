@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, Fragment } from 'react';
+import React from 'react';
 import { shape } from 'prop-types';
 import Helmet from 'react-helmet';
 import { size, slice, map, get } from 'lodash/fp';
@@ -20,7 +19,7 @@ const List = ({ data, location }) => {
   )(allPosts);
 
   return (
-    <Fragment>
+    <>
       <PostsWrapper>
         <Helmet>
           <title>
@@ -42,7 +41,7 @@ const List = ({ data, location }) => {
         })(posts)}
       </PostsWrapper>
       <Pagination postCount={postCount} location={location} />
-    </Fragment>
+    </>
   );
 };
 

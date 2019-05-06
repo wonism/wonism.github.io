@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
 import { Tweet } from 'react-twitter-widgets';
@@ -134,7 +133,7 @@ export function* renderComponents({ components }) {
         width: 100%;
         height: 35px;
         line-height: 35px;
-        color: #fff;
+        color: ${({ theme: { backgroundColor } }) => backgroundColor};
         background-color: #263238;
         font-weight: 100;
         content: 'Application for example';

@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import Home from '~/containers/Home';
 import Layout from '~/components/Layout';
 

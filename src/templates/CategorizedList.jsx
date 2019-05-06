@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '~/components/Layout';
 import CategorizedList from '~/components/CategorizedList';

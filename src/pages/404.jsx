@@ -1,6 +1,5 @@
-/** @jsx createElement */
-import { createElement } from 'react';
-import Link from 'gatsby-link';
+import React from 'react';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import SimpleWrapper from '~/components/Common/SimpleWrapper';
 import Layout from '~/components/Layout';

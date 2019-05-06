@@ -1,7 +1,6 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { shape, func } from 'prop-types';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import FaTags from 'react-icons/lib/fa/tags';
@@ -22,7 +21,7 @@ const Tags = styled.div`
 
   a {
     margin: 0 0 0 4px;
-    color: #000;
+    color: ${({ theme: { color } }) => color};
     text-decoration: blink;
 
     &:hover {

@@ -1,7 +1,6 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import FaRss from 'react-icons/lib/fa/rss-square';
 import FaGithub from 'react-icons/lib/fa/github';
 import FaFacebook from 'react-icons/lib/fa/facebook';

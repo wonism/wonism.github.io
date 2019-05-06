@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { string, number, bool, func } from 'prop-types';
 
 export default class TodoItem extends PureComponent {

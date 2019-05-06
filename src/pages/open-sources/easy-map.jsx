@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';

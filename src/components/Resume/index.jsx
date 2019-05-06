@@ -1,8 +1,7 @@
-/** @jsx createElement */
-import { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
 import { Document, Page } from 'react-pdf';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import FaPinrt from 'react-icons/lib/fa/print';

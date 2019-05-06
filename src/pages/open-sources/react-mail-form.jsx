@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -24,7 +23,9 @@ const Form = styled(MailForm)`
     margin: 12px auto;
     width: 100%;
     max-width: 480px;
-    border: 1px solid #555;
+    color: ${({ theme: { color } }) => color};
+    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+    border: 1px solid ${({ theme: { color } }) => color};
     outline: 0;
     font-size: 16px;
   }
@@ -43,7 +44,7 @@ const Form = styled(MailForm)`
     width: 120px;
     height: 3em;
     line-height: 3em;
-    color: #fff;
+    color: ${({ theme: { backgroundColor } }) => backgroundColor};
     background-color: ${PRIMARY_COLOR};
     font-size: 16px;
     font-weight: 900;
@@ -53,7 +54,7 @@ const Form = styled(MailForm)`
     &:hover,
     &:focus,
     &:active {
-      color: #fff;
+      color: ${({ theme: { backgroundColor } }) => backgroundColor};
     }
 
     &:hover {

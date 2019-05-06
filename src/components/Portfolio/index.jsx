@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { shape } from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';

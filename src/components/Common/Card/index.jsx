@@ -1,7 +1,6 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import { arrayOf, string } from 'prop-types';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Truncate from 'react-truncate';
 import FaTags from 'react-icons/lib/fa/tags';
 import styled from 'styled-components';
@@ -64,7 +63,7 @@ const StyledArticle = styled.article`
     position: relative;
     top: 0;
     padding: 14px;
-    background-color: #fff;
+    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
     border-radius: 6px;
     transition: all .4s ease .1s;
     border: 1px solid #e5e5e5;
@@ -76,7 +75,7 @@ const StyledArticle = styled.article`
   }
 
   a {
-    color: #000;
+    color: ${({ theme: { color } }) => color};
 
     &:hover {
       h3,

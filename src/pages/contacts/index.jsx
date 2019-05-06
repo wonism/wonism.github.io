@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import ReactMailForm from 'react-mail-form';
@@ -42,7 +41,7 @@ const Wrapper = styled.section`
     width: 120px;
     height: 3em;
     line-height: 3em;
-    color: #fff;
+    color: ${({ theme: { backgroundColor } }) => backgroundColor};
     background-color: ${PRIMARY_COLOR};
     font-size: 16px;
     font-weight: 900;
@@ -52,7 +51,7 @@ const Wrapper = styled.section`
     &:hover,
     &:focus,
     &:active {
-      color: #fff;
+      color: ${({ theme: { backgroundColor } }) => backgroundColor};
     }
 
     &:hover {

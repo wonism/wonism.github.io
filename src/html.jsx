@@ -1,5 +1,4 @@
-/** @jsx createElement */
-import { createElement, Component } from 'react';
+import React, { Component } from 'react';
 
 export default class HTML extends Component {
   render() {
