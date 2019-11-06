@@ -41,7 +41,7 @@ const Hamburger = styled.div`
 
   .hamburger-box{position:relative;display:inline-block;width:40px;height:24px}
   .hamburger-inner{top:50%;display:block;margin-top:-2px}
-  .hamburger-inner,.hamburger-inner:after,.hamburger-inner:before{position:absolute;width:40px;height:4px;transition-timing-function:ease;transition-duration:.15s;transition-property:transform;border-radius:4px;background-color:${({ theme: { color } }) => color}}
+  .hamburger-inner,.hamburger-inner:after,.hamburger-inner:before{position:absolute;width:40px;height:4px;transition-timing-function:ease;transition-duration:.15s;transition-property:transform;border-radius:4px;background-color:#3B9CFF}
   .hamburger-inner:after,.hamburger-inner:before{display:block;content:""}
   .hamburger-inner:before{top:-10px}
   .hamburger-inner:after{bottom:-10px}
