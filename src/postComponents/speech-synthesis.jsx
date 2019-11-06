@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react';
 
 class App extends PureComponent {
   static speak(text) {
-    if (typeof window.SpeechSynthesisUtterance === 'undefined' || typeof window.speechSynthesis === 'undefined') {
+    if (typeof global.SpeechSynthesisUtterance === 'undefined' || typeof global.speechSynthesis === 'undefined') {
       alert('This browser does not support speech API'); // eslint-disable-line no-alert
       return;
     }
 
-    const message = new window.SpeechSynthesisUtterance(text);
-    const voices = window.speechSynthesis.getVoices();
+    const message = new global.SpeechSynthesisUtterance(text);
+    const voices = global.speechSynthesis.getVoices();
 
     message.voice = voices[0];
-    window.speechSynthesis.speak(message);
+    global.speechSynthesis.speak(message);
   }
 
   constructor(props) {

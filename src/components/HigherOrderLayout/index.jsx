@@ -36,8 +36,11 @@ export default class HigherOrderLayout extends Component {
     children: null,
   };
 
-  state = {
-    isDracula: global.localStorage && global.localStorage.getItem('theme') === 'dracula',
+  constructor(props) {
+    super(props);
+
+    const isDracula = global.localStorage && global.localStorage.getItem('theme') === 'dracula';
+    this.state = { isDracula };
   }
 
   toggleTheme = () => {
